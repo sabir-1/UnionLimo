@@ -11,7 +11,7 @@
             </div>
           </div>
           <div class="header-top-2 wow fadeInDown">
-            <NuxtLink to="/" class="d-flex">
+            <NuxtLink to="/services" class="d-flex">
               <img alt="Luxride" src="/imgs/template/logo.svg" />
             </NuxtLink>
           </div>

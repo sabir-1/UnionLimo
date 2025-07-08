@@ -34,7 +34,7 @@ export default {
       }
     },
     
-    cardServiceStyle5(img = '/assets/imgs/page/homepage1/service1.png', title = 'Intercity Rides', desc = 'The price of tickets for low-cost airlines for a specific route has a much larger spread than that of regular airlines. It depends on the time to departure, demand and competition on the route. Unlike regular airlines, low-cost airlines rarely offer cheap tickets more than 3 months before departure.', link = '/service-single') {
+    cardServiceStyle5(img = 'assets/imgs/page/homepage1/service1.png', title = 'Intercity Rides', desc = 'The price of tickets for low-cost airlines for a specific route has a much larger spread than that of regular airlines. It depends on the time to departure, demand and competition on the route. Unlike regular airlines, low-cost airlines rarely offer cheap tickets more than 3 months before departure. ', link = 'service-single.html') {
       return {
         img,
         title,
