@@ -1,0 +1,120 @@
+/* Main CSS for Luxride */
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Banner styles */
+.banner-home1 {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.box-cover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.box-banner-info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+.heading-52-medium {
+  font-size: 52px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.text-16 {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+/* Search box styles */
+.box-search-ride {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  display: flex;
+  gap: 15px;
+  z-index: 3;
+}
+
+.search-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.btn-search {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Section styles */
+.section {
+  padding: 80px 0;
+}
+
+/* Utility classes */
+.color-white {
+  color: white;
+}
+
+.color-grey {
+  color: #666;
+}
+
+.text-14 {
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heading-52-medium {
+    font-size: 32px;
+  }
+  
+  .box-search-ride {
+    flex-direction: column;
+    width: 90%;
+  }
+} 
