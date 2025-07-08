@@ -311,7 +311,7 @@
             slidesPerView: 4,
             slidesPerGroup: 1,
             // initialSlide: 1,
-            loop: true,
+            
             navigation: {
                 nextEl: ".swiper-button-next-fleet-4",
                 prevEl: ".swiper-button-prev-fleet-4"
@@ -661,15 +661,15 @@ function initSwiper2IemSingle() {
     });
 }
 function initSwiperFleet() {
-    if (swiper_4_fleet) {
+    if (swiper_4_fleet && typeof swiper_4_fleet.destroy === 'function') {
         swiper_4_fleet.destroy();
     }
     swiper_4_fleet = new Swiper(".swiper-group-4-fleet", {
         spaceBetween: 30,
         slidesPerView: 4,
         slidesPerGroup: 1,
-        // initialSlide: 1,
-        loop: true,
+          initialSlide: 1,
+        // loop: true,
         navigation: {
             nextEl: ".swiper-button-next-fleet",
             prevEl: ".swiper-button-prev-fleet"

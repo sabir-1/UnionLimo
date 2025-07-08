@@ -54,6 +54,78 @@
                   luggage="2" 
                 />
               </div>
+              <div class="swiper-slide">
+                <CardFleetStyle3 
+                  src="/imgs/page/homepage1/e-class.png" 
+                  title="Business Class" 
+                  description="Mercedes-Benz E-Class, BMW 5 Series, Cadillac XTS or similar" 
+                  passengers="4" 
+                  luggage="2" 
+                />
+              </div>
+              <div class="swiper-slide">
+                <CardFleetStyle3 
+                  src="/imgs/page/homepage1/eqs.png" 
+                  title="First Class" 
+                  description="Mercedes-Benz EQS, BMW 7 Series, Audi A8 or similar" 
+                  passengers="4" 
+                  luggage="2" 
+                />
+              </div>
+              <div class="swiper-slide">
+                <CardFleetStyle3 
+                  src="/imgs/page/homepage1/suv.png" 
+                  title="Business Van/SUV" 
+                  description="Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac" 
+                  passengers="4" 
+                  luggage="2" 
+                />
+              </div>
+              <div class="swiper-slide">
+                <CardFleetStyle3 
+                  src="/imgs/page/homepage1/suv.png" 
+                  title="Business Van/SUV" 
+                  description="Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac" 
+                  passengers="4" 
+                  luggage="2" 
+                />
+              </div>
+              <div class="swiper-slide">
+                <CardFleetStyle3 
+                  src="/imgs/page/homepage1/e-class.png" 
+                  title="Business Class" 
+                  description="Mercedes-Benz E-Class, BMW 5 Series, Cadillac XTS or similar" 
+                  passengers="4" 
+                  luggage="2" 
+                />
+              </div>
+              <div class="swiper-slide">
+                <CardFleetStyle3 
+                  src="/imgs/page/homepage1/eqs.png" 
+                  title="First Class" 
+                  description="Mercedes-Benz EQS, BMW 7 Series, Audi A8 or similar" 
+                  passengers="4" 
+                  luggage="2" 
+                />
+              </div>
+              <div class="swiper-slide">
+                <CardFleetStyle3 
+                  src="/imgs/page/homepage1/suv.png" 
+                  title="Business Van/SUV" 
+                  description="Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac" 
+                  passengers="4" 
+                  luggage="2" 
+                />
+              </div>
+              <div class="swiper-slide">
+                <CardFleetStyle3 
+                  src="/imgs/page/homepage1/suv.png" 
+                  title="Business Van/SUV" 
+                  description="Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac" 
+                  passengers="4" 
+                  luggage="2" 
+                />
+              </div>
             </div>
             <div class="box-pagination-fleet">
               <div class="swiper-button-prev swiper-button-prev-fleet">
