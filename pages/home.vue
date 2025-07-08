@@ -33,8 +33,8 @@
     <LatestNews />
     
     <!-- FAQs Section -->
-    <!-- <Faqs />
-     -->
+     <Faqs />
+      
     <!-- Download Section -->
     <Download />
     <FooterVariation7 />
@@ -50,16 +50,16 @@ import HowItWork from '~/sections/homepage5/HowItWork.vue'
 import LatestNews from '~/sections/homepage5/LatestNews.vue'
 import TopCities from '~/sections/homepage5/TopCities.vue'
 import OurFleet from '~/sections/homepage5/OurFleet.vue'
-import Faqs from '~/sections/Faqs.vue'
+import Faqs from '~/sections/homepage5/Faqs.vue'
 import Testimonials from '~/sections/homepage5/Testimonials.vue'
 import FooterVariation7 from '~/components/FooterVariation7.vue'
 
 // SEO
 useHead({
-  title: 'Luxride - Multipurpose Startup SaaS HTML Template',
+  title: 'Home - UnionLimo',
   meta: [
-    { name: 'description', content: 'Luxride - Premium Chauffeur and Limousine Services' },
-    { name: 'keywords', content: 'chauffeur, limousine, luxury transport, car hire' }
+    { name: 'description', content: 'UnionLimo - Premium Chauffeur and Limousine Services Home Page' },
+    { name: 'keywords', content: 'chauffeur, limousine, luxury transport, car hire, home' }
   ]
 })
 </script>
