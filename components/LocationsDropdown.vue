@@ -3,7 +3,7 @@
     <div class="list-locations">
       <div class="item-location">
         <div class="location-icon">
-          <img src="assets/imgs/page/homepage1/plane.png" alt="luxride" />
+          <img src="/imgs/page/homepage1/plane.png" alt="luxride" />
         </div>
         <div class="location-info">
           <h6 class="text-16-medium color-text title-location">London Heathrow Airport (LHR)</h6>
@@ -12,7 +12,7 @@
       </div>
       <div class="item-location">
         <div class="location-icon">
-          <img src="assets/imgs/page/homepage1/building.png" alt="luxride" />
+          <img src="/imgs/page/homepage1/building.png" alt="luxride" />
         </div>
         <div class="location-info">
           <h6 class="text-16-medium color-text title-location">London Tower Hill</h6>
@@ -21,7 +21,7 @@
       </div>
       <div class="item-location">
         <div class="location-icon">
-          <img src="assets/imgs/page/homepage1/train.png" alt="luxride" />
+          <img src="/imgs/page/homepage1/train.png" alt="luxride" />
         </div>
         <div class="location-info">
           <h6 class="text-16-medium color-text title-location">Leyton Train Station</h6>
@@ -30,7 +30,7 @@
       </div>
       <div class="item-location">
         <div class="location-icon">
-          <img src="assets/imgs/page/homepage1/plane.png" alt="luxride" />
+          <img src="/imgs/page/homepage1/plane.png" alt="luxride" />
         </div>
         <div class="location-info">
           <h6 class="text-16-medium color-text title-location">London Luton Airport (LTN)</h6>

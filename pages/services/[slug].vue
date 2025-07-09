@@ -4,10 +4,14 @@
     <HeaderVariation3 />
 
     <!-- Breadcrumb Section -->
-    <BreadCrumb />
+    <ServiceSingleBreadcrumb :service-data="serviceData" />
 
     <!-- Service Detail Section -->
-    <ServiceDetail :service-data="serviceData" />
+    <ServiceSingleBanner :service-data="serviceData" />
+    <ServiceSingleFeature :service-data="serviceData" /> 
+    
+    <ServiceSingleDetail :service-data="serviceData" />
+    
 
     <!-- Footer -->
     <FooterVariation7 />
@@ -17,9 +21,11 @@
 <script setup>
 // Import components
 import HeaderVariation3 from '~/components/HeaderVariation3.vue'
-import FooterVariation7 from '~/components/FooterVariation7.vue'
-import BreadCrumb from '~/components/BreadCrumb.vue'
-import ServiceDetail from '~/sections/service-single/Detail.vue'
+import FooterVariation7 from '~/components/FooterVariation7.vue' 
+import ServiceSingleBanner from '~/sections/service-single/Banner.vue'
+import ServiceSingleBreadcrumb from '~/sections/service-single/Breadcrumb.vue'
+import ServiceSingleDetail from '~/sections/service-single/Detail.vue'
+import ServiceSingleFeature from '~/sections/service-single/Feature.vue'
 // Get route params
 const route = useRoute()
 const { slug } = route.params

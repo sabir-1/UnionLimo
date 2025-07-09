@@ -1,0 +1,5 @@
+export { default as ContactBreadcrumb } from './Breadcrumb.vue'
+export { default as ContactForm } from './ContactForm.vue'
+export { default as ContactMap } from './ContactMap.vue'
+export { default as ContactCard } from './ContactCard.vue'
+export { default as ContactOffices } from './ContactOffices.vue' 

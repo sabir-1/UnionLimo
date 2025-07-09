@@ -29,22 +29,7 @@
         </div>
       </div>
 
-      <div class="row align-items-center mt-90 mb-120" v-if="serviceData.pricing">
-        <div class="col-lg-6 mb-30">
-          <div class="box-info-left wow fadeInDown">
-            <h3 class="heading-44-medium color-text mb-30">Pricing Information</h3>
-            <div class="pricing-info">
-              <div v-for="(price, key) in serviceData.pricing" :key="key" class="price-item mb-15">
-                <span class="text-16 color-text font-weight-bold">{{ key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()) }}:</span>
-                <span class="text-16 color-text ml-10">{{ price }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 mb-30 wow fadeInUp">
-          <img :src="serviceData.bannerImage || serviceData.image" :alt="serviceData.title" />
-        </div>
-      </div>
+       
     </div>
   </section>
 </template>
@@ -66,24 +51,4 @@ const props = defineProps({
   }
 })
 </script>
-
-<style scoped>
-/* Add any component-specific styles here */
-.pricing-info {
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.price-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid #e9ecef;
-}
-
-.price-item:last-child {
-  border-bottom: none;
-}
-</style> 
+ 
