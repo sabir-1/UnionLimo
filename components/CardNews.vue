@@ -1,27 +1,34 @@
 <template>
-  <div class="cardNews">
-    <div class="cardImage">
-      <a :href="link">
-        <img :src="src" alt="Luxride" />
-      </a>
-      <div class="datePost">
-        <span class="heading-52-medium">{{ day }}</span>
-        <br>
-        <span class="text-14">{{ month }}</span>
+  <div class="cardNews wow fadeInUp">
+    <a :href="link">
+      <div class="cardImage">
+        <div class="datePost">
+          <div class="heading-52-medium color-white">{{ date }}</div>
+          <p class="text-14 color-white">{{ monthYear }}</p>
+        </div>
+        <img :src="img" alt="luxride" />
       </div>
-    </div>
+    </a>
     <div class="cardInfo">
-      <a :href="link">
-        <h3 class="cardTitle text-20-medium color-text mb-10">{{ title }}</h3>
+      <div class="tags mb-10">
+        <a href="#">{{ tag }}</a>
+      </div>
+      <a class="color-white" :href="link">
+        <h3 class="text-20-medium color-white mb-20">{{ title }}</h3>
       </a>
-      <p class="cardDesc text-14 color-text mb-10">{{ category }}</p>
+      <slot></slot>
+      <a class="cardLink btn btn-arrow-up" :href="link">
+        <svg class="icon-16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
+        </svg>
+      </a>
     </div>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
-  src: {
+  img: {
     type: String,
     default: '/imgs/page/homepage1/news1.png'
   },
@@ -29,21 +36,21 @@ const props = defineProps({
     type: String,
     default: '3 hidden-gem destinations for your wish list'
   },
-  category: {
+  tag: {
     type: String,
     default: 'Travel'
   },
-  day: {
+  date: {
     type: String,
     default: '14.'
   },
-  month: {
+  monthYear: {
     type: String,
-    default: 'Jun, 2022'
+    default: 'Jun, 2023'
   },
   link: {
     type: String,
-    default: '/blog-single'
+    default: 'blog-single.html'
   }
 });
 </script>
