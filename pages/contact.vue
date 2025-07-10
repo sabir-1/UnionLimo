@@ -1,19 +1,27 @@
 <template>
     <div>
-        <HeaderVariation3 />
-        <BreadCrumb/>
         <ContactOffices/>
         <ContactMap/>
         <ContactForm/> 
-        <FooterVariation7/>
     </div>
 </template>
 
 <script setup>
-import HeaderVariation3 from '~/components/HeaderVariation3.vue'
-import FooterVariation7 from '~/components/FooterVariation7.vue'
-import BreadCrumb from '~/sections/contact/Breadcrumb.vue'
 import ContactOffices from '~/sections/contact/ContactOffices.vue'
 import ContactForm from '~/sections/contact/ContactForm.vue'
 import ContactMap from '~/sections/contact/ContactMap.vue'
+
+// Define layout props for SEO and breadcrumb
+definePageMeta({
+  layout: 'default',
+  layoutProps: {
+    breadcrumbTitle: 'Contact Us',
+    breadcrumbItems: [
+      { text: 'Contact', link: null }
+    ],
+    seoTitle: 'Contact Us - UnionLimo',
+    seoDescription: 'Get in touch with UnionLimo for premium chauffeur and limousine services. Contact our team for bookings, inquiries and support.',
+    seoKeywords: 'contact unionlimo, chauffeur booking, limousine service contact, customer support'
+  }
+})
 </script>

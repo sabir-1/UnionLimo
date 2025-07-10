@@ -1,31 +1,19 @@
 <template>
   <div>
-    <!-- Header -->
-    <HeaderVariation3 />
-
-    <!-- Breadcrumb Section -->
-    <ServiceSingleBreadcrumb :service-data="serviceData" />
-
     <!-- Service Detail Section -->
     <ServiceSingleBanner :service-data="serviceData" />
     <ServiceSingleFeature :service-data="serviceData" /> 
     
     <ServiceSingleDetail :service-data="serviceData" />
-    
-
-    <!-- Footer -->
-    <FooterVariation7 />
   </div>
 </template>
 
 <script setup>
 // Import components
-import HeaderVariation3 from '~/components/HeaderVariation3.vue'
-import FooterVariation7 from '~/components/FooterVariation7.vue' 
 import ServiceSingleBanner from '~/sections/service-single/Banner.vue'
-import ServiceSingleBreadcrumb from '~/sections/service-single/Breadcrumb.vue'
 import ServiceSingleDetail from '~/sections/service-single/Detail.vue'
 import ServiceSingleFeature from '~/sections/service-single/Feature.vue'
+
 // Get route params
 const route = useRoute()
 const { slug } = route.params
@@ -198,109 +186,40 @@ const servicesData = {
       },
       {
         title: 'Wedding Packages',
-        content: 'We offer comprehensive wedding packages including transportation for the bride, groom, wedding party, and guests. Customize your package to suit your needs.'
+        content: 'We offer comprehensive wedding packages that include transportation for the bride, groom, wedding party, and guests. All packages include decoration and professional service.'
       }
     ],
     pricing: {
-      basic: '$200',
-      premium: '$350',
-      luxury: '$500'
-    }
-  },
-  'travel-transfer': {
-    id: 'travel-transfer',
-    title: 'Travel Transfer',
-    slug: 'travel-transfer',
-    description: 'Comprehensive travel transportation solutions for all your journey needs.',
-    longDescription: 'From city tours to intercity travel, our Travel Transfer service provides comprehensive transportation solutions. Whether you\'re exploring the city or traveling between destinations, we ensure comfortable and reliable service.',
-    image: '/imgs/page/services/travel.png',
-    bannerImage: '/imgs/page/services/travel-banner.png',
-    features: [
-      'City tours and sightseeing',
-      'Intercity travel services',
-      'Custom travel itineraries',
-      'Professional tour guides available',
-      'Flexible booking options'
-    ],
-    details: [
-      {
-        title: 'City Tours',
-        content: 'Explore the city in comfort with our guided tours. Our professional chauffeurs can also serve as knowledgeable guides to enhance your travel experience.'
-      },
-      {
-        title: 'Intercity Travel',
-        content: 'Travel between cities with our reliable intercity service. We provide comfortable transportation for business trips, leisure travel, and special occasions.'
-      },
-      {
-        title: 'Custom Itineraries',
-        content: 'We work with you to create custom travel itineraries that suit your schedule and preferences. From airport transfers to multi-day tours, we handle all your travel needs.'
-      }
-    ],
-    pricing: {
-      cityTour: '$80/hour',
-      intercity: '$150',
-      custom: 'Quote'
-    }
-  },
-  'intercity-rides': {
-    id: 'intercity-rides',
-    title: 'Intercity Rides',
-    slug: 'intercity-rides',
-    description: 'Comfortable and reliable transportation between cities with premium vehicles.',
-    longDescription: 'Travel between cities in comfort and style with our Intercity Rides service. We provide reliable transportation for business trips, leisure travel, and special occasions with our fleet of premium vehicles.',
-    image: '/imgs/page/homepage1/service1.png',
-    bannerImage: '/imgs/page/services/intercity-banner.png',
-    features: [
-      'Premium vehicles for long-distance travel',
-      'Professional chauffeurs with route knowledge',
-      'Comfortable seating and amenities',
-      'Flexible scheduling and booking',
-      'Competitive pricing for intercity travel'
-    ],
-    details: [
-      {
-        title: 'Vehicle Fleet',
-        content: 'Our intercity fleet includes luxury sedans, SUVs, and vans equipped with comfortable seating, climate control, and entertainment systems for your journey.'
-      },
-      {
-        title: 'Route Coverage',
-        content: 'We serve major routes between cities with experienced chauffeurs who know the best routes and can ensure timely arrival at your destination.'
-      },
-      {
-        title: 'Booking & Pricing',
-        content: 'Book your intercity ride online, via phone, or through our mobile app. We offer transparent pricing with no hidden fees and flexible scheduling options.'
-      }
-    ],
-    pricing: {
-      perKm: '$2.50',
-      minimum: '$50',
-      hourly: '$75/hour'
+      hourly: '$150/hour',
+      wedding: '$800',
+      reception: '$400'
     }
   }
 }
 
+// Get service data based on slug
 const serviceData = computed(() => {
   return servicesData[slug] || {
-    id: slug,
     title: 'Service Not Found',
-    slug: slug,
     description: 'The requested service could not be found.',
-    longDescription: 'We apologize, but the service you are looking for is not available.',
-    image: '/imgs/page/homepage1/service1.png',
-    bannerImage: '/imgs/page/services/default-banner.png',
     features: [],
-    details: [],
-    pricing: {}
+    details: []
   }
 })
 
-// Set page title and meta
-useHead({
-  title: `${serviceData.value.title} - UnionLimo`,
-  meta: [
-    { name: 'description', content: serviceData.value.description },
-    { name: 'keywords', content: `${serviceData.value.title}, chauffeur service, luxury transportation, ${slug}` }
-  ]
+// Define layout props for SEO and breadcrumb
+definePageMeta({
+  layout: 'default',
+  layoutProps: computed(() => ({
+    breadcrumbTitle: serviceData.value.title,
+    breadcrumbItems: [
+      { text: 'Services', link: '/services' },
+      { text: serviceData.value.title, link: null }
+    ],
+    seoTitle: `${serviceData.value.title} - UnionLimo`,
+    seoDescription: serviceData.value.description,
+    seoKeywords: `${serviceData.value.title.toLowerCase()}, luxury transportation, chauffeur service, unionlimo`
+  }))
 })
 </script>
 

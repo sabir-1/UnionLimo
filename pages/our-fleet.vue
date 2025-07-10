@@ -1,7 +1,5 @@
 <template>
     <div class="">
-    <HeaderVariation5/>
-    <BreadCrumb/>
    <section class="section pt-60 bg-white latest-new-white">
         <div class="container-sub"> 
           <div class="row align-items-center"> 
@@ -61,16 +59,11 @@
           
         </div>
       </section> 
-       
-      <FooterVariation7/>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import BreadCrumb from '~/components/BreadCrumb.vue'
-import HeaderVariation5 from '~/components/HeaderVariation5.vue'
-import FooterVariation7 from '~/components/FooterVariation7.vue'
 import Pagination from '~/elements/Pagination.vue'
  
 const fleetList = ref([
@@ -183,6 +176,20 @@ const filterByVehicleMake = (make) => {
   selectedVehicleMake.value = make
   // Add filtering logic here
 }
+
+// Define layout props for SEO and breadcrumb
+definePageMeta({
+  layout: 'default',
+  layoutProps: {
+    breadcrumbTitle: 'Our Fleet',
+    breadcrumbItems: [
+      { text: 'Our Fleet', link: null }
+    ],
+    seoTitle: 'Our Fleet - Luxury Vehicles | UnionLimo',
+    seoDescription: 'Explore our premium fleet of luxury vehicles including Mercedes-Benz, BMW, Audi and more. Business class, first class, SUV and electric vehicles available.',
+    seoKeywords: 'luxury fleet, mercedes benz, bmw, audi, suv, business class, first class, luxury vehicles'
+  }
+})
 </script>
 
  

@@ -1,17 +1,11 @@
 <template>
-    <div>
-        <HeaderVariation5 />
-        <BreadCrumb />
+ 
         <BlogDetail :blog-data="currentBlog" />
-        <FooterVariation7 />
-    </div>
+    
 </template>
 
 <script setup>
-import BlogDetail from '@/components/BlogDetail.vue';
-import HeaderVariation5 from '@/components/HeaderVariation5.vue';
-import FooterVariation7 from '@/components/FooterVariation7.vue';
-import BreadCrumb from '@/components/BreadCrumb.vue';
+import BlogDetail from '@/components/BlogDetail.vue'; 
 
 // Get route params
 const route = useRoute();
@@ -208,5 +202,20 @@ const blogData = ref({
 const currentBlog = computed(() => {
     return blogData.value[slug] || blogData.value['hidden-gem-destinations'];
 });
+
+// Define layout props for SEO and breadcrumb
+definePageMeta({
+  layout: 'default',
+  layoutProps: computed(() => ({
+    breadcrumbTitle: currentBlog.value.title,
+    breadcrumbItems: [
+      { text: 'Blog', link: '/blogs' },
+      { text: currentBlog.value.title, link: null }
+    ],
+    seoTitle: `${currentBlog.value.title} - UnionLimo Blog`,
+    seoDescription: currentBlog.value.content[0] || 'Read our latest blog post about luxury transportation and travel.',
+    seoKeywords: `${currentBlog.value.tags.join(', ')}, luxury transportation, travel blog, unionlimo`
+  }))
+})
 </script>
 

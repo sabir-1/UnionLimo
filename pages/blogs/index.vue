@@ -1,7 +1,5 @@
 <template>
     <div>
-        <HeaderVariation5 />
-        <BreadCrumb />
         <section class="section pt-60 bg-white latest-new-white">
             <div class="container-sub">
                 <div class="row mt-50">
@@ -21,16 +19,12 @@
                 </div>
             </div>
         </section>
-        <FooterVariation7 />
     </div>
 </template>
 
 <script setup>
 import CardNews from '@/components/CardNews.vue';
 import Pagination from '~/elements/Pagination.vue';
-import HeaderVariation5 from '~/components/HeaderVariation5.vue';
-import FooterVariation7 from '~/components/FooterVariation7.vue';
-import BreadCrumb from '~/components/BreadCrumb.vue';
 
 // Dynamic blog data
 const blogs = ref([
@@ -143,4 +137,18 @@ const blogs = ref([
         link: "/blogs/corporate-transportation"
     }
 ]);
+
+// Define layout props for SEO and breadcrumb
+definePageMeta({
+  layout: 'default',
+  layoutProps: {
+    breadcrumbTitle: 'Blog & News',
+    breadcrumbItems: [
+      { text: 'Blog', link: null }
+    ],
+    seoTitle: 'Blog & News - UnionLimo',
+    seoDescription: 'Stay updated with the latest news, travel tips, and insights about luxury transportation, chauffeur services, and premium travel experiences.',
+    seoKeywords: 'travel blog, luxury transportation news, chauffeur service tips, travel insights, transportation blog'
+  }
+})
 </script>
