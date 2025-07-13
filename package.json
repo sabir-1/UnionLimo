@@ -7,11 +7,23 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "optimize:images": "node scripts/optimize-images.js",
+    "optimize:all": "node scripts/optimize-all.js",
+    "extract:critical": "node scripts/extract-critical-css.js",
+    "analyze": "nuxt build --analyze",
+    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html"
   },
   "dependencies": {
+    "@nuxtjs/robots": "^5.4.0",
+    "@nuxtjs/sitemap": "^7.4.3",
     "nuxt": "^3.17.6",
+    "puppeteer": "^24.12.1",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "lighthouse": "^11.7.1",
+    "sharp": "^0.33.5"
   }
 }
