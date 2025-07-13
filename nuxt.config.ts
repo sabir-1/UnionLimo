@@ -10,7 +10,16 @@ export default defineNuxtConfig({
     minify: true,
     prerender: {
       crawlLinks: true,
-      routes: ['/']
+      routes: ['/'],
+      ignore: [
+        '/login',
+        '/register',
+        '/about',
+        '/our-team',
+        '/term-conditions',
+        '/service-single',
+        // ...jitne bhi 404 aa rahe hain sab yahan daal dein
+      ]
     }
   },
   
@@ -18,17 +27,6 @@ export default defineNuxtConfig({
   vite: {
     optimizeDeps: {
       include: ['swiper']
-    },
-    build: {
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            vendor: ['vue', 'vue-router'],
-            jquery: ['jquery'],
-            bootstrap: ['bootstrap']
-          }
-        }
-      }
     },
     css: {
       devSourcemap: false
@@ -40,6 +38,11 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxtjs/sitemap'
   ],
+  
+  // Site configuration for sitemap and SEO
+  site: {
+    url: 'https://yourdomain.com'
+  },
   
   // App configuration with optimized script loading
   app: {
