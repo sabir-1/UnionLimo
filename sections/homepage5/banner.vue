@@ -1,7 +1,7 @@
 <template>
   <section class="section banner-home5">
     <div class="box-banner-homepage-2">
-      <div class="box-cover-image" style="background-image:url(/imgs/page/homepage5/banner.png)"></div>
+      <div class="box-cover-image" style="background-image:url(/imgs/page/homepage5/banner.webp)"></div>
       <div class="box-banner-info">
         <div class="box-swiper">
           <div class="swiper-container swiper-banner-1 pb-0">

@@ -6,7 +6,7 @@
       </div>
       <div class="row mt-60 align-items-center">
         <div class="col-lg-6 mb-30 wow fadeInUp">
-          <img class="w-100 bd-rd6" src="/imgs/page/homepage5/img-how.png" alt="Luxride" />
+          <img class="w-100 bd-rd6" src="/imgs/page/homepage5/img-how.webp" alt="Luxride" />
         </div>
         <div class="col-lg-6 mb-30">
           <div class="box-region-right wow fadeInUp">
