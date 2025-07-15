@@ -2,8 +2,54 @@
     <div>
         <section class="section pt-60 bg-white latest-new-white">
             <div class="container-sub">
-                <div class="row mt-50">
-                    <div class="col-lg-4" v-for="blog in blogs" :key="blog.id">
+                <!-- Search Bar -->
+                <div class="row mb-40">
+                    <div class="col-lg-6 mx-auto">
+                        <div class="search-box">
+                            <input 
+                                v-model="searchQuery" 
+                                @input="searchBlogs(searchQuery)"
+                                type="text" 
+                                class="form-control" 
+                                placeholder="Search blogs..."
+                            />
+                            <button 
+                                v-if="searchQuery" 
+                                @click="clearSearch" 
+                                class="btn btn-sm btn-outline-secondary"
+                                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"
+                            >
+                                ×
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div v-if="loading" class="text-center py-60">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3">Loading blogs...</p>
+                </div>
+
+                <!-- Error State -->
+                <div v-else-if="error" class="text-center py-60">
+                    <div class="alert alert-warning" role="alert">
+                        <h4>Oops!</h4>
+                        <p>{{ error }}</p>
+                        <button @click="fetchBlogs" class="btn btn-primary">Try Again</button>
+                    </div>
+                </div>
+
+                <!-- Search Results Info -->
+                <div v-else-if="searchQuery && filteredBlogs.length > 0" class="text-center mb-30">
+                    <p>Found {{ filteredBlogs.length }} result(s) for "{{ searchQuery }}"</p>
+                </div>
+
+                <!-- Blog Grid -->
+                <div v-if="!loading && !error" class="row mt-50">
+                    <div class="col-lg-4" v-for="blog in paginatedBlogs" :key="blog.id">
                         <CardNews 
                             :img="blog.img"
                             :title="blog.title" 
@@ -14,8 +60,35 @@
                     </div>
                 </div>
 
-                <div class="text-center mt-40 mb-120 wow fadeInDown">
-                    <Pagination />
+                <!-- Empty State -->
+                <div v-if="!loading && !error && filteredBlogs.length === 0" class="text-center py-60">
+                    <h3 v-if="searchQuery">No results found</h3>
+                    <h3 v-else>No blogs found</h3>
+                    <p v-if="searchQuery">Try adjusting your search terms.</p>
+                    <p v-else>Check back later for new content!</p>
+                    <button v-if="searchQuery" @click="clearSearch" class="btn btn-primary">Clear Search</button>
+                </div>
+
+                <!-- Pagination -->
+                <div class="text-center mt-40 mb-120 wow fadeInDown" v-if="totalPages > 1">
+                    <nav aria-label="Blog pagination">
+                        <ul class="pagination">
+                            <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                                <button @click="changePage(currentPage - 1)" class="page-link">Previous</button>
+                            </li>
+                            <li 
+                                v-for="page in getPageNumbers()" 
+                                :key="page" 
+                                class="page-item"
+                                :class="{ active: page === currentPage }"
+                            >
+                                <button @click="changePage(page)" class="page-link">{{ page }}</button>
+                            </li>
+                            <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+                                <button @click="changePage(currentPage + 1)" class="page-link">Next</button>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </section>
@@ -24,119 +97,45 @@
 
 <script setup>
 import CardNews from '@/components/CardNews.vue';
-import Pagination from '~/elements/Pagination.vue';
 
-// Dynamic blog data
-const blogs = ref([
-    {
-        id: 1,
-        img: "/imgs/page/homepage1/news1.png",
-        title: "3 hidden-gem destinations for your wish list",
-        category: "Travel",
-        day: "14.",
-        month: "Jun, 2022",
-        link: "/blogs/hidden-gem-destinations"
-    },
-    {
-        id: 2,
-        img: "/imgs/page/homepage1/news2.png",
-        title: "Explore the big things happening in Dallas",
-        category: "Culture",
-        day: "18.",
-        month: "Jun, 2022",
-        link: "/blogs/dallas-exploration"
-    },
-    {
-        id: 3,
-        img: "/imgs/page/homepage1/news3.png",
-        title: "LA's worst traffic areas and how to avoid them",
-        category: "News",
-        day: "20.",
-        month: "Jun, 2022",
-        link: "/blogs/la-traffic-guide"
-    },
-    {
-        id: 4,
-        img: "/imgs/page/blog/news1.png",
-        title: "How to avoid the impact of rising gas prices around the globe",
-        category: "Travel",
-        day: "14.",
-        month: "Jun, 2022",
-        link: "/blogs/gas-prices-impact"
-    },
-    {
-        id: 5,
-        img: "/imgs/page/blog/news2.png",
-        title: "Travel around the UK like royalty",
-        category: "Culture",
-        day: "18.",
-        month: "Jun, 2022",
-        link: "/blogs/uk-royal-travel"
-    },
-    {
-        id: 6,
-        img: "/imgs/page/blog/news3.png",
-        title: "The next eco-friendly frontier: Boston",
-        category: "News",
-        day: "20.",
-        month: "Jun, 2022",
-        link: "/blogs/boston-eco-friendly"
-    },
-    {
-        id: 7,
-        img: "/imgs/page/blog/news1.png",
-        title: "3 reasons to swap your short-haul flight for a road trip",
-        category: "Travel",
-        day: "14.",
-        month: "Jun, 2022",
-        link: "/blogs/road-trip-vs-flight"
-    },
-    {
-        id: 8,
-        img: "/imgs/page/blog/news2.png",
-        title: "Plan the perfect NYC Memorial Day weekend",
-        category: "Culture",
-        day: "18.",
-        month: "Jun, 2022",
-        link: "/blogs/nyc-memorial-day"
-    },
-    {
-        id: 9,
-        img: "/imgs/page/blog/news3.png",
-        title: "Escaping London for a relaxing long weekend",
-        category: "News",
-        day: "20.",
-        month: "Jun, 2022",
-        link: "/blogs/london-escape"
-    },
-    {
-        id: 10,
-        img: "/imgs/page/homepage1/news1.png",
-        title: "Luxury car rental trends in 2024",
-        category: "Luxury",
-        day: "25.",
-        month: "Dec, 2023",
-        link: "/blogs/luxury-car-trends"
-    },
-    {
-        id: 11,
-        img: "/imgs/page/homepage1/news2.png",
-        title: "Best chauffeur services in major cities",
-        category: "Service",
-        day: "28.",
-        month: "Dec, 2023",
-        link: "/blogs/best-chauffeur-services"
-    },
-    {
-        id: 12,
-        img: "/imgs/page/homepage1/news3.png",
-        title: "Corporate transportation solutions",
-        category: "Business",
-        day: "30.",
-        month: "Dec, 2023",
-        link: "/blogs/corporate-transportation"
+// Use the blog API composable
+const { 
+    blogs, 
+    loading, 
+    error, 
+    searchQuery,
+    currentPage,
+    filteredBlogs,
+    paginatedBlogs,
+    totalPages,
+    fetchBlogs, 
+    searchBlogs,
+    changePage,
+    clearSearch
+} = useBlogApi();
+
+// Fetch blogs on page load
+onMounted(() => {
+    fetchBlogs();
+});
+
+// Get page numbers for pagination
+const getPageNumbers = () => {
+    const pages = [];
+    const maxPages = 5;
+    let start = Math.max(1, currentPage.value - Math.floor(maxPages / 2));
+    let end = Math.min(totalPages.value, start + maxPages - 1);
+    
+    if (end - start + 1 < maxPages) {
+        start = Math.max(1, end - maxPages + 1);
     }
-]);
+    
+    for (let i = start; i <= end; i++) {
+        pages.push(i);
+    }
+    
+    return pages;
+};
 
 // Define layout props for SEO and breadcrumb
 definePageMeta({
@@ -152,3 +151,73 @@ definePageMeta({
   }
 })
 </script>
+
+<style scoped>
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    padding-right: 40px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-item {
+    margin: 0 2px;
+}
+
+.page-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+    color: #007bff;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    color: #0056b3;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+.btn-outline-secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+    background-color: transparent;
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+}
+</style>
