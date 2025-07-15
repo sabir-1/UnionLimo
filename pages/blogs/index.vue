@@ -2,28 +2,7 @@
     <div>
         <section class="section pt-60 bg-white latest-new-white">
             <div class="container-sub">
-                <!-- Search Bar -->
-                <div class="row mb-40">
-                    <div class="col-lg-6 mx-auto">
-                        <div class="search-box">
-                            <input 
-                                v-model="searchQuery" 
-                                @input="searchBlogs(searchQuery)"
-                                type="text" 
-                                class="form-control" 
-                                placeholder="Search blogs..."
-                            />
-                            <button 
-                                v-if="searchQuery" 
-                                @click="clearSearch" 
-                                class="btn btn-sm btn-outline-secondary"
-                                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"
-                            >
-                                ×
-                            </button>
-                        </div>
-                    </div>
-                </div>
+             
 
                 <!-- Loading State -->
                 <div v-if="loading" class="text-center py-60">
@@ -70,25 +49,8 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="text-center mt-40 mb-120 wow fadeInDown" v-if="totalPages > 1">
-                    <nav aria-label="Blog pagination">
-                        <ul class="pagination">
-                            <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                                <button @click="changePage(currentPage - 1)" class="page-link">Previous</button>
-                            </li>
-                            <li 
-                                v-for="page in getPageNumbers()" 
-                                :key="page" 
-                                class="page-item"
-                                :class="{ active: page === currentPage }"
-                            >
-                                <button @click="changePage(page)" class="page-link">{{ page }}</button>
-                            </li>
-                            <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-                                <button @click="changePage(currentPage + 1)" class="page-link">Next</button>
-                            </li>
-                        </ul>
-                    </nav>
+                <div class="text-center mt-40 mb-120 wow fadeInDown"  >
+                    <pagination :current-page="currentPage" :total-pages="totalPages" @change="changePage" />
                 </div>
             </div>
         </section>
@@ -97,7 +59,7 @@
 
 <script setup>
 import CardNews from '@/components/CardNews.vue';
-
+import Pagination from '@/elements/Pagination.vue';
 // Use the blog API composable
 const { 
     blogs, 
@@ -119,23 +81,7 @@ onMounted(() => {
     fetchBlogs();
 });
 
-// Get page numbers for pagination
-const getPageNumbers = () => {
-    const pages = [];
-    const maxPages = 5;
-    let start = Math.max(1, currentPage.value - Math.floor(maxPages / 2));
-    let end = Math.min(totalPages.value, start + maxPages - 1);
-    
-    if (end - start + 1 < maxPages) {
-        start = Math.max(1, end - maxPages + 1);
-    }
-    
-    for (let i = start; i <= end; i++) {
-        pages.push(i);
-    }
-    
-    return pages;
-};
+
 
 // Define layout props for SEO and breadcrumb
 definePageMeta({
