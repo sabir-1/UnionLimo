@@ -2,6 +2,9 @@
   <div>
     <!-- Banner Section -->
     <banner />
+
+       <!-- Latest Services Section -->
+       <LatestServices />
     
     <!-- Our Fleet Section -->
     <OurFleet />
@@ -31,6 +34,7 @@
     
     <!-- FAQs Section -->
      <Faqs />
+  
       
     <!-- Download Section -->
     <Download />
@@ -47,6 +51,7 @@ import TopCities from '~/sections/homepage5/TopCities.vue'
 import OurFleet from '~/sections/homepage5/OurFleet.vue'
 import Faqs from '~/sections/homepage5/Faqs.vue'
 import Testimonials from '~/sections/homepage5/Testimonials.vue'
+import LatestServices from '~/components/LatestServices.vue'
 
 // Define layout props for SEO and breadcrumb
 definePageMeta({
