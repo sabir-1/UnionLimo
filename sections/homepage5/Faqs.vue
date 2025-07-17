@@ -1,5 +1,5 @@
 <template>
-  <section class="section mt-120 mb-100">
+  <section class="section mt-120  ">
         <div class="container-sub">
           <div class="box-faqs">
             <div class="text-center"> 
