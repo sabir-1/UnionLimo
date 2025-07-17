@@ -7001,7 +7001,12 @@ footer a {
   margin: auto;
   text-align: center;
 }
-
+.cardFleet.cardFleetStyle3 {
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+  /* padding: 30px; */
+  background-color: #ffffff;
+}
 .box-services-banner {
   /* position: absolute;
   bottom: 30px;

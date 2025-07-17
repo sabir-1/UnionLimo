@@ -132,7 +132,7 @@
       <div class="box-form-comment wow fadeInLeft">
         <h5 class="text-20-medium mb-30">Leave a Comment</h5>
         <p class="text-14 color-text mb-30">Your email address will not be published.</p>
-        <div class="form-comment">
+        <!-- <div class="form-comment">
           <form action="#">
             <div class="row">
               <div class="col-lg-6">
@@ -163,7 +163,7 @@
               </div>
             </div>
           </form>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>

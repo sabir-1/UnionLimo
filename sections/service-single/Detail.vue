@@ -11,7 +11,13 @@
           </ul>
         </div>
       </div>
-      
+      </div>
+      <div class="mt-100">
+
+        <TopCities/>
+      </div>
+     
+      <div class="container-sub">
       <div v-if="serviceData.details && serviceData.details.length > 0">
         <div class="row align-items-center mt-90" v-for="(detail, index) in serviceData.details" :key="index">
           <div class="col-lg-6 mb-30 wow fadeInDown" v-if="index % 2 === 0">
@@ -35,6 +41,7 @@
 </template>
 
 <script setup>
+import TopCities from '~/sections/homepage5/TopCities.vue'
 const props = defineProps({
   serviceData: {
     type: Object,

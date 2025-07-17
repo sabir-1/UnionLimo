@@ -1,12 +1,13 @@
 <template>
  
         <BlogDetail :blog-data="currentBlog" />
+        <RelatedPost/>
     
 </template>
 
 <script setup>
 import BlogDetail from '@/components/BlogDetail.vue'; 
-
+import RelatedPost from '~/components/RelatedPost.vue';
 // Get route params
 const route = useRoute();
 const { slug } = route.params;
