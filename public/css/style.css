@@ -2960,9 +2960,10 @@ body {
 }
 .header .main-menu li a:hover {
   color: #fff;
-  border-radius: 40px;
-  background-color: rgba(255, 255, 255, 0.1764705882);
+  border-radius: 5px;
+  background-color: rgb(233 84 64);
 }
+
 .header .main-menu li a:hover i {
   opacity: 1;
   transition: 0.2s;
