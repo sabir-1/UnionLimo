@@ -31,7 +31,7 @@ const route = useRoute()
 
 // Check if current page is home page
 const isHomePage = computed(() => {
-  return route.path === '/' || route.path === '/home'
+  return route.path === '/' || route.path === '/home' || route.path === '/about'
 })
 
 // Props for dynamic breadcrumb
