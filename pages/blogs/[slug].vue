@@ -19,14 +19,16 @@
         </div>
 
         <!-- Blog Detail -->
-        <BlogDetail v-else-if="currentBlog" :blog-data="currentBlog" />
-        <RelatedPost/>
+  <template v-else-if="currentBlog">
+    <BlogDetail  :blog-data="currentBlog" />
+    <RelatedPost/>
+  </template>
         <!-- Not Found State -->
         <div v-else class="text-center py-60">
             <h3>Blog post not found</h3>
             <p>The blog post you're looking for doesn't exist.</p>
             <NuxtLink to="/blogs" class="btn btn-primary">Back to Blogs</NuxtLink>
-        </div>
+        </div> 
     </div>
  
 </template>
