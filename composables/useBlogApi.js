@@ -101,9 +101,24 @@ export const useBlogApi = () => {
     }
   };
   
-
- 
-
+  // Search blogs
+  const searchBlogs = (query) => {
+    searchQuery.value = query;
+    currentPage.value = 1; // Reset to first page when searching
+  };
+  
+  // Change page
+  const changePage = (page) => {
+    if (page >= 1 && page <= totalPages.value) {
+      currentPage.value = page;
+    }
+  };
+  
+  // Clear search
+  const clearSearch = () => {
+    searchQuery.value = '';
+    currentPage.value = 1;
+  };
   
   // Transform blog data for detail view
   const transformBlogForDetail = (blog) => {
