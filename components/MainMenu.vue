@@ -14,11 +14,14 @@
         <NuxtLink to="/blogs">Blog</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/contact">Contact</NuxtLink>
+        <NuxtLink to="/about">About</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/test">Test</NuxtLink>
+        <NuxtLink to="/contact">Contact</NuxtLink>
       </li>
+      <!-- <li>
+        <NuxtLink to="/test">Test</NuxtLink>
+      </li> -->
     </ul>
   </nav>
 </template>

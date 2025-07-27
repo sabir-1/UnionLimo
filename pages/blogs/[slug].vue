@@ -1,4 +1,5 @@
 <template>
+ 
     <div>
         <!-- Loading State -->
         <div v-if="loading" class="text-center py-60">
@@ -19,7 +20,7 @@
 
         <!-- Blog Detail -->
         <BlogDetail v-else-if="currentBlog" :blog-data="currentBlog" />
-
+        <RelatedPost/>
         <!-- Not Found State -->
         <div v-else class="text-center py-60">
             <h3>Blog post not found</h3>
@@ -27,11 +28,12 @@
             <NuxtLink to="/blogs" class="btn btn-primary">Back to Blogs</NuxtLink>
         </div>
     </div>
+ 
 </template>
 
 <script setup>
 import BlogDetail from '@/components/BlogDetail.vue'; 
-
+import RelatedPost from '~/components/RelatedPost.vue';
 // Get route params
 const route = useRoute();
 const { slug } = route.params;

@@ -39,11 +39,17 @@
             </div>
           </div>
           <div class="row mt-30 our-fleet-2"> 
-            <div class="col-lg-3 col-md-6 mb-30" v-for="fleet in fleetList" :key="fleet.id"> 
+            <div class="col-lg-4 col-md-6 mb-30" v-for="fleet in fleetList" :key="fleet.id"> 
               <div class="cardFleet cardFleetStyle3 wow fadeInUp">
-                <div class="cardImage mb-30"><a href="#"><img :src="fleet.image" :alt="fleet.title"></a></div>
-                <div class="cardInfo"><a href="#">
-                    <h3 class="text-20-medium color-text mb-10">{{ fleet.title }}</h3></a>
+                <div class="cardImage mb-30">
+                  <NuxtLink to="/single-fleet">
+                    <img :src="fleet.image" :alt="fleet.title">
+                  </NuxtLink>
+                </div>
+                <div class="cardInfo">
+                  <NuxtLink to="/single-fleet">
+                    <h3 class="text-20-medium color-text mb-10">{{ fleet.title }}</h3>
+                  </NuxtLink>
                   <p class="text-14 color-text mb-30">{{ fleet.description }}</p>
                 </div>
                 <div class="cardInfoBottom">

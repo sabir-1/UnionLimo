@@ -1,14 +1,14 @@
 <template>
   <div class="cardFleet cardFleetStyle3 wow fadeInDown">
     <div class="cardImage mb-30">
-      <a :href="link">
+      <NuxtLink to="/single-fleet">
         <img :src="src" alt="Luxride" />
-      </a>
+      </NuxtLink>
     </div>
     <div class="cardInfo">
-      <a :href="link">
+      <NuxtLink to="/single-fleet">
         <h3 class="text-20-medium color-text mb-10">{{ title }}</h3>
-      </a>
+      </NuxtLink>  
       <p class="text-14 color-text mb-30">{{ description }}</p>
     </div>
     <div class="cardInfoBottom">

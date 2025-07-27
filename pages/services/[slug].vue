@@ -5,6 +5,9 @@
     <ServiceSingleFeature :service-data="serviceData" /> 
     
     <ServiceSingleDetail :service-data="serviceData" />
+
+    <!-- FAQs Section -->
+    <Faqs />
   </div>
 </template>
 
@@ -13,6 +16,7 @@
 import ServiceSingleBanner from '~/sections/service-single/Banner.vue'
 import ServiceSingleDetail from '~/sections/service-single/Detail.vue'
 import ServiceSingleFeature from '~/sections/service-single/Feature.vue'
+import Faqs from '~/sections/homepage5/Faqs.vue'
 
 // Get route params
 const route = useRoute()

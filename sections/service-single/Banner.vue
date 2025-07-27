@@ -3,7 +3,7 @@
     <div class="banner-image-service wow fadeInDown"></div>
     <div class="box-form-service-single">
       <div class="box-search-ride box-search-ride-style-2 wow fadeInDown">
-        <div class="box-search-tabs">
+        <!-- <div class="box-search-tabs">
           <div class="head-tabs">
             <ul class="nav nav-tabs nav-tabs-search" role="tablist">
               <li>
@@ -169,7 +169,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
