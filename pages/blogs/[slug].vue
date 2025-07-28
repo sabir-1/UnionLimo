@@ -60,19 +60,35 @@ watch(() => route.params.slug, async (newSlug) => {
     }
 });
 
-// Define layout props for SEO and breadcrumb
+// Define static layout props
 definePageMeta({
   layout: 'default',
-  layoutProps: computed(() => ({
-    breadcrumbTitle: currentBlog.value?.title || 'Blog Post',
+  layoutProps: {
+    breadcrumbTitle: 'Blog Post',
     breadcrumbItems: [
       { text: 'Blog', link: '/blogs' },
-      { text: currentBlog.value?.title || 'Blog Post', link: null }
+      { text: 'Blog Post', link: null }
     ],
-    seoTitle: currentBlog.value?.title ? `${currentBlog.value.title} - UnionLimo Blog` : 'Blog Post - UnionLimo',
-    seoDescription: currentBlog.value?.content?.[0] || 'Read our latest blog post about luxury transportation and travel services.',
-    seoKeywords: currentBlog.value?.tags?.length ? `${currentBlog.value.tags.join(', ')}, luxury transportation, travel blog, unionlimo` : 'luxury transportation, travel blog, unionlimo'
-  }))
+    seoTitle: 'Blog Post - UnionLimo',
+    seoDescription: 'Read our latest blog post about luxury transportation and travel services.',
+    seoKeywords: 'luxury transportation, travel blog, unionlimo'
+  }
 })
+
+// Dynamic SEO and breadcrumb handling
+watch(currentBlog, (newBlog) => {
+  if (newBlog) {
+    // Update SEO
+    useHead({
+      title: `${newBlog.title} - UnionLimo Blog`,
+      meta: [
+        { name: 'description', content: newBlog.shortDescription || 'Read our latest blog post about luxury transportation and travel services.' },
+        { name: 'keywords', content: `${newBlog.title.toLowerCase()}, luxury transportation, travel blog, unionlimo` },
+        { property: 'og:title', content: `${newBlog.title} - UnionLimo Blog` },
+        { property: 'og:description', content: newBlog.shortDescription || 'Read our latest blog post about luxury transportation and travel services.' }
+      ]
+    });
+  }
+}, { immediate: true });
 </script>
 

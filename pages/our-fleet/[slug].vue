@@ -87,20 +87,36 @@ import FeatureVehicle from '~/components/FleetSingle/FeatureVehicle.vue';
 import BookVehicle from '~/components/FleetSingle/BookVehicle.vue'; 
 import ExploreFleet from '~/components/FleetSingle/ExploreFleet.vue';
 
-// Define layout props for SEO and breadcrumb
+// Define static layout props
 definePageMeta({
   layout: 'default',
-  layoutProps: computed(() => ({
-    breadcrumbTitle: currentFleet.value?.title || 'Fleet Details',
+  layoutProps: {
+    breadcrumbTitle: 'Fleet Details',
     breadcrumbItems: [
       { text: 'Our Fleet', link: '/our-fleet' },
-      { text: currentFleet.value?.title || 'Fleet Details', link: null }
+      { text: 'Fleet Details', link: null }
     ],
-    seoTitle: currentFleet.value?.title ? `${currentFleet.value.title} - UnionLimo Fleet` : 'Fleet Details - UnionLimo',
-    seoDescription: currentFleet.value?.description || 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.',
-    seoKeywords: currentFleet.value?.title ? `${currentFleet.value.title.toLowerCase()}, luxury fleet, chauffeur service, unionlimo` : 'luxury fleet, chauffeur service, unionlimo'
-  }))
+    seoTitle: 'Fleet Details - UnionLimo',
+    seoDescription: 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.',
+    seoKeywords: 'luxury fleet, chauffeur service, unionlimo'
+  }
 })
+
+// Dynamic SEO and breadcrumb handling
+watch(currentFleet, (newFleet) => {
+  if (newFleet) {
+    // Update SEO
+    useHead({
+      title: `${newFleet.title} - UnionLimo Fleet`,
+      meta: [
+        { name: 'description', content: newFleet.description || 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.' },
+        { name: 'keywords', content: `${newFleet.title.toLowerCase()}, luxury fleet, chauffeur service, unionlimo` },
+        { property: 'og:title', content: `${newFleet.title} - UnionLimo Fleet` },
+        { property: 'og:description', content: newFleet.description || 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.' }
+      ]
+    });
+  }
+}, { immediate: true });
 </script>
 
 <style scoped>

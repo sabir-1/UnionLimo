@@ -95,7 +95,7 @@
           </div>
 
           <!-- Pagination -->
-          <div class="text-center mt-40 mb-120 wow fadeInUp" v-if="!loading && !error && totalPages > 1">
+          <div class="text-center mt-40 mb-120 wow fadeInUp" v-show="!loading && !error && totalPages > 1">
             <Pagination 
               :current-page="currentPage" 
               :total-pages="totalPages" 

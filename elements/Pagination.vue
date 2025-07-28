@@ -1,9 +1,9 @@
 <template>
-  <nav class="box-pagination" v-if="totalPages > 1">
+  <nav class="box-pagination" v-show="props.totalPages > 1">
     <ul class="pagination">
       <!-- Previous Page -->
-      <li class="page-item" :class="{ disabled: currentPage === 1 }">
-        <a class="page-link page-prev" href="#" @click.prevent="goToPage(currentPage - 1)">
+      <li class="page-item" :class="{ disabled: props.currentPage === 1 }">
+        <a class="page-link page-prev" href="#" @click.prevent="goToPage(props.currentPage - 1)">
           <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
           </svg>
@@ -22,7 +22,7 @@
       
       <!-- Page Numbers -->
       <li class="page-item" v-for="page in visiblePages" :key="page">
-        <a class="page-link" :class="{ active: page === currentPage }" href="#" @click.prevent="goToPage(page)">
+        <a class="page-link" :class="{ active: page === props.currentPage }" href="#" @click.prevent="goToPage(page)">
           {{ page }}
         </a>
       </li>
@@ -34,12 +34,12 @@
       
       <!-- Last Page -->
       <li class="page-item" v-if="showLastPage">
-        <a class="page-link" href="#" @click.prevent="goToPage(totalPages)">{{ totalPages }}</a>
+        <a class="page-link" href="#" @click.prevent="goToPage(props.totalPages)">{{ props.totalPages }}</a>
       </li>
       
       <!-- Next Page -->
-      <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-        <a class="page-link page-next" href="#" @click.prevent="goToPage(currentPage + 1)">
+      <li class="page-item" :class="{ disabled: props.currentPage === props.totalPages }">
+        <a class="page-link page-next" href="#" @click.prevent="goToPage(props.currentPage + 1)">
           <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
           </svg>
@@ -69,19 +69,19 @@ const emit = defineEmits(['change']);
 
 // Computed properties for pagination logic
 const showFirstPage = computed(() => {
-  return currentPage > 3;
+  return props.currentPage > 3;
 });
 
 const showFirstEllipsis = computed(() => {
-  return currentPage > 4;
+  return props.currentPage > 4;
 });
 
 const showLastPage = computed(() => {
-  return currentPage < totalPages - 2;
+  return props.currentPage < props.totalPages - 2;
 });
 
 const showLastEllipsis = computed(() => {
-  return currentPage < totalPages - 3;
+  return props.currentPage < props.totalPages - 3;
 });
 
 const visiblePages = computed(() => {

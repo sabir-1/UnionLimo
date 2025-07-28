@@ -211,20 +211,36 @@ const serviceData = computed(() => {
   }
 })
 
-// Define layout props for SEO and breadcrumb
+// Define static layout props
 definePageMeta({
   layout: 'default',
-  layoutProps: computed(() => ({
-    breadcrumbTitle: serviceData.value.title,
+  layoutProps: {
+    breadcrumbTitle: 'Service Details',
     breadcrumbItems: [
       { text: 'Services', link: '/services' },
-      { text: serviceData.value.title, link: null }
+      { text: 'Service Details', link: null }
     ],
-    seoTitle: `${serviceData.value.title} - UnionLimo`,
-    seoDescription: serviceData.value.description,
-    seoKeywords: `${serviceData.value.title.toLowerCase()}, luxury transportation, chauffeur service, unionlimo`
-  }))
+    seoTitle: 'Service Details - UnionLimo',
+    seoDescription: 'Explore our premium transportation services with luxury vehicles and professional chauffeur service.',
+    seoKeywords: 'luxury transportation, chauffeur service, unionlimo'
+  }
 })
+
+// Dynamic SEO and breadcrumb handling
+watch(serviceData, (newService) => {
+  if (newService) {
+    // Update SEO
+    useHead({
+      title: `${newService.title} - UnionLimo`,
+      meta: [
+        { name: 'description', content: newService.description },
+        { name: 'keywords', content: `${newService.title.toLowerCase()}, luxury transportation, chauffeur service, unionlimo` },
+        { property: 'og:title', content: `${newService.title} - UnionLimo` },
+        { property: 'og:description', content: newService.description }
+      ]
+    });
+  }
+}, { immediate: true });
 </script>
 
 <style scoped>
