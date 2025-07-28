@@ -21,7 +21,7 @@
         <!-- Blog Detail -->
   <template v-else-if="currentBlog">
     <BlogDetail  :blog-data="currentBlog" />
-    <RelatedPost/>
+    <RelatedPost :post-id="currentBlog.id" />
   </template>
         <!-- Not Found State -->
         <div v-else class="text-center py-60">
