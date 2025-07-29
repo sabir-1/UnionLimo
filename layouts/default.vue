@@ -18,7 +18,13 @@
     </main>
     
     <!-- Footer -->
-    <FooterVariation5 />      
+    <FooterVariation5 />
+    
+    <!-- Scripts for slider initialization -->
+    <ScriptMain />
+    
+    <!-- Slider initializer for navigation -->
+    <SliderInitializer />
   </div>
 </template>
 
@@ -27,6 +33,8 @@
 import HeaderVariation5 from '~/components/HeaderVariation5.vue'    
 import FooterVariation5 from '~/components/FooterVariation5.vue'
 import BreadCrumb from '~/components/BreadCrumb.vue'
+import ScriptMain from '~/components/ScriptMain.vue'
+import SliderInitializer from '~/components/SliderInitializer.vue'
 
 // Get current route
 const route = useRoute()

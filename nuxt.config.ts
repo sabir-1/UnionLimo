@@ -91,7 +91,10 @@ export default defineNuxtConfig({
         { src: '/js/vendors/wow.js', defer: true },
         
         // Main JavaScript file loaded last
-        { src: '/js/main.js', defer: true }
+        { src: '/js/main.js', defer: true },
+        
+        // Slider initialization script for navigation
+        { src: '/js/slider-init.js', defer: true }
       ],
       
       // Performance meta tags
