@@ -229,6 +229,19 @@ definePageMeta({
 // Dynamic SEO and breadcrumb handling
 watch(serviceData, (newService) => {
   if (newService) {
+    // Update route meta for breadcrumb
+    const route = useRoute();
+    if (route.meta.layoutProps) {
+      route.meta.layoutProps.breadcrumbTitle = newService.title || 'Service Details';
+      route.meta.layoutProps.breadcrumbItems = [
+        { text: 'Services', link: '/services' },
+        { text: newService.title || 'Service Details', link: null }
+      ];
+      route.meta.layoutProps.seoTitle = `${newService.title} - UnionLimo`;
+      route.meta.layoutProps.seoDescription = newService.description;
+      route.meta.layoutProps.seoKeywords = `${newService.title.toLowerCase()}, luxury transportation, chauffeur service, unionlimo`;
+    }
+
     // Update SEO
     useHead({
       title: `${newService.title} - UnionLimo`,

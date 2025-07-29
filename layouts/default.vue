@@ -10,6 +10,8 @@
       :items="breadcrumbItems"
     />
     
+    
+    
     <!-- Main Content -->
     <main>
       <slot />
@@ -31,45 +33,46 @@ const route = useRoute()
 
 // Check if current page is home page
 const isHomePage = computed(() => {
-  return route.path === '/' || route.path === '/home' || route.path === '/about'
+  const result = route.path === '/' || route.path === '/home';
+  console.log('Is home page:', result, 'Path:', route.path);
+  return result;
 })
 
-// Props for dynamic breadcrumb
-const props = defineProps({
-  breadcrumbTitle: {
-    type: String,
-    default: 'Page'
-  },
-  breadcrumbItems: {
-    type: Array,
-    default: () => []
-  },
-  seoTitle: {
-    type: String,
-    default: 'UnionLimo'
-  },
-  seoDescription: {
-    type: String,
-    default: 'Premium Chauffeur and Limousine Services'
-  },
-  seoKeywords: {
-    type: String,
-    default: 'chauffeur, limousine, luxury transport, car hire'
-  }
+// Get breadcrumb data from route meta
+const breadcrumbTitle = computed(() => {
+  console.log('Route meta:', route.meta);
+  console.log('Layout props:', route.meta.layoutProps);
+  return route.meta.layoutProps?.breadcrumbTitle || 'Page'
+})
+
+const breadcrumbItems = computed(() => {
+  return route.meta.layoutProps?.breadcrumbItems || []
 })
 
 // SEO optimization
+const seoTitle = computed(() => {
+  return route.meta.layoutProps?.seoTitle || 'UnionLimo'
+})
+
+const seoDescription = computed(() => {
+  return route.meta.layoutProps?.seoDescription || 'Premium Chauffeur and Limousine Services'
+})
+
+const seoKeywords = computed(() => {
+  return route.meta.layoutProps?.seoKeywords || 'chauffeur, limousine, luxury transport, car hire'
+})
+
 useHead({
-  title: props.seoTitle,
+  title: seoTitle,
   meta: [
-    { name: 'description', content: props.seoDescription },
-    { name: 'keywords', content: props.seoKeywords },
-    { property: 'og:title', content: props.seoTitle },
-    { property: 'og:description', content: props.seoDescription },
+    { name: 'description', content: seoDescription },
+    { name: 'keywords', content: seoKeywords },
+    { property: 'og:title', content: seoTitle },
+    { property: 'og:description', content: seoDescription },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: props.seoTitle },
-    { name: 'twitter:description', content: props.seoDescription }
+    { name: 'twitter:title', content: seoTitle },
+    { name: 'twitter:description', content: seoDescription }
   ]
 })
 </script>
