@@ -103,9 +103,22 @@ definePageMeta({
   }
 })
 
-// Dynamic SEO and breadcrumb handling
+// Update breadcrumb and SEO when fleet data changes
 watch(currentFleet, (newFleet) => {
   if (newFleet) {
+    // Update route meta for breadcrumb
+    const route = useRoute();
+    if (route.meta.layoutProps) {
+      route.meta.layoutProps.breadcrumbTitle = newFleet.title || 'Fleet Details';
+      route.meta.layoutProps.breadcrumbItems = [
+        { text: 'Our Fleet', link: '/our-fleet' },
+        { text: newFleet.title || 'Fleet Details', link: null }
+      ];
+      route.meta.layoutProps.seoTitle = `${newFleet.title} - UnionLimo Fleet`;
+      route.meta.layoutProps.seoDescription = newFleet.description || 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.';
+      route.meta.layoutProps.seoKeywords = `${newFleet.title.toLowerCase()}, luxury fleet, chauffeur service, unionlimo`;
+    }
+
     // Update SEO
     useHead({
       title: `${newFleet.title} - UnionLimo Fleet`,

@@ -78,6 +78,19 @@ definePageMeta({
 // Dynamic SEO and breadcrumb handling
 watch(currentBlog, (newBlog) => {
   if (newBlog) {
+    // Update route meta for breadcrumb
+    const route = useRoute();
+    if (route.meta.layoutProps) {
+      route.meta.layoutProps.breadcrumbTitle = newBlog.title || 'Blog Post';
+      route.meta.layoutProps.breadcrumbItems = [
+        { text: 'Blog', link: '/blogs' },
+        { text: newBlog.title || 'Blog Post', link: null }
+      ];
+      route.meta.layoutProps.seoTitle = `${newBlog.title} - UnionLimo Blog`;
+      route.meta.layoutProps.seoDescription = newBlog.shortDescription || 'Read our latest blog post about luxury transportation and travel services.';
+      route.meta.layoutProps.seoKeywords = `${newBlog.title.toLowerCase()}, luxury transportation, travel blog, unionlimo`;
+    }
+
     // Update SEO
     useHead({
       title: `${newBlog.title} - UnionLimo Blog`,
