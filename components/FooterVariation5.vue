@@ -4,11 +4,11 @@
       <div class="container-sub">
         <div class="box-footer-top wow fadeInRight">
           <div class="d-flex align-items-center justify-content-between flex-wrap">
-            <a href="tel:+41227157000" class="text-14-medium call-phone color-white hover-up d-inline-block mb-20">
-              +41 22 715 7000
+            <a :href="`tel:${contact.phone_primary}`" class="text-14-medium call-phone color-white hover-up d-inline-block mb-20">
+              {{ contact.phone_primary || '+1 (718) 514-9881' }}
             </a>
             <span class="text-14-medium address-footer color-white hover-up d-inline-block mb-20">
-              184 Main Collins Street West Victoria 8007
+              {{ address.line_one || '199-04 Hillside Avenue, Queens, NY 11423, United States' }}
             </span>
             <span class="text-14-medium time-footer color-white hover-up d-inline-block mb-20">
               Mon-Sat: 09:00 - 17:00 - Sun: Closed
@@ -87,10 +87,12 @@
               </div>
               <div class="mt-25">
                 <div class="text-18-medium color-white mb-20">Follow Us</div>
-                <a href="#" class="icon-socials icon-facebook"></a>
-                <a href="#" class="icon-socials icon-twitter"></a>
-                <a href="#" class="icon-socials icon-instagram"></a>
-                <a href="#" class="icon-socials icon-linkedin"></a>
+                <a v-if="social.facebook" :href="social.facebook" target="_blank" class="icon-socials icon-facebook"></a>
+                <a v-if="social.twitter" :href="social.twitter" target="_blank" class="icon-socials icon-twitter"></a>
+                <a v-if="social.instagram" :href="social.instagram" target="_blank" class="icon-socials icon-instagram"></a>
+                <a v-if="social.linkedin" :href="social.linkedin" target="_blank" class="icon-socials icon-linkedin"></a>
+                <a v-if="social.pinterest" :href="social.pinterest" target="_blank" class="icon-socials icon-pinterest"></a>
+                <a v-if="social.youtube" :href="social.youtube" target="_blank" class="icon-socials icon-youtube"></a>
               </div>
             </div>
           </div>
@@ -102,7 +104,7 @@
         <div class="footer-bottom">
           <div class="row align-items-center">
             <div class="col-lg-8 col-md-12 text-center text-lg-start">
-              <span class="text-14 color-white mr-50">© 2023 Luxride</span>
+              <span class="text-14 color-white mr-50">{{ copyright || '© 2025 All Rights Reserved.' }}</span>
               <ul class="menu-bottom">
                 <li><a href="/term-conditions">Terms</a></li>
                 <li><a href="/term-conditions">Privacy policy</a></li>
@@ -122,7 +124,16 @@
 </template>
 
 <script setup>
-// FooterVariation5 component logic
+// Import company data composable
+import useCompanyData from '~/composables/useCompanyData.js'
+
+// Use company data composable
+const { contact, address, social, copyright, fetchCompanyData } = useCompanyData()
+
+// Fetch company data on component mount
+onMounted(() => {
+  fetchCompanyData()
+})
 </script>
 
 <style scoped>

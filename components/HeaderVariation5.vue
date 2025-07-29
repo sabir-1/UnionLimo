@@ -5,7 +5,7 @@
         <div class="header-left">
           <div class="header-logo wow fadeInLeft">
             <NuxtLink to="/" class="d-flex">
-              <img alt="luxride" src="/imgs/template/logo.svg" />
+              <img :alt="companyName" :src="logo.header || '/imgs/template/logo.svg'" />
             </NuxtLink>
           </div>
           <div class="header-nav wow fadeInDown">
@@ -17,8 +17,8 @@
           </div>
           <div class="header-right wow fadeInRight">
             <div class="d-none d-xxl-inline-block align-middle mr-10">
-              <a href="tel:+41227157000" class="text-14-medium call-phone color-white hover-up">
-                +41 22 715 7000
+              <a :href="`tel:${contact.phone_primary}`" class="text-14-medium call-phone color-white hover-up">
+                {{ contact.phone_primary || '+1 (718) 514-9881' }}
               </a>
             </div>
             <div class="d-none d-xxl-inline-block box-dropdown-cart align-middle mr-10">
@@ -63,6 +63,15 @@
 
 <script setup>
 import MainMenu from '~/components/MainMenu.vue'
+import useCompanyData from '~/composables/useCompanyData.js'
+
+// Use company data composable
+const { logo, contact, companyName, fetchCompanyData } = useCompanyData()
+
+// Fetch company data on component mount
+onMounted(() => {
+  fetchCompanyData()
+})
 </script>
 
 <style scoped>
