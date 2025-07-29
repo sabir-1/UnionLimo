@@ -45,7 +45,61 @@
 
 <script setup>
 import CardServiceStyle3 from '~/components/CardServiceStyle3.vue';
+
 // Banner component logic
+onMounted(() => {
+  // Initialize slider when component mounts
+  nextTick(() => {
+    setTimeout(() => {
+      initializeBannerSlider();
+    }, 100);
+  });
+});
+
+// Function to initialize the banner slider
+const initializeBannerSlider = () => {
+  // Check if jQuery and Swiper are available
+  if (typeof window !== 'undefined' && window.$ && window.Swiper) {
+    const $ = window.$;
+    const Swiper = window.Swiper;
+
+    // Initialize banner slider
+    $(".swiper-banner-1").each(function () {
+      // Destroy existing instance if it exists
+      if (this.swiper) {
+        this.swiper.destroy(true, true);
+      }
+      
+      // Create new Swiper instance
+      this.swiper = new Swiper(this, {
+        slidesPerView: 1,
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next-banner",
+          prevEl: ".swiper-button-prev-banner"
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          type: "fraction"
+        },
+        autoplay: {
+          delay: 10000
+        }
+      });
+    });
+  }
+};
+
+// Watch for route changes to reinitialize slider
+const route = useRoute();
+watch(() => route.path, () => {
+  // Reinitialize slider when route changes
+  nextTick(() => {
+    setTimeout(() => {
+      initializeBannerSlider();
+    }, 100);
+  });
+});
 </script>
 
 <style scoped>

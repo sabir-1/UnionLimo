@@ -2,10 +2,7 @@
   <div>
     <!-- Banner Section -->
     <banner />
-
-       <!-- Latest Services Section -->
-       <LatestServices />
-
+ 
        <ServiceSingleFeature :service-data="serviceData" /> 
     
     <!-- Our Fleet Section -->
@@ -15,15 +12,16 @@
     
     <!-- How It Work Section -->
     <HowItWork />
-    
+     
+    <OurServices/>
+
     <!-- Make Your Trip Section -->
     <TopCities/>
     
     <!-- Showcase Section -->
     <Showcase />
     
-    <!-- Our Service Section -->
-    <OurService />
+   
     
     <!-- Testimonials Section -->
     <Testimonials />
@@ -53,7 +51,8 @@ import TopCities from '~/sections/homepage5/TopCities.vue'
 import OurFleet from '~/sections/homepage5/OurFleet.vue'
 import Faqs from '~/sections/homepage5/Faqs.vue'
 import Testimonials from '~/sections/homepage5/Testimonials.vue'
-import LatestServices from '~/components/LatestServices.vue'
+import OurServices from '~/sections/homepage5/OurServices.vue'
+// import LatestServices from '~/components/LatestServices.vue'
 import ServiceSingleFeature from '~/sections/service-single/Feature.vue'
 // Define layout props for SEO and breadcrumb
 definePageMeta({

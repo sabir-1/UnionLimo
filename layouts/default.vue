@@ -18,7 +18,13 @@
     </main>
     
     <!-- Footer -->
-    <FooterVariation5 />      
+    <FooterVariation5 />
+    
+    <!-- Scripts for slider initialization -->
+    <ScriptMain />
+    
+    <!-- Slider initializer for navigation -->
+    <SliderInitializer />
   </div>
 </template>
 
@@ -27,9 +33,22 @@
 import HeaderVariation5 from '~/components/HeaderVariation5.vue'    
 import FooterVariation5 from '~/components/FooterVariation5.vue'
 import BreadCrumb from '~/components/BreadCrumb.vue'
+import ScriptMain from '~/components/ScriptMain.vue'
+import SliderInitializer from '~/components/SliderInitializer.vue'
+
+// Import company data composable
+import useCompanyData from '~/composables/useCompanyData.js'
 
 // Get current route
 const route = useRoute()
+
+// Use company data composable
+const { companyData, logo, companyName, fetchCompanyData } = useCompanyData()
+
+// Fetch company data on layout mount
+onMounted(() => {
+  fetchCompanyData()
+})
 
 // Check if current page is home page
 const isHomePage = computed(() => {
@@ -49,13 +68,13 @@ const breadcrumbItems = computed(() => {
   return route.meta.layoutProps?.breadcrumbItems || []
 })
 
-// SEO optimization
+// SEO optimization with dynamic data
 const seoTitle = computed(() => {
-  return route.meta.layoutProps?.seoTitle || 'UnionLimo'
+  return route.meta.layoutProps?.seoTitle || companyName.value || 'UnionLimo'
 })
 
 const seoDescription = computed(() => {
-  return route.meta.layoutProps?.seoDescription || 'Premium Chauffeur and Limousine Services'
+  return route.meta.layoutProps?.seoDescription || companyData.value?.description || 'Premium Chauffeur and Limousine Services'
 })
 
 const seoKeywords = computed(() => {
@@ -64,6 +83,9 @@ const seoKeywords = computed(() => {
 
 useHead({
   title: seoTitle,
+  link: [
+    { rel: 'icon', href: logo.value?.favicon || '/favicon.ico' }
+  ],
   meta: [
     { name: 'description', content: seoDescription },
     { name: 'keywords', content: seoKeywords },
