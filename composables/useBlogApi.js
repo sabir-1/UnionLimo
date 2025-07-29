@@ -169,6 +169,7 @@ export const useBlogApi = () => {
     };
     
     return {
+      id: blog.id, // Include the blog ID
       title: blog.title,
       date: day + '.',
       monthYear: monthYear,
