@@ -2,7 +2,7 @@
   <section class="section">
     <!-- <img class="wow fadeInRight" :src="fleetData.image" :alt="fleetData.title" /> -->
     <div class="container-sub">
-      <div class="mt-120 mb-80">
+      <div class="mt-120 mb-0">
         <h2 class="heading-44-medium mb-30 color-text title-fleet wow fadeInUp">{{ fleetData.title }}</h2>
         <div class="content-single wow fadeInLeft">
           <p v-html="fleetData.longDescription"></p>

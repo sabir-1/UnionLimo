@@ -33,9 +33,12 @@
       <NuxtLink to="/our-fleet" class="btn btn-primary">Back to Fleet</NuxtLink>
     </div>
   </div>
+  <!-- FAQs Section -->
+  <Faqs />
 </template>
 
 <script setup>
+import Faqs from '~/sections/homepage5/Faqs.vue'
 // Get route params
 const route = useRoute();
 const { slug } = route.params;
