@@ -1,12 +1,12 @@
 <template>
   <section class="section">
-    <img class="wow fadeInRight" :src="fleetData.image" :alt="fleetData.title" />
+    <!-- <img class="wow fadeInRight" :src="fleetData.image" :alt="fleetData.title" /> -->
     <div class="container-sub">
-      <div class="mt-120">
+      <div class="mt-120 mb-80">
         <h2 class="heading-44-medium mb-30 color-text title-fleet wow fadeInUp">{{ fleetData.title }}</h2>
         <div class="content-single wow fadeInLeft">
-          <p>{{ fleetData.longDescription }}</p>
-          <p>Experience the ultimate in luxury transportation with our premium fleet. Our vehicles are meticulously maintained and our professional chauffeurs ensure your comfort and safety throughout your journey.</p>
+          <p v-html="fleetData.longDescription"></p>
+          <p >Experience the ultimate in luxury transportation with our premium fleet. Our vehicles are meticulously maintained and our professional chauffeurs ensure your comfort and safety throughout your journey.</p>
           <h6 class="heading-24-medium color-text mb-30">We offer</h6>
           <ul class="list-ticks list-ticks-small">
             <li class="text-16 mb-20" v-for="feature in fleetData.features.slice(0, 5)" :key="feature">{{ feature }}</li>
@@ -22,7 +22,7 @@
         </div>
       </div>
     </div>
-    <div class="box-slide-fleet mt-120 wow fadeInUp" v-if="fleetData.sliderImages && fleetData.sliderImages.length > 0">
+    <!-- <div class="box-slide-fleet mt-120 wow fadeInUp" v-if="fleetData.sliderImages && fleetData.sliderImages.length > 0">
       <div class="box-swiper">
         <p>dfaf</p>
         <div class="swiper-container swiper-group-2-single-fleet pb-0">
@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 </template>
 

@@ -19,10 +19,11 @@
 
     <!-- Fleet Detail -->
     <template v-else-if="currentFleet">
-      <Detail :fleet-data="currentFleet" />
-      <FeatureVehicle :fleet-data="currentFleet" />
       <BookVehicle :fleet-data="currentFleet" />
-      <ExploreFleet />
+      <Detail :fleet-data="currentFleet" />
+      <!-- <FeatureVehicle :fleet-data="currentFleet" />
+      
+      <ExploreFleet /> -->
     </template>
 
     <!-- Not Found State -->
