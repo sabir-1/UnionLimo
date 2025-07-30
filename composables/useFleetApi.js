@@ -73,6 +73,7 @@ export const useFleetApi = () => {
             passengers: getSafePassengerCount(fleet),
             luggage: getSafeLuggageCount(fleet),
             short_description: fleet.short_description,
+            pricing: generatePricing(fleet),
             seo: fleet.seo,
             created_at: fleet.created_at,
             updated_at: fleet.updated_at,
@@ -200,9 +201,9 @@ export const useFleetApi = () => {
       longDescription: fleet.description || 'Experience the ultimate in luxury transportation with our premium fleet.',
       passengers: getSafePassengerCount(fleet),
       luggage: getSafeLuggageCount(fleet),
-      features: generateFeatures(fleet.title),
+      features: fleet.features,
       specifications: generateSpecifications(fleet),
-      pricing: generatePricing(fleet.title),
+      pricing: generatePricing(fleet),
       seo: fleet.seo,
       created_at: fleet.created_at,
       updated_at: fleet.updated_at,
@@ -263,8 +264,18 @@ export const useFleetApi = () => {
   };
   
   // Generate pricing based on fleet title
-  const generatePricing = (title) => {
-    const lowerTitle = title.toLowerCase();
+  const generatePricing = (fleet) => {
+    // Check if fleet has dynamic pricing data from API
+    if (fleet.hourly_rate && fleet.hourly_rate !== null && fleet.hourly_rate !== undefined) {
+      return {
+        hourly: `$${fleet.hourly_rate}/hour`,
+        airport: fleet.airport_rate ? `$${fleet.airport_rate}` : '$100',
+        city: fleet.city_rate ? `$${fleet.city_rate}` : '$70'
+      };
+    }
+    
+    // Fallback to static pricing based on title
+    const lowerTitle = fleet.title.toLowerCase();
     
     if (lowerTitle.includes('limousine') || lowerTitle.includes('stretch')) {
       return {
