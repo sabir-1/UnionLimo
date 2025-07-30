@@ -70,8 +70,8 @@ export const useFleetApi = () => {
             slug: fleet.slug,
             image: fleet.feature_image || '/imgs/page/homepage1/e-class.png',
             description: fleet.short_description || 'Luxury transportation with premium comfort and style.',
-            passengers: getPassengerCount(fleet.title),
-            luggage: getLuggageCount(fleet.title),
+            passengers: getSafePassengerCount(fleet),
+            luggage: getSafeLuggageCount(fleet),
             short_description: fleet.short_description,
             seo: fleet.seo,
             created_at: fleet.created_at,
@@ -143,6 +143,25 @@ export const useFleetApi = () => {
     currentPage.value = 1;
   };
   
+  // Helper function to safely get passenger count with null handling
+  const getSafePassengerCount = (fleet) => {
+    if (fleet.passenger !== null && fleet.passenger !== undefined) {
+      return fleet.passenger.toString();
+    }
+    if (fleet.passengers !== null && fleet.passengers !== undefined) {
+      return fleet.passengers.toString();
+    }
+    return getPassengerCount(fleet.title);
+  };
+
+  // Helper function to safely get luggage count with null handling
+  const getSafeLuggageCount = (fleet) => {
+    if (fleet.luggage !== null && fleet.luggage !== undefined) {
+      return fleet.luggage.toString();
+    }
+    return getLuggageCount(fleet.title);
+  };
+
   // Helper function to determine passenger count based on fleet title
   const getPassengerCount = (title) => {
     const lowerTitle = title.toLowerCase();
@@ -179,10 +198,10 @@ export const useFleetApi = () => {
       image: fleet.feature_image || '/imgs/page/homepage1/e-class.png',
       description: fleet.short_description || 'Luxury transportation with premium comfort and style.',
       longDescription: fleet.description || 'Experience the ultimate in luxury transportation with our premium fleet.',
-      passengers: getPassengerCount(fleet.title),
-      luggage: getLuggageCount(fleet.title),
+      passengers: getSafePassengerCount(fleet),
+      luggage: getSafeLuggageCount(fleet),
       features: generateFeatures(fleet.title),
-      specifications: generateSpecifications(fleet.title),
+      specifications: generateSpecifications(fleet),
       pricing: generatePricing(fleet.title),
       seo: fleet.seo,
       created_at: fleet.created_at,
@@ -219,11 +238,11 @@ export const useFleetApi = () => {
   };
   
   // Generate specifications based on fleet title
-  const generateSpecifications = (title) => {
-    const lowerTitle = title.toLowerCase();
+  const generateSpecifications = (fleet) => {
+    const lowerTitle = fleet.title.toLowerCase();
     const specs = {
-      'Passenger Capacity': getPassengerCount(title),
-      'Luggage Capacity': getLuggageCount(title),
+      'Passenger Capacity': getSafePassengerCount(fleet),
+      'Luggage Capacity': getSafeLuggageCount(fleet),
       'Vehicle Type': 'Luxury Sedan',
       'Transmission': 'Automatic',
       'Fuel Type': 'Premium Gasoline'
