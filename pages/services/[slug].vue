@@ -20,7 +20,7 @@
     <!-- Service Detail Section -->
     <div v-else-if="serviceData">
       <ServiceSingleBanner :service-data="serviceData" />
-      <ServiceSingleFeature :service-data="serviceData" /> 
+      <ServiceSingleFeature   /> 
       <ServiceSingleDetail :service-data="serviceData" />
       <!-- FAQs Section -->
       <Faqs />

@@ -4,7 +4,7 @@
       <div class="mt-120">
         <h2 class="heading-44-medium mb-30 color-text title-fleet wow fadeInDown">{{ serviceData.title }}</h2>
         <div class="content-single wow fadeInUp">
-          <p>{{ serviceData.longDescription }}</p>
+          <div v-html="serviceData.longDescription"></div>
           
           <ul class="list-ticks list-ticks-small" v-if="serviceData.features && serviceData.features.length > 0">
             <li class="text-16 mb-20" v-for="feature in serviceData.features" :key="feature">{{ feature }}</li>
@@ -12,10 +12,10 @@
         </div>
       </div>
       </div>
-      <div class="mt-100">
+      <!-- <div class="mt-100">
 
         <TopCities/>
-      </div>
+      </div> -->
      
       <div class="container-sub">
       <div v-if="serviceData.details && serviceData.details.length > 0">
