@@ -73,7 +73,7 @@
       
       <div class="border-bottom mb-30 mt-60"></div>
       
-      <div class="box-pagination-single wow fadeInLeft" v-if="blogData.navigation">
+      <!-- <div class="box-pagination-single wow fadeInLeft" v-if="blogData.navigation">
         <div class="row align-items-center">
           <div class="col-lg-5 col-sm-5 col-5" v-if="blogData.navigation.prev">
             <div class="box-pager-inner">
@@ -103,11 +103,11 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       
-      <div class="border-bottom mb-50 mt-25"></div>
+      <!-- <div class="border-bottom mb-50 mt-25"></div> -->
       
-      <div class="box-reviews wow fadeInLeft" v-if="blogData.reviews && blogData.reviews.length > 0">
+      <!-- <div class="box-reviews wow fadeInLeft" v-if="blogData.reviews && blogData.reviews.length > 0">
         <h5 class="text-20-medium color-text mb-30">Reviews</h5>
         <div class="item-reviews" v-for="review in blogData.reviews" :key="review.id">
           <div class="item-author-info">
@@ -125,13 +125,13 @@
             <a class="btn btn-dislike" href="#">Not helpful</a>
           </div>
         </div>
-      </div>
+      </div> -->
       
-      <div class="border-bottom mb-50 mt-60"></div>
+      <!-- <div class="border-bottom mb-50 mt-60"></div> -->
       
       <div class="box-form-comment wow fadeInLeft">
-        <h5 class="text-20-medium mb-30">Leave a Comment</h5>
-        <p class="text-14 color-text mb-30">Your email address will not be published.</p>
+        <!-- <h5 class="text-20-medium mb-30">Leave a Comment</h5>
+        <p class="text-14 color-text mb-30">Your email address will not be published.</p> -->
         <!-- <div class="form-comment">
           <form action="#">
             <div class="row">
