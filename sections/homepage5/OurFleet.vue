@@ -7,7 +7,7 @@
         </div>
         <div class="col-lg-6 col-sm-5 col-5 text-end">
           <NuxtLink
-            to="/single-fleet"
+            to="/our-fleet"
             class="text-16-medium color-text d-flex align-items-center justify-content-end wow fadeInUp"
           >
             More Fleet
@@ -17,116 +17,39 @@
           </NuxtLink>
         </div>
       </div>
-      <div class="box-slide-fleet-2 box-fleet-style-2 mt-50">
+      
+      <!-- Loading State -->
+      <div v-if="loading" class="text-center mt-50">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-3">Loading our fleet...</p>
+      </div>
+
+      <!-- Error State -->
+      <div v-else-if="error" class="text-center mt-50">
+        <div class="alert alert-warning" role="alert">
+          <p>{{ error }}</p>
+        </div>
+      </div>
+
+      <!-- Fleet Display -->
+      <div v-else class="box-slide-fleet-2 box-fleet-style-2 mt-50">
         <div class="box-swiper">
           <div class="swiper-container swiper-group-4-fleet box-padding-fleet pb-0">
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
+              <div 
+                v-for="fleet in displayFleets" 
+                :key="fleet.id" 
+                class="swiper-slide"
+              >
                 <CardFleetStyle3 
-                  src="/imgs/page/homepage1/e-class.png" 
-                  title="Business Class" 
-                  description="Mercedes-Benz E-Class, BMW 5 Series, Cadillac XTS or similar" 
-                  passengers="4" 
-                  luggage="2" 
-                />
-              </div>
-              <div class="swiper-slide">
-                <CardFleetStyle3 
-                  src="/imgs/page/homepage1/eqs.png" 
-                  title="First Class" 
-                  description="Mercedes-Benz EQS, BMW 7 Series, Audi A8 or similar" 
-                  passengers="4" 
-                  luggage="2" 
-                />
-              </div>
-              <div class="swiper-slide">
-                <CardFleetStyle3 
-                  src="/imgs/page/homepage1/suv.png" 
-                  title="Business Van/SUV" 
-                  description="Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac" 
-                  passengers="4" 
-                  luggage="2" 
-                />
-              </div>
-              <div class="swiper-slide">
-                <CardFleetStyle3 
-                  src="/imgs/page/homepage1/suv.png" 
-                  title="Business Van/SUV" 
-                  description="Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac" 
-                  passengers="4" 
-                  luggage="2" 
-                />
-              </div>
-              <div class="swiper-slide">
-                <CardFleetStyle3 
-                  src="/imgs/page/homepage1/e-class.png" 
-                  title="Business Class" 
-                  description="Mercedes-Benz E-Class, BMW 5 Series, Cadillac XTS or similar" 
-                  passengers="4" 
-                  luggage="2" 
-                />
-              </div>
-              <div class="swiper-slide">
-                <CardFleetStyle3 
-                  src="/imgs/page/homepage1/eqs.png" 
-                  title="First Class" 
-                  description="Mercedes-Benz EQS, BMW 7 Series, Audi A8 or similar" 
-                  passengers="4" 
-                  luggage="2" 
-                />
-              </div>
-              <div class="swiper-slide">
-                <CardFleetStyle3 
-                  src="/imgs/page/homepage1/suv.png" 
-                  title="Business Van/SUV" 
-                  description="Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac" 
-                  passengers="4" 
-                  luggage="2" 
-                />
-              </div>
-              <div class="swiper-slide">
-                <CardFleetStyle3 
-                  src="/imgs/page/homepage1/suv.png" 
-                  title="Business Van/SUV" 
-                  description="Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac" 
-                  passengers="4" 
-                  luggage="2" 
-                />
-              </div>
-              <div class="swiper-slide">
-                <CardFleetStyle3 
-                  src="/imgs/page/homepage1/e-class.png" 
-                  title="Business Class" 
-                  description="Mercedes-Benz E-Class, BMW 5 Series, Cadillac XTS or similar" 
-                  passengers="4" 
-                  luggage="2" 
-                />
-              </div>
-              <div class="swiper-slide">
-                <CardFleetStyle3 
-                  src="/imgs/page/homepage1/eqs.png" 
-                  title="First Class" 
-                  description="Mercedes-Benz EQS, BMW 7 Series, Audi A8 or similar" 
-                  passengers="4" 
-                  luggage="2" 
-                />
-              </div>
-              <div class="swiper-slide">
-                <CardFleetStyle3 
-                  src="/imgs/page/homepage1/suv.png" 
-                  title="Business Van/SUV" 
-                  description="Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac" 
-                  passengers="4" 
-                  luggage="2" 
-                />
-              </div>
-              <div class="swiper-slide">
-                <CardFleetStyle3 
-                  src="/imgs/page/homepage1/suv.png" 
-                  title="Business Van/SUV" 
-                  description="Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac" 
-                  passengers="4" 
-                  luggage="2" 
+                  :src="fleet.image" 
+                  :title="fleet.title" 
+                  :description="fleet.description" 
+                  :passengers="fleet.passengers" 
+                  :luggage="fleet.luggage"
+                  :slug="fleet.slug"
                 />
               </div>
             </div>
@@ -151,7 +74,19 @@
 
 <script setup>
 import { CardFleetStyle3 } from '~/components';
-// OurFleet component logic
+
+// Use the fleet API composable
+const { fetchFleets, fleets, loading, error } = useFleetApi();
+
+// Computed property to get fleets to display (limit to 12 for the slider)
+const displayFleets = computed(() => {
+  return fleets.value.slice(0, 12);
+});
+
+// Fetch fleet data on component mount
+onMounted(async () => {
+  await fetchFleets();
+});
 </script>
 
 <style scoped>

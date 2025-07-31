@@ -1,12 +1,12 @@
 <template>
   <div class="cardFleet cardFleetStyle3 wow fadeInDown">
     <div class="cardImage mb-30">
-      <NuxtLink to="/single-fleet">
+      <NuxtLink :to="fleetLink">
         <img :src="src" alt="Luxride" />
       </NuxtLink>
     </div>
     <div class="cardInfo">
-      <NuxtLink to="/single-fleet">
+      <NuxtLink :to="fleetLink">
         <h3 class="text-20-medium color-text mb-10">{{ title }}</h3>
       </NuxtLink>  
       <p class="text-14 color-text mb-30">{{ description }}</p>
@@ -46,10 +46,22 @@ const props = defineProps({
     type: [String, Number],
     default: '2'
   },
+  slug: {
+    type: String,
+    default: ''
+  },
   link: {
     type: String,
     default: '#'
   }
+});
+
+// Computed property to generate the fleet link
+const fleetLink = computed(() => {
+  if (props.slug) {
+    return `/our-fleet/${props.slug}`;
+  }
+  return props.link || '/our-fleet';
 });
 </script>
 

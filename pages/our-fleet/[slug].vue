@@ -21,9 +21,6 @@
     <template v-else-if="currentFleet">
       <BookVehicle :fleet-data="currentFleet" />
       <Detail :fleet-data="currentFleet" />
-      <!-- <FeatureVehicle :fleet-data="currentFleet" />
-      
-      <ExploreFleet /> -->
     </template>
 
     <!-- Not Found State -->
@@ -33,12 +30,16 @@
       <NuxtLink to="/our-fleet" class="btn btn-primary">Back to Fleet</NuxtLink>
     </div>
   </div>
+  
   <!-- FAQs Section -->
   <Faqs />
 </template>
 
 <script setup>
 import Faqs from '~/sections/homepage5/Faqs.vue'
+import Detail from '~/components/FleetSingle/Detail.vue';
+import BookVehicle from '~/components/FleetSingle/BookVehicle.vue'; 
+
 // Get route params
 const route = useRoute();
 const { slug } = route.params;
@@ -84,12 +85,6 @@ const fetchFleetData = async (fleetSlug) => {
     loading.value = false;
   }
 };
-
-// Import components
-import Detail from '~/components/FleetSingle/Detail.vue';
-import FeatureVehicle from '~/components/FleetSingle/FeatureVehicle.vue';
-import BookVehicle from '~/components/FleetSingle/BookVehicle.vue'; 
-import ExploreFleet from '~/components/FleetSingle/ExploreFleet.vue';
 
 // Define static layout props
 definePageMeta({
