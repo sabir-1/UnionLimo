@@ -59,6 +59,38 @@
       </div>
     </div>
   </header>
+  <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+      <div class="mobile-header-wrapper-inner">
+        <div class="mobile-header-content-area">
+          <div class="perfect-scroll">
+            <div class="mobile-menu-wrap mobile-header-border">
+              <nav class="mt-15">
+                <ul class="mobile-menu font-heading">
+                  <li>
+        <NuxtLink to="/" exact>Home</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/our-fleet">Our Fleet</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/services">Services</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/blogs">Blog</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/about">About</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/contact">Contact</NuxtLink>
+      </li> 
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script setup>

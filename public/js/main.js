@@ -144,11 +144,21 @@
     /*Category Sub Menu Toggle*/
     $offCanvasNav.on("click", "li a, li .menu-expand", function (e) {
         var $this = $(this);
+        var parentClass = $this.parent().attr("class") || "";
+        
+        // Close mobile menu when clicking on navigation links (not expand buttons)
+        if ($this.is("a") && !$this.hasClass("menu-expand") && $this.attr("href") !== "#") {
+            var container = $(".mobile-header-active");
+            var wrapper4 = $("body");
+            var navbarTrigger = $(".burger-icon");
+            
+            container.removeClass("sidebar-visible");
+            wrapper4.removeClass("mobile-menu-active");
+            navbarTrigger.removeClass("burger-close");
+        }
+        
         if (
-            $this
-                .parent()
-                .attr("class")
-                .match(/\b(menu-item-has-children|has-children|has-sub-menu)\b/) &&
+            parentClass.match(/\b(menu-item-has-children|has-children|has-sub-menu)\b/) &&
             ($this.attr("href") === "#" || $this.hasClass("menu-expand"))
         ) {
             e.preventDefault();
