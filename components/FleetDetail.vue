@@ -38,8 +38,8 @@
         </div>
       </div>
       
-      <!-- Fleet Features -->
-      <div class="box-features mb-60 wow fadeInUp">
+      <!-- Fleet Features - Only show if features exist -->
+      <div class="box-features mb-60 wow fadeInUp" v-if="fleetData.features && fleetData.features.length > 0">
         <h3 class="heading-24-medium mb-30">Features</h3>
         <div class="row">
           <div class="col-lg-4 col-md-6 mb-20" v-for="feature in fleetData.features" :key="feature">

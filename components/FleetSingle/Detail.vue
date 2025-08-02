@@ -7,10 +7,13 @@
         <div class="content-single wow fadeInLeft">
           <p v-html="fleetData.longDescription"></p>
           <p >Experience the ultimate in luxury transportation with our premium fleet. Our vehicles are meticulously maintained and our professional chauffeurs ensure your comfort and safety throughout your journey.</p>
-          <h6 class="heading-24-medium color-text mb-30">We offer</h6>
-          <ul class="list-ticks list-ticks-small">
-            <li class="text-16 mb-20" v-for="feature in fleetData.features.slice(0, 5)" :key="feature">{{ feature }}</li>
-          </ul>
+          <!-- Features Section - Only show if features exist -->
+          <div v-if="fleetData.features && fleetData.features.length > 0">
+            <h6 class="heading-24-medium color-text mb-30">We offer</h6>
+            <ul class="list-ticks list-ticks-small">
+              <li class="text-16 mb-20" v-for="feature in fleetData.features" :key="feature">{{ feature }}</li>
+            </ul>
+          </div>
           <div class="mt-30">
             <NuxtLink to="/contact" class="btn btn-primary btn-book">
               Book Now

@@ -165,6 +165,10 @@ export const useFleetApi = () => {
 
   // Helper function to determine passenger count based on fleet title
   const getPassengerCount = (title) => {
+    if (!title) {
+      return '4';
+    }
+    
     const lowerTitle = title.toLowerCase();
     if (lowerTitle.includes('limousine') || lowerTitle.includes('stretch')) {
       return '10';
@@ -179,6 +183,10 @@ export const useFleetApi = () => {
   
   // Helper function to determine luggage count based on fleet title
   const getLuggageCount = (title) => {
+    if (!title) {
+      return '2';
+    }
+    
     const lowerTitle = title.toLowerCase();
     if (lowerTitle.includes('limousine') || lowerTitle.includes('stretch')) {
       return '6';
@@ -193,6 +201,25 @@ export const useFleetApi = () => {
   
   // Transform fleet data for detail view
   const transformFleetForDetail = (fleet) => {
+    if (!fleet) {
+      return {
+        title: 'Luxury Vehicle',
+        slug: '',
+        image: '/imgs/page/homepage1/e-class.png',
+        description: 'Luxury transportation with premium comfort and style.',
+        longDescription: 'Experience the ultimate in luxury transportation with our premium fleet.',
+        passengers: '4',
+        luggage: '2',
+        features: generateFeatures(null),
+        specifications: generateSpecifications(null),
+        pricing: generatePricing(null),
+        seo: null,
+        created_at: null,
+        updated_at: null,
+        sliderImages: []
+      };
+    }
+    
     return {
       title: fleet.title,
       slug: fleet.slug,
@@ -201,9 +228,9 @@ export const useFleetApi = () => {
       longDescription: fleet.description || 'Experience the ultimate in luxury transportation with our premium fleet.',
       passengers: fleet.passenger || getPassengerCount(fleet.title),
       luggage: fleet.luggage || getLuggageCount(fleet.title),
-      features: generateFeatures(fleet.title),
-      specifications: generateSpecifications(fleet.title),
-      pricing: generatePricingFromApi(fleet) || generatePricing(fleet.title),
+      features: fleet.features && fleet.features.length > 0 ? fleet.features : generateFeatures(fleet.title),
+      specifications: generateSpecifications(fleet),
+      pricing: generatePricingFromApi(fleet) || generatePricing(fleet),
       seo: fleet.seo,
       created_at: fleet.created_at,
       updated_at: fleet.updated_at,
@@ -230,6 +257,16 @@ export const useFleetApi = () => {
   
   // Generate features based on fleet title
   const generateFeatures = (title) => {
+    if (!title) {
+      return [
+        'Professional chauffeur service',
+        'Flight monitoring',
+        'Meet & greet service',
+        'Complimentary WiFi',
+        'Climate control'
+      ];
+    }
+    
     const lowerTitle = title.toLowerCase();
     const features = [
       'Professional chauffeur service',
@@ -252,6 +289,16 @@ export const useFleetApi = () => {
   
   // Generate specifications based on fleet title
   const generateSpecifications = (fleet) => {
+    if (!fleet || !fleet.title) {
+      return {
+        'Passenger Capacity': '4',
+        'Luggage Capacity': '2',
+        'Vehicle Type': 'Luxury Sedan',
+        'Transmission': 'Automatic',
+        'Fuel Type': 'Premium Gasoline'
+      };
+    }
+    
     const lowerTitle = fleet.title.toLowerCase();
     const specs = {
       'Passenger Capacity': getSafePassengerCount(fleet),
@@ -277,6 +324,14 @@ export const useFleetApi = () => {
   
   // Generate pricing based on fleet title
   const generatePricing = (fleet) => {
+    if (!fleet) {
+      return {
+        hourly: '$140/hour',
+        airport: '$100',
+        city: '$70'
+      };
+    }
+    
     // Check if fleet has dynamic pricing data from API
     if (fleet.hourly_rate && fleet.hourly_rate !== null && fleet.hourly_rate !== undefined) {
       return {
@@ -287,6 +342,14 @@ export const useFleetApi = () => {
     }
     
     // Fallback to static pricing based on title
+    if (!fleet.title) {
+      return {
+        hourly: '$140/hour',
+        airport: '$100',
+        city: '$70'
+      };
+    }
+    
     const lowerTitle = fleet.title.toLowerCase();
     
     if (lowerTitle.includes('limousine') || lowerTitle.includes('stretch')) {
