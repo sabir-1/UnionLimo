@@ -1,8 +1,13 @@
 <template>
   <section class="section pt-180 pb-130 box-testimonials box-testimonials-home5 mt-120">
     <div class="container-sub">
-      <div class="box-testimonials-770">
-        <div class="box-swiper">
+      <div class=" ">
+        <div class="w-full  lg:px-4 ">
+      <iframe src='https://cdn.trustindex.io/amp-widget.html#2f9b13a51b8026878d46e074c16'
+        sandbox='allow-scripts allow-same-origin' layoutt='fixed-height' width='100%' height='400'
+        resizable='resizable'><span overflow></span></iframe>
+    </div>
+        <!-- <div class="box-swiper">
           <div class="swiper-container swiper-group-testimonials pb-50">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
@@ -72,7 +77,7 @@
               <div class="swiper-pagination swiper-pagination-testimonials"></div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
