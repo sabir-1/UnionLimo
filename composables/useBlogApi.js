@@ -129,72 +129,69 @@ export const useBlogApi = () => {
       year: 'numeric' 
     });
     
-    // Generate dynamic content based on blog title if short_description is null
-    const generateContent = () => {
-      if (blog.short_description) {
-        return [blog.short_description];
-      }
+    // Process the description content
+    const processDescription = (description) => {
+      if (!description) return '';
       
-      // Generate content based on title
-      const title = blog.title.toLowerCase();
-      let content = [];
-      
-      if (title.includes('slider') || title.includes('image')) {
-        content = [
-          "This blog post showcases our premium collection of images and visual content.",
-          "We believe in providing high-quality visual experiences that complement our luxury transportation services.",
-          "Each image has been carefully selected to represent the excellence and professionalism that UnionLimo stands for."
-        ];
-      } else if (title.includes('travel') || title.includes('destination')) {
-        content = [
-          "Discover amazing destinations and travel experiences with our premium transportation services.",
-          "We provide luxury transportation solutions for all your travel needs, ensuring comfort and style throughout your journey.",
-          "Our experienced chauffeurs and premium vehicles make every trip memorable and enjoyable."
-        ];
-      } else if (title.includes('service') || title.includes('transport')) {
-        content = [
-          "Experience the highest level of luxury transportation services with UnionLimo.",
-          "Our fleet of premium vehicles and professional chauffeurs ensure your comfort and safety.",
-          "We specialize in providing exceptional transportation solutions for all occasions."
-        ];
-      } else {
-        content = [
-          "Welcome to our latest blog post about luxury transportation and premium services.",
-          "At UnionLimo, we are committed to providing exceptional experiences and valuable insights to our customers.",
-          "Stay tuned for more updates and information about our services and industry trends."
-        ];
-      }
-      
-      return content;
+      // Clean up the HTML content and handle special characters
+      return description
+        .replace(/\\n/g, '\n')
+        .replace(/\\r/g, '\r')
+        .replace(/\\t/g, '\t')
+        .replace(/\\"/g, '"')
+        .replace(/\\'/g, "'")
+        .replace(/\\\\/g, '\\');
     };
     
-    return {
-      id: blog.id, // Include the blog ID
-      title: blog.title,
-      date: day + '.',
-      monthYear: monthYear,
-      featuredImage: blog.feature_image || '/imgs/page/homepage1/news1.png',
-      content: generateContent(),
-      quote: "Quality and excellence are at the heart of everything we do at UnionLimo.",
-      additionalContent: [
-        "Our team of professionals works tirelessly to ensure every detail of your experience is perfect.",
-        "We continuously strive to improve our services and provide the best possible experience for our valued customers."
-      ],
-      middleImage: blog.slider_image_1 || '/imgs/page/blog2/img-single2.png',
-      galleryImages: [
+    // Extract images from slider images
+    const extractGalleryImages = () => {
+      const images = [
+        blog.slider_image_1,
         blog.slider_image_2,
         blog.slider_image_3,
         blog.slider_image_4
-      ].filter(img => img && img !== 'https://dummyimage.com/120x120/000/ffffff.png&text=NO+IMAGE'),
-      finalContent: [
-        "Thank you for reading our blog. We hope this information has been helpful and informative."
-      ],
-      subtitle: "About This Post",
-      subtitleContent: [
-        "This post was created to provide valuable information to our readers and customers.",
-        "We continuously update our content to ensure accuracy and relevance."
-      ],
-      tags: blog.categories ? blog.categories.split(',').map(cat => cat.trim()).filter(cat => cat) : ['General'],
+      ].filter(img => img && img !== 'https://dummyimage.com/120x120/000/ffffff.png&text=NO+IMAGE');
+      
+      return images.length > 0 ? images : ['/imgs/page/blog2/img-single2.png'];
+    };
+    
+    // Extract categories/tags
+    const extractTags = () => {
+      if (blog.categories && blog.categories.trim()) {
+        return blog.categories.split(',').map(cat => cat.trim()).filter(cat => cat);
+      }
+      
+      // Generate tags based on title if no categories
+      const title = blog.title.toLowerCase();
+      const tags = [];
+      
+      if (title.includes('airport') || title.includes('jfk')) tags.push('Airport');
+      if (title.includes('car') || title.includes('service')) tags.push('Car Service');
+      if (title.includes('nyc') || title.includes('new york')) tags.push('NYC');
+      if (title.includes('guide') || title.includes('complete')) tags.push('Guide');
+      if (title.includes('transport') || title.includes('travel')) tags.push('Transportation');
+      
+      return tags.length > 0 ? tags : ['General'];
+    };
+    
+    return {
+      id: blog.id,
+      title: blog.title,
+      slug: blog.slug,
+      date: day + '.',
+      monthYear: monthYear,
+      featuredImage: blog.feature_image || '/imgs/page/homepage1/news1.png',
+      description: processDescription(blog.description), // Use the actual description from API
+      shortDescription: blog.short_description,
+      content: blog.short_description ? [blog.short_description] : [],
+      quote: null, // Remove static quote
+      additionalContent: [], // Remove static content
+      middleImage: blog.slider_image_1 || '/imgs/page/blog2/img-single2.png',
+      galleryImages: extractGalleryImages(),
+      finalContent: [], // Remove static content
+      subtitle: null, // Remove static subtitle
+      subtitleContent: [], // Remove static content
+      tags: extractTags(),
       author: {
         name: "UnionLimo Team",
         position: "Content Team",
@@ -205,7 +202,11 @@ export const useBlogApi = () => {
         prev: null,
         next: null
       },
-      reviews: []
+      reviews: [],
+      seo: blog.seo || {},
+      created_at: blog.created_at,
+      updated_at: blog.updated_at,
+      status: blog.status
     };
   };
   

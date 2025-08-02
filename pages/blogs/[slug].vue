@@ -86,19 +86,32 @@ watch(currentBlog, (newBlog) => {
         { text: 'Blog', link: '/blogs' },
         { text: newBlog.title || 'Blog Post', link: null }
       ];
-      route.meta.layoutProps.seoTitle = `${newBlog.title} - UnionLimo Blog`;
-      route.meta.layoutProps.seoDescription = newBlog.shortDescription || 'Read our latest blog post about luxury transportation and travel services.';
-      route.meta.layoutProps.seoKeywords = `${newBlog.title.toLowerCase()}, luxury transportation, travel blog, unionlimo`;
+      
+      // Use SEO data from API if available, otherwise fallback to defaults
+      const seoTitle = newBlog.seo?.title || `${newBlog.title} - UnionLimo Blog`;
+      const seoDescription = newBlog.seo?.description || newBlog.shortDescription || 'Read our latest blog post about luxury transportation and travel services.';
+      const seoKeywords = newBlog.seo?.keywords || `${newBlog.title.toLowerCase()}, luxury transportation, travel blog, unionlimo`;
+      
+      route.meta.layoutProps.seoTitle = seoTitle;
+      route.meta.layoutProps.seoDescription = seoDescription;
+      route.meta.layoutProps.seoKeywords = seoKeywords;
     }
 
     // Update SEO
     useHead({
-      title: `${newBlog.title} - UnionLimo Blog`,
+      title: newBlog.seo?.title || `${newBlog.title} - UnionLimo Blog`,
       meta: [
-        { name: 'description', content: newBlog.shortDescription || 'Read our latest blog post about luxury transportation and travel services.' },
-        { name: 'keywords', content: `${newBlog.title.toLowerCase()}, luxury transportation, travel blog, unionlimo` },
-        { property: 'og:title', content: `${newBlog.title} - UnionLimo Blog` },
-        { property: 'og:description', content: newBlog.shortDescription || 'Read our latest blog post about luxury transportation and travel services.' }
+        { name: 'description', content: newBlog.seo?.description || newBlog.shortDescription || 'Read our latest blog post about luxury transportation and travel services.' },
+        { name: 'keywords', content: newBlog.seo?.keywords || `${newBlog.title.toLowerCase()}, luxury transportation, travel blog, unionlimo` },
+        { property: 'og:title', content: newBlog.seo?.title || `${newBlog.title} - UnionLimo Blog` },
+        { property: 'og:description', content: newBlog.seo?.description || newBlog.shortDescription || 'Read our latest blog post about luxury transportation and travel services.' },
+        { property: 'og:image', content: newBlog.featuredImage || '/imgs/page/blog2/img-single.png' },
+        { property: 'og:type', content: 'article' },
+        { property: 'article:published_time', content: newBlog.created_at || new Date().toISOString() },
+        { property: 'article:modified_time', content: newBlog.updated_at || new Date().toISOString() }
+      ],
+      link: [
+        { rel: 'canonical', href: newBlog.seo?.canonical_url || `https://unionlimo.com/blogs/${newBlog.slug}` }
       ]
     });
   }

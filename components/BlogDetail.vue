@@ -13,30 +13,49 @@
       
       <h2 class="heading-44-medium mb-30 wow fadeInUp">{{ blogData.title }}</h2>
       
-      <div class="content-single wow fadeInLeft">
-        <p v-for="(paragraph, index) in blogData.content" :key="index">{{ paragraph }}</p>
+      <div class="content-single wow fadeInLeft"> 
+        <!-- Main blog content -->
+        <div v-if="blogData.description" v-html="blogData.description" class="blog-content"></div>
         
-        <blockquote v-if="blogData.quote">
+        <!-- Fallback content if no description -->
+        <div v-else-if="blogData.content && blogData.content.length > 0">
+          <p v-for="(paragraph, index) in blogData.content" :key="'content-' + index">{{ paragraph }}</p>
+        </div>
+        
+        <!-- Quote section if available -->
+        <blockquote v-if="blogData.quote" class="mt-30 mb-30">
           "{{ blogData.quote }}"
         </blockquote>
         
-        <p v-for="(paragraph, index) in blogData.additionalContent" :key="'additional-' + index">{{ paragraph }}</p>
+        <!-- Additional content -->
+        <div v-if="blogData.additionalContent && blogData.additionalContent.length > 0">
+          <p v-for="(paragraph, index) in blogData.additionalContent" :key="'additional-' + index">{{ paragraph }}</p>
+        </div>
         
-        <p v-if="blogData.middleImage">
-          <img :src="blogData.middleImage" alt="luxride">
-        </p>
+        <!-- Middle image -->
+        <div v-if="blogData.middleImage" class="mt-30 mb-30">
+          <img :src="blogData.middleImage" :alt="blogData.title" class="img-fluid">
+        </div>
         
-        <div class="row" v-if="blogData.galleryImages && blogData.galleryImages.length > 0">
+        <!-- Gallery images -->
+        <div class="row mt-30 mb-30" v-if="blogData.galleryImages && blogData.galleryImages.length > 0">
           <div class="col-lg-6 mb-30" v-for="(image, index) in blogData.galleryImages" :key="index">
-            <img :src="image" alt="luxride">
+            <img :src="image" :alt="blogData.title" class="img-fluid">
           </div>
         </div>
         
-        <p v-for="(paragraph, index) in blogData.finalContent" :key="'final-' + index">{{ paragraph }}</p>
+        <!-- Final content -->
+        <div v-if="blogData.finalContent && blogData.finalContent.length > 0">
+          <p v-for="(paragraph, index) in blogData.finalContent" :key="'final-' + index">{{ paragraph }}</p>
+        </div>
         
-        <h2 class="heading-44-medium" v-if="blogData.subtitle">{{ blogData.subtitle }}</h2>
-        
-        <p v-for="(paragraph, index) in blogData.subtitleContent" :key="'subtitle-' + index">{{ paragraph }}</p>
+        <!-- Subtitle and subtitle content -->
+        <div v-if="blogData.subtitle">
+          <h2 class="heading-44-medium mt-30 mb-20">{{ blogData.subtitle }}</h2>
+          <div v-if="blogData.subtitleContent && blogData.subtitleContent.length > 0">
+            <p v-for="(paragraph, index) in blogData.subtitleContent" :key="'subtitle-' + index">{{ paragraph }}</p>
+          </div>
+        </div>
       </div>
       
       <div class="box-share-tags mt-50 wow fadeInRight">
@@ -174,65 +193,125 @@ const props = defineProps({
   blogData: {
     type: Object,
     default: () => ({
-      title: "6 of the best sustainable travel companies",
+      id: 1,
+      title: "Sample Blog Post",
       date: "14.",
       monthYear: "Jun, 2022",
       featuredImage: "/imgs/page/blog2/img-single.png",
-      content: [
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy. Eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-      ],
-      quote: "Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida. Diam phasellus vestibulum lorem sed risus ultricies. Magna sit amet purus gravida quis blandit. Arcu cursus vitae congue mauris.",
-      additionalContent: [
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy. Eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
-        "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy. Eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-      ],
+      description: "<p>This is a sample blog post description with HTML content.</p>",
+      shortDescription: "Sample short description",
+      content: [],
+      quote: null,
+      additionalContent: [],
       middleImage: "/imgs/page/blog2/img-single2.png",
       galleryImages: [
         "/imgs/page/blog2/img-single3.png",
         "/imgs/page/blog2/img-single4.png"
       ],
-      finalContent: [
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy. Eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-      ],
-      subtitle: "Natural Habitat Adventures",
-      subtitleContent: [
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy. Eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
-        "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy. Eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-      ],
-      tags: ["Chauffeur", "Car", "Rent", "Limousine"],
+      finalContent: [],
+      subtitle: null,
+      subtitleContent: [],
+      tags: ["Sample", "Blog", "Post"],
       author: {
-        name: "Esther Howard",
-        position: "Marketing Coordinator",
-        bio: "Etiam vitae leo et diam pellentesque porta. Sed eleifend ultricies risus, vel rutrum erat commodo ut. Praesent finibus congue euismod. Nullam scelerisque massa vel augue placerat, a tempor sem egestas. Curabitur placerat finibus lacus.",
+        name: "UnionLimo Team",
+        position: "Content Team",
+        bio: "Our dedicated team of writers and industry experts work together to provide you with the most relevant and up-to-date information about luxury transportation and travel.",
         image: "/imgs/page/blog2/author.png"
       },
       navigation: {
-        prev: {
-          title: "The most efficient airlines and airports globally",
-          link: "/blogs/airlines-airports"
-        },
-        next: {
-          title: "The most efficient airlines and airports globally",
-          link: "/blogs/airlines-airports"
-        }
+        prev: null,
+        next: null
       },
-      reviews: [
-        {
-          id: 1,
-          name: "Bessie Cooper",
-          avatar: "B.C",
-          date: "March 2022",
-          comment: "Nice two level apartment in great London location. Located in quiet small street, but just 50 meters from main street and bus stop. Tube station is short walk, just like two grocery stores."
-        },
-        {
-          id: 2,
-          name: "Wade Warren",
-          avatar: "W.W",
-          date: "March 2022",
-          comment: "Nice two level apartment in great London location. Located in quiet small street, but just 50 meters from main street and bus stop. Tube station is short walk, just like two grocery stores."
-        }
-      ]
+      reviews: [],
+      seo: {}
     })
   }
 });
 </script>
+
+<style scoped>
+.blog-content {
+  line-height: 1.8;
+}
+
+.blog-content :deep(h1),
+.blog-content :deep(h2),
+.blog-content :deep(h3),
+.blog-content :deep(h4),
+.blog-content :deep(h5),
+.blog-content :deep(h6) {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.blog-content :deep(h1) {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+.blog-content :deep(h2) {
+  font-size: 2rem;
+  line-height: 1.3;
+}
+
+.blog-content :deep(h3) {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.blog-content :deep(p) {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #4a4a4a;
+}
+
+.blog-content :deep(ul),
+.blog-content :deep(ol) {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.blog-content :deep(li) {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.blog-content :deep(strong) {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.blog-content :deep(em) {
+  font-style: italic;
+}
+
+.blog-content :deep(a) {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.blog-content :deep(a:hover) {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.blog-content :deep(blockquote) {
+  border-left: 4px solid #007bff;
+  padding-left: 1rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #666;
+}
+
+.blog-content :deep(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+</style>
