@@ -1,38 +1,25 @@
 <template>
   <div>
-    <!-- Loading State -->
-    <div v-if="loading" class="text-center py-60">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <p class="mt-3">Loading service details...</p>
+    <!-- Loading state -->
+    <div v-if="loading" class="loading-container">
+      <div class="loading-spinner">Loading...</div>
     </div>
-
-    <!-- Error State -->
-    <div v-else-if="error" class="text-center py-60">
-      <div class="alert alert-warning" role="alert">
-        <h4>Oops!</h4>
-        <p>{{ error }}</p>
-        <button @click="fetchServiceData" class="btn btn-primary">Try Again</button>
-      </div>
+    
+    <!-- Error state -->
+    <div v-else-if="error" class="error-container">
+      <h2>Service Not Found</h2>
+      <p>{{ error }}</p>
+      <NuxtLink to="/services" class="back-link">Back to Services</NuxtLink>
     </div>
-
+    
     <!-- Service Detail Section -->
     <div v-else-if="serviceData">
       <ServiceSingleBanner :service-data="serviceData" />
-      <ServiceSingleFeature   /> 
+      <ServiceSingleFeature :service-data="serviceData" /> 
       <ServiceSingleDetail :service-data="serviceData" />
+      
       <!-- FAQs Section -->
       <Faqs />
-    </div>
-
-    <!-- Service Not Found -->
-    <div v-else class="text-center py-60">
-      <div class="alert alert-info" role="alert">
-        <h4>Service Not Found</h4>
-        <p>The requested service could not be found.</p>
-        <NuxtLink to="/services" class="btn btn-primary">Back to Services</NuxtLink>
-      </div>
     </div>
   </div>
 </template>
@@ -48,33 +35,29 @@ import Faqs from '~/sections/homepage5/Faqs.vue'
 const route = useRoute()
 const { slug } = route.params
 
-// Use the services API composable
-const { 
-  loading, 
-  error, 
-  fetchServiceBySlug 
-} = useServicesApi()
+// Use services API composable
+const { fetchServiceBySlug, loading, error } = useServicesApi()
 
 // Reactive service data
 const serviceData = ref(null)
 
-// Fetch service data
-const fetchServiceData = async () => {
+// Fetch service data on component mount
+onMounted(async () => {
   if (slug) {
     const data = await fetchServiceBySlug(slug)
-    serviceData.value = data
+    if (data) {
+      serviceData.value = data
+    }
   }
-}
-
-// Fetch service data on component mount
-onMounted(() => {
-  fetchServiceData()
 })
 
-// Watch for route changes
-watch(() => route.params.slug, (newSlug) => {
+// Watch for route changes to refetch data
+watch(() => route.params.slug, async (newSlug) => {
   if (newSlug) {
-    fetchServiceData()
+    const data = await fetchServiceBySlug(newSlug)
+    if (data) {
+      serviceData.value = data
+    }
   }
 })
 
@@ -125,4 +108,44 @@ watch(serviceData, (newService) => {
 
 <style scoped>
 /* Service detail page specific styles */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.loading-spinner {
+  font-size: 18px;
+  color: #666;
+}
+
+.error-container {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.error-container h2 {
+  color: #e74c3c;
+  margin-bottom: 20px;
+}
+
+.error-container p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.back-link {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.back-link:hover {
+  background-color: #0056b3;
+}
 </style> 

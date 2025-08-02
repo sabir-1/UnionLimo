@@ -70,8 +70,8 @@ export const useFleetApi = () => {
             slug: fleet.slug,
             image: fleet.feature_image || '/imgs/page/homepage1/e-class.png',
             description: fleet.short_description || 'Luxury transportation with premium comfort and style.',
-            passengers: getSafePassengerCount(fleet),
-            luggage: getSafeLuggageCount(fleet),
+            passengers: fleet.passenger || getPassengerCount(fleet.title),
+            luggage: fleet.luggage || getLuggageCount(fleet.title),
             short_description: fleet.short_description,
             pricing: generatePricing(fleet),
             seo: fleet.seo,
@@ -199,11 +199,11 @@ export const useFleetApi = () => {
       image: fleet.feature_image || '/imgs/page/homepage1/e-class.png',
       description: fleet.short_description || 'Luxury transportation with premium comfort and style.',
       longDescription: fleet.description || 'Experience the ultimate in luxury transportation with our premium fleet.',
-      passengers: getSafePassengerCount(fleet),
-      luggage: getSafeLuggageCount(fleet),
-      features: fleet.features,
-      specifications: generateSpecifications(fleet),
-      pricing: generatePricing(fleet),
+      passengers: fleet.passenger || getPassengerCount(fleet.title),
+      luggage: fleet.luggage || getLuggageCount(fleet.title),
+      features: generateFeatures(fleet.title),
+      specifications: generateSpecifications(fleet.title),
+      pricing: generatePricingFromApi(fleet) || generatePricing(fleet.title),
       seo: fleet.seo,
       created_at: fleet.created_at,
       updated_at: fleet.updated_at,
@@ -214,6 +214,18 @@ export const useFleetApi = () => {
         fleet.slider_image_4
       ].filter(img => img && img !== 'https://dummyimage.com/120x120/000/ffffff.png&text=NO+IMAGE')
     };
+  };
+
+  // Generate pricing from API data
+  const generatePricingFromApi = (fleet) => {
+    if (fleet.hourly_rate) {
+      return {
+        hourly: `$${fleet.hourly_rate}/hour`,
+        airport: `$${Math.round(fleet.hourly_rate * 0.7)}`,
+        city: `$${Math.round(fleet.hourly_rate * 0.5)}`
+      };
+    }
+    return null;
   };
   
   // Generate features based on fleet title
