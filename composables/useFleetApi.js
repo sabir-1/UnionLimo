@@ -248,8 +248,8 @@ export const useFleetApi = () => {
     if (fleet.hourly_rate) {
       return {
         hourly: `$${fleet.hourly_rate}/hour`,
-        airport: `$${Math.round(fleet.hourly_rate * 0.7)}`,
-        city: `$${Math.round(fleet.hourly_rate * 0.5)}`
+        airport: fleet.second_rate ? `$${fleet.second_rate}` : `$${Math.round(fleet.hourly_rate * 0.7)}`,
+        city: fleet.third_rate ? `$${fleet.third_rate}` : `$${Math.round(fleet.hourly_rate * 0.5)}`
       };
     }
     return null;
@@ -336,8 +336,8 @@ export const useFleetApi = () => {
     if (fleet.hourly_rate && fleet.hourly_rate !== null && fleet.hourly_rate !== undefined) {
       return {
         hourly: `$${fleet.hourly_rate}/hour`,
-        airport: fleet.airport_rate ? `$${fleet.airport_rate}` : '$100',
-        city: fleet.city_rate ? `$${fleet.city_rate}` : '$70'
+        airport: fleet.second_rate ? `$${fleet.second_rate}` : '$100',
+        city: fleet.third_rate ? `$${fleet.third_rate}` : '$70'
       };
     }
     
