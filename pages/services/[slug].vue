@@ -17,9 +17,16 @@
       <ServiceSingleBanner :service-data="serviceData" />
       <ServiceSingleFeature :service-data="serviceData" /> 
       <ServiceSingleDetail :service-data="serviceData" />
+
+       <!-- Our Fleet Section -->
+    <OurFleet />
       
       <!-- FAQs Section -->
+       <div class="-mt-[100px]">
+
+     
       <Faqs />
+    </div>
     </div>
   </div>
 </template>
@@ -30,6 +37,7 @@ import ServiceSingleBanner from '~/sections/service-single/Banner.vue'
 import ServiceSingleDetail from '~/sections/service-single/Detail.vue'
 import ServiceSingleFeature from '~/sections/service-single/Feature.vue'
 import Faqs from '~/sections/homepage5/Faqs.vue'
+import OurFleet from '~/sections/homepage5/OurFleet.vue'
 
 // Get route params
 const route = useRoute()
@@ -134,7 +142,9 @@ watch(serviceData, (newService) => {
   color: #666;
   margin-bottom: 30px;
 }
-
+.-mt-\[100px\]{
+  margin-top: -128px;
+}
 .back-link {
   display: inline-block;
   padding: 12px 24px;
