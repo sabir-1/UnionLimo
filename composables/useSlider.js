@@ -46,15 +46,19 @@ export const useSlider = () => {
       
       // Initialize the slider
       try {
+        // Try global function first
         if (typeof window.initializeAllSliders === 'function') {
           window.initializeAllSliders();
-          console.log(`Slider ${selector} initialized successfully`);
+          console.log(`Slider ${selector} initialized successfully via global function`);
         } else {
           // Fallback to direct initialization based on selector
           const fallbackFunction = getFallbackFunction(selector);
           if (fallbackFunction && typeof window[fallbackFunction] === 'function') {
             window[fallbackFunction]();
             console.log(`Slider ${selector} initialized with fallback method`);
+          } else {
+            // Direct Swiper initialization as last resort
+            directSwiperInitialization(selector);
           }
         }
       } catch (error) {
@@ -64,6 +68,55 @@ export const useSlider = () => {
     };
     
     attemptInitialization();
+  };
+
+  // Direct Swiper initialization as fallback
+  const directSwiperInitialization = (selector) => {
+    try {
+      const element = document.querySelector(selector);
+      if (!element) return;
+
+      // Destroy existing instance if it exists
+      if (element.swiper) {
+        element.swiper.destroy(true, true);
+      }
+
+      // Initialize based on selector type
+      if (selector.includes('swiper-group-4-fleet')) {
+        const swiper = new window.Swiper(selector, {
+          spaceBetween: 30,
+          slidesPerView: 4,
+          slidesPerGroup: 1,
+          initialSlide: 1,
+          navigation: {
+            nextEl: ".swiper-button-next-fleet",
+            prevEl: ".swiper-button-prev-fleet"
+          },
+          pagination: {
+            el: ".swiper-pagination-fleet",
+            clickable: true
+          },
+          autoplay: {
+            delay: 10000
+          },
+          breakpoints: {
+            1399: { slidesPerView: 3 },
+            1100: { slidesPerView: 3 },
+            670: { slidesPerView: 2 },
+            575: { slidesPerView: 1 },
+            400: { slidesPerView: 1 },
+            350: { slidesPerView: 1 },
+            150: { slidesPerView: 1 }
+          }
+        });
+        
+        // Store the instance globally
+        window.swiper_4_fleet = swiper;
+        console.log(`Direct Swiper initialization successful for ${selector}`);
+      }
+    } catch (error) {
+      console.error(`Direct Swiper initialization failed for ${selector}:`, error);
+    }
   };
 
   // Function to get fallback function name based on selector
@@ -135,6 +188,7 @@ export const useSlider = () => {
     handleVisibilityChange,
     handleResize,
     checkLibraries,
-    checkSliderElement
+    checkSliderElement,
+    directSwiperInitialization
   };
 }; 
