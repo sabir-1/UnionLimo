@@ -113,6 +113,34 @@ export const useSlider = () => {
         // Store the instance globally
         window.swiper_4_fleet = swiper;
         console.log(`Direct Swiper initialization successful for ${selector}`);
+      } else if (selector.includes('swiper-group-4-service')) {
+        const swiper = new window.Swiper(selector, {
+          spaceBetween: 30,
+          slidesPerView: 4,
+          slidesPerGroup: 1,
+          initialSlide: 1,
+          loop: true,
+          navigation: {
+            nextEl: ".swiper-button-next-service",
+            prevEl: ".swiper-button-prev-service"
+          },
+          autoplay: {
+            delay: 10000
+          },
+          breakpoints: {
+            1399: { slidesPerView: 3 },
+            1100: { slidesPerView: 3 },
+            670: { slidesPerView: 2 },
+            575: { slidesPerView: 1 },
+            400: { slidesPerView: 1 },
+            350: { slidesPerView: 1 },
+            150: { slidesPerView: 1 }
+          }
+        });
+        
+        // Store the instance globally
+        window.swiper_4_service = swiper;
+        console.log(`Direct Swiper initialization successful for ${selector}`);
       }
     } catch (error) {
       console.error(`Direct Swiper initialization failed for ${selector}:`, error);
