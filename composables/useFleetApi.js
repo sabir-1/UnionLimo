@@ -73,6 +73,7 @@ export const useFleetApi = () => {
             passengers: fleet.passenger || getPassengerCount(fleet.title),
             luggage: fleet.luggage || getLuggageCount(fleet.title),
             short_description: fleet.short_description,
+            pricing: generatePricing(fleet),
             seo: fleet.seo,
             created_at: fleet.created_at,
             updated_at: fleet.updated_at,
@@ -143,6 +144,25 @@ export const useFleetApi = () => {
     currentPage.value = 1;
   };
   
+  // Helper function to safely get passenger count with null handling
+  const getSafePassengerCount = (fleet) => {
+    if (fleet.passenger !== null && fleet.passenger !== undefined) {
+      return fleet.passenger.toString();
+    }
+    if (fleet.passengers !== null && fleet.passengers !== undefined) {
+      return fleet.passengers.toString();
+    }
+    return getPassengerCount(fleet.title);
+  };
+
+  // Helper function to safely get luggage count with null handling
+  const getSafeLuggageCount = (fleet) => {
+    if (fleet.luggage !== null && fleet.luggage !== undefined) {
+      return fleet.luggage.toString();
+    }
+    return getLuggageCount(fleet.title);
+  };
+
   // Helper function to determine passenger count based on fleet title
   const getPassengerCount = (title) => {
     const lowerTitle = title.toLowerCase();
@@ -231,11 +251,11 @@ export const useFleetApi = () => {
   };
   
   // Generate specifications based on fleet title
-  const generateSpecifications = (title) => {
-    const lowerTitle = title.toLowerCase();
+  const generateSpecifications = (fleet) => {
+    const lowerTitle = fleet.title.toLowerCase();
     const specs = {
-      'Passenger Capacity': getPassengerCount(title),
-      'Luggage Capacity': getLuggageCount(title),
+      'Passenger Capacity': getSafePassengerCount(fleet),
+      'Luggage Capacity': getSafeLuggageCount(fleet),
       'Vehicle Type': 'Luxury Sedan',
       'Transmission': 'Automatic',
       'Fuel Type': 'Premium Gasoline'
@@ -256,8 +276,18 @@ export const useFleetApi = () => {
   };
   
   // Generate pricing based on fleet title
-  const generatePricing = (title) => {
-    const lowerTitle = title.toLowerCase();
+  const generatePricing = (fleet) => {
+    // Check if fleet has dynamic pricing data from API
+    if (fleet.hourly_rate && fleet.hourly_rate !== null && fleet.hourly_rate !== undefined) {
+      return {
+        hourly: `$${fleet.hourly_rate}/hour`,
+        airport: fleet.airport_rate ? `$${fleet.airport_rate}` : '$100',
+        city: fleet.city_rate ? `$${fleet.city_rate}` : '$70'
+      };
+    }
+    
+    // Fallback to static pricing based on title
+    const lowerTitle = fleet.title.toLowerCase();
     
     if (lowerTitle.includes('limousine') || lowerTitle.includes('stretch')) {
       return {

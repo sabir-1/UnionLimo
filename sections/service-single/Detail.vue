@@ -12,10 +12,10 @@
         </div>
       </div>
       </div>
-      <div class="mt-100">
+      <!-- <div class="mt-100">
 
         <TopCities/>
-      </div>
+      </div> -->
      
       <div class="container-sub">
       <div v-if="serviceData.details && serviceData.details.length > 0">
