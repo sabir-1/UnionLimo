@@ -5,7 +5,7 @@
       <div class="mt-120 mb-0">
         <h2 class="heading-44-medium mb-30 color-text title-fleet wow fadeInUp">{{ fleetData.title }}</h2>
         <div class="content-single wow fadeInLeft">
-          <p v-html="fleetData.longDescription"></p>
+          <div ref="descriptionContainer"></div>
           
           <!-- Features Section - Only show if features exist -->
           <div v-if="fleetData.features && fleetData.features.length > 0">
@@ -57,6 +57,21 @@ const props = defineProps({
   fleetData: {
     type: Object,
     required: true
+  }
+});
+
+const descriptionContainer = ref(null);
+
+onMounted(() => {
+  if (descriptionContainer.value && props.fleetData.longDescription) {
+    descriptionContainer.value.innerHTML = props.fleetData.longDescription;
+  }
+});
+
+// Watch for changes in fleetData
+watch(() => props.fleetData.longDescription, (newDescription) => {
+  if (descriptionContainer.value && newDescription) {
+    descriptionContainer.value.innerHTML = newDescription;
   }
 });
 </script> 
