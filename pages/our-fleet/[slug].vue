@@ -1,7 +1,7 @@
 <template>  
   <div>
     <!-- Loading State -->
-    <div v-if="loading" class="text-center py-60">
+    <div v-if="pending" class="text-center py-60">
       <div class="spinner-border" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
@@ -18,9 +18,9 @@
     </div>
 
     <!-- Fleet Detail -->
-    <template v-else-if="currentFleet">
-      <BookVehicle :fleet-data="currentFleet" />
-      <Detail :fleet-data="currentFleet" />
+    <template v-else-if="data">
+      <BookVehicle :fleet-data="data" />
+      <Detail :fleet-data="data" />
     </template>
 
     <!-- Not Found State -->
@@ -47,44 +47,24 @@ const { slug } = route.params;
 // Use the fleet API composable
 const { fetchFleetBySlug } = useFleetApi();
 
-// Local state for detail page
-const loading = ref(false);
-const error = ref(null);
-const currentFleet = ref(null);
-
-// Fetch fleet data on page load
-onMounted(async () => {
-  if (slug) {
-    await fetchFleetData(slug);
-  }
-});
-
-// Watch for route changes
-watch(() => route.params.slug, async (newSlug) => {
-  if (newSlug) {
-    await fetchFleetData(newSlug);
-  }
-});
-
-// Function to fetch fleet data with proper error handling
-const fetchFleetData = async (fleetSlug) => {
-  loading.value = true;
-  error.value = null;
-  
-  try {
-    const fleetData = await fetchFleetBySlug(fleetSlug);
-    if (fleetData) {
-      currentFleet.value = fleetData;
-    } else {
-      error.value = 'Fleet not found';
+// Server-side data fetching with useAsyncData
+const { data, pending, error } = await useAsyncData(
+  `fleet-${slug}`,
+  async () => {
+    if (!slug) return null;
+    try {
+      return await fetchFleetBySlug(slug);
+    } catch (err) {
+      console.error('Error fetching fleet data:', err);
+      throw new Error('Failed to load fleet details. Please try again later.');
     }
-  } catch (err) {
-    console.error('Error fetching fleet data:', err);
-    error.value = 'Failed to load fleet details. Please try again later.';
-  } finally {
-    loading.value = false;
+  },
+  {
+    server: true,
+    lazy: false,
+    default: () => null
   }
-};
+);
 
 // Define static layout props
 definePageMeta({
@@ -95,16 +75,15 @@ definePageMeta({
       { text: 'Our Fleet', link: '/our-fleet' },
       { text: 'Fleet Details', link: null }
     ]
-    // Removed static SEO fields
   }
 })
 
 // Computed SEO fields for reactivity
-const seoTitle = computed(() => currentFleet.value?.seo?.title || (currentFleet.value ? `${currentFleet.value.title} - UnionLimo Fleet` : 'Fleet Details - UnionLimo'));
-const seoDescription = computed(() => currentFleet.value?.seo?.description || currentFleet.value?.description || 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.');
-const seoKeywords = computed(() => currentFleet.value?.seo?.keywords || (currentFleet.value ? `${currentFleet.value.title.toLowerCase()}, luxury fleet, chauffeur service, unionlimo` : 'luxury fleet, chauffeur service, unionlimo'));
-const seoCanonical = computed(() => currentFleet.value?.seo?.canonical_url || (currentFleet.value ? `https://unionlimo.com/our-fleet/${currentFleet.value.slug}` : 'https://unionlimo.com/our-fleet'));
-const ogImage = computed(() => currentFleet.value?.featuredImage || currentFleet.value?.image || '/imgs/page/fleet/img-single.png');
+const seoTitle = computed(() => data.value?.seo?.title || (data.value ? `${data.value.title} - UnionLimo Fleet` : 'Fleet Details - UnionLimo'));
+const seoDescription = computed(() => data.value?.seo?.description || data.value?.longDescription || data.value?.description || 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.');
+const seoKeywords = computed(() => data.value?.seo?.keywords || (data.value ? `${data.value.title.toLowerCase()}, luxury fleet, chauffeur service, unionlimo` : 'luxury fleet, chauffeur service, unionlimo'));
+const seoCanonical = computed(() => data.value?.seo?.canonical_url || (data.value ? `https://unionlimo.com/our-fleet/${data.value.slug}` : 'https://unionlimo.com/our-fleet'));
+const ogImage = computed(() => data.value?.featuredImage || data.value?.image || '/imgs/page/fleet/img-single.png');
 
 // Set SEO meta tags reactively
 useHead(() => ({
@@ -123,10 +102,9 @@ useHead(() => ({
 }));
 
 // Update breadcrumb when fleet data changes
-watch(currentFleet, (newFleet) => {
+watch(data, (newFleet) => {
   if (newFleet) {
     // Update route meta for breadcrumb
-    const route = useRoute();
     if (route.meta.layoutProps) {
       route.meta.layoutProps.breadcrumbTitle = newFleet.title || 'Fleet Details';
       route.meta.layoutProps.breadcrumbItems = [
