@@ -6,7 +6,7 @@
         <h2 class="heading-44-medium mb-30 color-text title-fleet wow fadeInUp">{{ fleetData.title }}</h2>
         <div class="content-single wow fadeInLeft">
           <p v-html="fleetData.longDescription"></p>
-          <p >Experience the ultimate in luxury transportation with our premium fleet. Our vehicles are meticulously maintained and our professional chauffeurs ensure your comfort and safety throughout your journey.</p>
+          
           <!-- Features Section - Only show if features exist -->
           <div v-if="fleetData.features && fleetData.features.length > 0">
             <h6 class="heading-24-medium color-text mb-30">We offer</h6>

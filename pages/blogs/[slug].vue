@@ -51,6 +51,10 @@ const currentBlog = ref(null);
 onMounted(async () => {
     if (slug) {
         currentBlog.value = await fetchBlogBySlug(slug);
+        // Debug: Log SEO data
+        if (currentBlog.value) {
+          console.log('SEO DATA:', currentBlog.value.seo);
+        }
     }
 });
 
@@ -58,6 +62,10 @@ onMounted(async () => {
 watch(() => route.params.slug, async (newSlug) => {
     if (newSlug) {
         currentBlog.value = await fetchBlogBySlug(newSlug);
+        // Debug: Log SEO data
+        if (currentBlog.value) {
+          console.log('SEO DATA:', currentBlog.value.seo);
+        }
     }
 });
 

@@ -188,7 +188,7 @@ export const useServicesApi = () => {
       desc: service.short_description || generateServiceDescription(service.title),
       link: `/services/${service.slug}`,
       description: service.description || generateServiceDescription(service.title),
-      longDescription: service.description || 'Experience the ultimate in luxury transportation with our premium services.',
+      longDescription: service.description || '',
       features: generateServiceFeatures(service.title),
       benefits: generateServiceBenefits(service.title),
       pricing: generateServicePricing(service.title),

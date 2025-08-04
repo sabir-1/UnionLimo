@@ -94,14 +94,35 @@ definePageMeta({
     breadcrumbItems: [
       { text: 'Our Fleet', link: '/our-fleet' },
       { text: 'Fleet Details', link: null }
-    ],
-    seoTitle: 'Fleet Details - UnionLimo',
-    seoDescription: 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.',
-    seoKeywords: 'luxury fleet, chauffeur service, unionlimo'
+    ]
+    // Removed static SEO fields
   }
 })
 
-// Update breadcrumb and SEO when fleet data changes
+// Computed SEO fields for reactivity
+const seoTitle = computed(() => currentFleet.value?.seo?.title || (currentFleet.value ? `${currentFleet.value.title} - UnionLimo Fleet` : 'Fleet Details - UnionLimo'));
+const seoDescription = computed(() => currentFleet.value?.seo?.description || currentFleet.value?.description || 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.');
+const seoKeywords = computed(() => currentFleet.value?.seo?.keywords || (currentFleet.value ? `${currentFleet.value.title.toLowerCase()}, luxury fleet, chauffeur service, unionlimo` : 'luxury fleet, chauffeur service, unionlimo'));
+const seoCanonical = computed(() => currentFleet.value?.seo?.canonical_url || (currentFleet.value ? `https://unionlimo.com/our-fleet/${currentFleet.value.slug}` : 'https://unionlimo.com/our-fleet'));
+const ogImage = computed(() => currentFleet.value?.featuredImage || currentFleet.value?.image || '/imgs/page/fleet/img-single.png');
+
+// Set SEO meta tags reactively
+useHead(() => ({
+  title: seoTitle.value,
+  meta: [
+    { name: 'description', content: seoDescription.value },
+    { name: 'keywords', content: seoKeywords.value },
+    { property: 'og:title', content: seoTitle.value },
+    { property: 'og:description', content: seoDescription.value },
+    { property: 'og:image', content: ogImage.value },
+    { property: 'og:type', content: 'website' }
+  ],
+  link: [
+    { rel: 'canonical', href: seoCanonical.value }
+  ]
+}));
+
+// Update breadcrumb when fleet data changes
 watch(currentFleet, (newFleet) => {
   if (newFleet) {
     // Update route meta for breadcrumb
@@ -112,21 +133,7 @@ watch(currentFleet, (newFleet) => {
         { text: 'Our Fleet', link: '/our-fleet' },
         { text: newFleet.title || 'Fleet Details', link: null }
       ];
-      route.meta.layoutProps.seoTitle = `${newFleet.title} - UnionLimo Fleet`;
-      route.meta.layoutProps.seoDescription = newFleet.description || 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.';
-      route.meta.layoutProps.seoKeywords = `${newFleet.title.toLowerCase()}, luxury fleet, chauffeur service, unionlimo`;
     }
-
-    // Update SEO
-    useHead({
-      title: `${newFleet.title} - UnionLimo Fleet`,
-      meta: [
-        { name: 'description', content: newFleet.description || 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.' },
-        { name: 'keywords', content: `${newFleet.title.toLowerCase()}, luxury fleet, chauffeur service, unionlimo` },
-        { property: 'og:title', content: `${newFleet.title} - UnionLimo Fleet` },
-        { property: 'og:description', content: newFleet.description || 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.' }
-      ]
-    });
   }
 }, { immediate: true });
 </script>
