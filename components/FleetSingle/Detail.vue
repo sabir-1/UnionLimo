@@ -4,7 +4,7 @@
     <div class="container-sub">
       <div class="mt-120 mb-0">
         <h2 class="heading-44-medium mb-30 color-text title-fleet wow fadeInUp">{{ fleetData.title }}</h2>
-        <div class="content-single wow fadeInLeft">
+        <div class="content-single content-single-all-image wow fadeInLeft">
           <div ref="descriptionContainer"></div>
           
           <!-- Features Section - Only show if features exist -->
@@ -25,9 +25,9 @@
         </div>
       </div>
     </div>
-    <!-- <div class="box-slide-fleet mt-120 wow fadeInUp" v-if="fleetData.sliderImages && fleetData.sliderImages.length > 0">
+     <div class="box-slide-fleet mt-120 wow fadeInUp" v-if="fleetData.sliderImages && fleetData.sliderImages.length > 0">
       <div class="box-swiper">
-        <p>dfaf</p>
+        
         <div class="swiper-container swiper-group-2-single-fleet pb-0">
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(image, index) in fleetData.sliderImages" :key="index">
@@ -48,7 +48,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>  
   </section>
 </template>
 
