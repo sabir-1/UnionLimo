@@ -10,6 +10,9 @@
             <NuxtLink to="/">Home</NuxtLink>
           </li>
           <li v-for="(item, index) in items" :key="index">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="breadcrumb-arrow">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg>
             <NuxtLink v-if="item.link" :to="item.link">{{ item.text }}</NuxtLink>
             <span v-else class="active">{{ item.text }}</span>
           </li>
@@ -47,12 +50,20 @@ const props = defineProps({
 .box-breadcrumb ul li {
   margin-right: 10px;
   color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
 }
 
 .box-breadcrumb ul li:not(:last-child)::after {
-  content: '/';
-  margin-left: 10px;
-  color: rgba(255, 255, 255, 0.6);
+  content: '';
+  margin-left: 0;
+}
+
+.breadcrumb-arrow {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  color: #fff;
 }
 
 .box-breadcrumb ul li a {

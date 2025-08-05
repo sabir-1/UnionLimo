@@ -9077,16 +9077,16 @@ input:checked + .slider:before {
 .box-breadcrumb ul li {
   display: inline-block;
   position: relative;
-  padding: 0px 22px 0px 0px;
+  padding: 0px 4px 0px 0px;
 }
-.box-breadcrumb ul li::before {
+/* .box-breadcrumb ul li::before {
   content: "-";
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 4px;
   color: #fff;
-}
+} */
 .box-breadcrumb ul li:last-child::before {
   display: none;
 }
