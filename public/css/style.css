@@ -348,7 +348,9 @@ h6 {
   font-size: 44px;
   line-height: 58px;
 }
-
+.cardFleet .cardImage    {
+  height: 160px;
+}
 .heading-44-medium {
   font-weight: 500;
   font-size: 44px;

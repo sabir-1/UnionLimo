@@ -20,7 +20,7 @@
 
       <!-- Related Posts -->
       <div v-else-if="relatedPosts.length > 0" class="row">
-        <div class="col-lg-4" v-for="(post, idx) in relatedPosts" :key="post.id || idx">
+        <div class="col-lg-4" v-for="(post, idx) in relatedPosts.slice(0, 3)" :key="post.id || idx">
           <CardNews
             :img="post.img"
             :title="post.title"
