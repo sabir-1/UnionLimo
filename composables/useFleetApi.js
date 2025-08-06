@@ -72,6 +72,7 @@ export const useFleetApi = () => {
             description: fleet.short_description || 'Luxury transportation with premium comfort and style.',
             passengers: fleet.passenger || getPassengerCount(fleet.title),
             luggage: fleet.luggage || getLuggageCount(fleet.title),
+            category: fleet.categories || getFleetCategory(fleet.title),
             short_description: fleet.short_description,
             pricing: fleet.fleet_rates || [],
             seo: fleet.seo,
@@ -199,6 +200,26 @@ export const useFleetApi = () => {
     }
   };
   
+  // Helper function to determine fleet category based on fleet title
+  const getFleetCategory = (title) => {
+    if (!title) {
+      return 'Luxury Sedan';
+    }
+    
+    const lowerTitle = title.toLowerCase();
+    if (lowerTitle.includes('limousine') || lowerTitle.includes('stretch')) {
+      return 'Stretch Limousine';
+    } else if (lowerTitle.includes('suv') || lowerTitle.includes('van')) {
+      return 'Luxury SUV';
+    } else if (lowerTitle.includes('electric') || lowerTitle.includes('eqs')) {
+      return 'Electric Vehicle';
+    } else if (lowerTitle.includes('town car') || lowerTitle.includes('sedan')) {
+      return 'Luxury Sedan';
+    } else {
+      return 'Luxury Sedan';
+    }
+  };
+  
   // Transform fleet data for detail view
   const transformFleetForDetail = (fleet) => {
     if (!fleet) {
@@ -318,7 +339,8 @@ export const useFleetApi = () => {
       title: 'Business Class',
       description: 'Mercedes-Benz E-Class, BMW 5 Series, Cadillac XTS or similar',
       passengers: '4',
-      luggage: '2'
+      luggage: '2',
+      category: 'Luxury Sedan'
     },
     {
       id: 2,
@@ -326,7 +348,8 @@ export const useFleetApi = () => {
       title: 'First Class',
       description: 'Mercedes-Benz EQS, BMW 7 Series, Audi A8 or similar',
       passengers: '4',
-      luggage: '2'
+      luggage: '2',
+      category: 'Electric Vehicle'
     },
     {
       id: 3,
@@ -334,7 +357,8 @@ export const useFleetApi = () => {
       title: 'Business Van/SUV',
       description: 'Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac',
       passengers: '6',
-      luggage: '4'
+      luggage: '4',
+      category: 'Luxury SUV'
     }
   ];
   

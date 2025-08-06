@@ -72,8 +72,13 @@
                   <NuxtLink :to="`/our-fleet/${fleet.slug}`">
                     <img :src="fleet.image" :alt="fleet.title">
                   </NuxtLink>
+                  
+                   
                 </div>
                 <div class="cardInfo">
+                  <div class="tags mb-10">
+                    <NuxtLink to="#">{{ fleet.category }}</NuxtLink>
+                  </div>
                   <NuxtLink :to="`/our-fleet/${fleet.slug}`">
                     <h3 class="text-20-medium color-text mb-10">{{ fleet.title }}</h3>
                   </NuxtLink>
@@ -148,3 +153,31 @@ definePageMeta({
   }
 })
 </script> 
+
+<style scoped>
+.category-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.category-badge .badge {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cardImage {
+  position: relative;
+}
+
+.cardImage img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+</style> 
