@@ -1,6 +1,7 @@
 <template>
   <section class="section pt-60 bg-white latest-new-white">
     <div class="container-sub">
+      <h2 class="heading-44-medium mb-30 wow fadeInUp">{{ blogData.title }}</h2>
       <div class="box-frature-image mb-60 wow fadeInDown">
         <div class="cardImage">
           <div class="datePost">
@@ -11,7 +12,7 @@
         </div>
       </div>
       
-      <h2 class="heading-44-medium mb-30 wow fadeInUp">{{ blogData.title }}</h2>
+      
       
       <div class="content-single wow fadeInLeft"> 
         <!-- Main blog content -->
