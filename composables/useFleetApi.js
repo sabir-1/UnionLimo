@@ -73,7 +73,7 @@ export const useFleetApi = () => {
             passengers: fleet.passenger || getPassengerCount(fleet.title),
             luggage: fleet.luggage || getLuggageCount(fleet.title),
             short_description: fleet.short_description,
-            pricing: generatePricing(fleet),
+            pricing: fleet.fleet_rates || [],
             seo: fleet.seo,
             created_at: fleet.created_at,
             updated_at: fleet.updated_at,
@@ -212,7 +212,7 @@ export const useFleetApi = () => {
         luggage: '2',
         features: generateFeatures(null),
         specifications: generateSpecifications(null),
-        pricing: generatePricing(null),
+        pricing: [],
         seo: null,
         created_at: null,
         updated_at: null,
@@ -230,7 +230,7 @@ export const useFleetApi = () => {
       luggage: fleet.luggage || getLuggageCount(fleet.title),
       features: fleet.features && fleet.features.length > 0 ? fleet.features : generateFeatures(fleet.title),
       specifications: generateSpecifications(fleet),
-      pricing: generatePricingFromApi(fleet) || generatePricing(fleet),
+      pricing: fleet.fleet_rates || [],
       seo: fleet.seo,
       created_at: fleet.created_at,
       updated_at: fleet.updated_at,
@@ -243,18 +243,6 @@ export const useFleetApi = () => {
     };
   };
 
-  // Generate pricing from API data
-  const generatePricingFromApi = (fleet) => {
-    if (fleet.hourly_rate) {
-      return {
-        hourly: `$${fleet.hourly_rate}/hour`,
-        airport: fleet.second_rate ? `$${fleet.second_rate}` : `$${Math.round(fleet.hourly_rate * 0.7)}`,
-        city: fleet.third_rate ? `$${fleet.third_rate}` : `$${Math.round(fleet.hourly_rate * 0.5)}`
-      };
-    }
-    return null;
-  };
-  
   // Generate features based on fleet title
   const generateFeatures = (title) => {
     if (!title) {
@@ -320,63 +308,6 @@ export const useFleetApi = () => {
     }
     
     return specs;
-  };
-  
-  // Generate pricing based on fleet title
-  const generatePricing = (fleet) => {
-    if (!fleet) {
-      return {
-        hourly: '$140/hour',
-        airport: '$100',
-        city: '$70'
-      };
-    }
-    
-    // Check if fleet has dynamic pricing data from API
-    if (fleet.hourly_rate && fleet.hourly_rate !== null && fleet.hourly_rate !== undefined) {
-      return {
-        hourly: `$${fleet.hourly_rate}/hour`,
-        airport: fleet.second_rate ? `$${fleet.second_rate}` : '$100',
-        city: fleet.third_rate ? `$${fleet.third_rate}` : '$70'
-      };
-    }
-    
-    // Fallback to static pricing based on title
-    if (!fleet.title) {
-      return {
-        hourly: '$140/hour',
-        airport: '$100',
-        city: '$70'
-      };
-    }
-    
-    const lowerTitle = fleet.title.toLowerCase();
-    
-    if (lowerTitle.includes('limousine') || lowerTitle.includes('stretch')) {
-      return {
-        hourly: '$200/hour',
-        airport: '$150',
-        city: '$100'
-      };
-    } else if (lowerTitle.includes('suv')) {
-      return {
-        hourly: '$180/hour',
-        airport: '$130',
-        city: '$90'
-      };
-    } else if (lowerTitle.includes('electric') || lowerTitle.includes('eqs')) {
-      return {
-        hourly: '$160/hour',
-        airport: '$120',
-        city: '$80'
-      };
-    } else {
-      return {
-        hourly: '$140/hour',
-        airport: '$100',
-        city: '$70'
-      };
-    }
   };
   
   // Fallback data if API fails

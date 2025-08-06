@@ -17,9 +17,9 @@
         <div class="col-xl-4 col-lg-5 mb-30">
           <div class="box-vehicle-price wow fadeInUp">
             <ul class="list-prices">
-              <li v-for="(price, service) in fleetData.pricing" :key="service">
-                <span class="text">{{ formatServiceName(service) }}</span>
-                <span class="price">{{ price }}</span>
+              <li v-for="(rate, idx) in fleetData.pricing" :key="idx">
+                <span class="text">{{ rate.label }}</span>
+                <span class="price">${{ rate.value }}</span>
               </li>
             </ul>
             <div class="mt-30 wow fadeInUp">
