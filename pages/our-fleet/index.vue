@@ -76,7 +76,7 @@
                    
                 </div>
                 <div class="cardInfo">
-                  <div class="tags mb-10">
+                  <div class="tags mb-10" v-if="fleet.category">
                     <NuxtLink to="#">{{ fleet.category }}</NuxtLink>
                   </div>
                   <NuxtLink :to="`/our-fleet/${fleet.slug}`">

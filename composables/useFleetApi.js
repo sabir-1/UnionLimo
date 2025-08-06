@@ -72,7 +72,7 @@ export const useFleetApi = () => {
             description: fleet.short_description || 'Luxury transportation with premium comfort and style.',
             passengers: fleet.passenger || getPassengerCount(fleet.title),
             luggage: fleet.luggage || getLuggageCount(fleet.title),
-            category: fleet.categories || getFleetCategory(fleet.title),
+            category: fleet.categories,
             short_description: fleet.short_description,
             pricing: fleet.fleet_rates || [],
             seo: fleet.seo,
