@@ -17,7 +17,7 @@ export const useBlogApi = () => {
     
     return blogs.value.filter(blog => 
       blog.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      blog.category.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+      blog.categories.some(cat => cat.cate_name.toLowerCase().includes(searchQuery.value.toLowerCase())) ||
       (blog.shortDescription && blog.shortDescription.toLowerCase().includes(searchQuery.value.toLowerCase()))
     );
   });
@@ -49,13 +49,21 @@ export const useBlogApi = () => {
             title: blog.title,
             slug: blog.slug,
             img: blog.feature_image || '/imgs/page/homepage1/news1.png',
-            category: blog.categories || 'General',
+            categories: Array.isArray(blog.categories)
+              ? blog.categories.map(cat => ({
+                  cate_name: cat.cate_name || cat.name || cat,
+                  cate_slug: cat.cate_slug || cat.slug || (cat.name ? cat.name.toLowerCase().replace(/\s+/g, '-') : String(cat).toLowerCase().replace(/\s+/g, '-'))
+                }))
+              : [{
+                  cate_name: blog.categories || 'General',
+                  cate_slug: (blog.categories || 'General').toLowerCase().replace(/\s+/g, '-')
+                }],
             day: new Date(blog.created_at).getDate() + '.',
             month: new Date(blog.created_at).toLocaleDateString('en-US', { 
               month: 'short', 
               year: 'numeric' 
             }),
-            link: `/blogs/${blog.slug}`,
+            link: `${blog.slug}`,
             shortDescription: blog.short_description,
             seo: blog.seo,
             created_at: blog.created_at,
@@ -157,7 +165,13 @@ export const useBlogApi = () => {
     
     // Extract categories/tags
     const extractTags = () => {
-      if (blog.categories && blog.categories.trim()) {
+      // Handle categories as array of objects (from API)
+      if (blog.categories && Array.isArray(blog.categories)) {
+        return blog.categories.map(cat => cat.cate_name || cat.name || cat).filter(cat => cat);
+      }
+      
+      // Handle categories as string
+      if (blog.categories && typeof blog.categories === 'string' && blog.categories.trim()) {
         return blog.categories.split(',').map(cat => cat.trim()).filter(cat => cat);
       }
       
@@ -216,7 +230,9 @@ export const useBlogApi = () => {
       id: 1,
       img: "/imgs/page/homepage1/news1.png",
       title: "3 hidden-gem destinations for your wish list",
-      category: "Travel",
+      categories: [
+        { cate_name: "Travel", cate_slug: "travel" }
+      ],
       day: "14.",
       month: "Jun, 2022",
       link: "/blogs/hidden-gem-destinations"
@@ -225,7 +241,9 @@ export const useBlogApi = () => {
       id: 2,
       img: "/imgs/page/homepage1/news2.png",
       title: "Explore the big things happening in Dallas",
-      category: "Culture",
+      categories: [
+        { cate_name: "Culture", cate_slug: "culture" }
+      ],
       day: "18.",
       month: "Jun, 2022",
       link: "/blogs/dallas-exploration"
@@ -234,7 +252,9 @@ export const useBlogApi = () => {
       id: 3,
       img: "/imgs/page/homepage1/news3.png",
       title: "LA's worst traffic areas and how to avoid them",
-      category: "News",
+      categories: [
+        { cate_name: "News", cate_slug: "news" }
+      ],
       day: "20.",
       month: "Jun, 2022",
       link: "/blogs/la-traffic-guide"

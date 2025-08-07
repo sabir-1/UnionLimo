@@ -32,7 +32,7 @@
                         <CardNews 
                             :img="blog.img"
                             :title="blog.title" 
-                            :tag="blog.category" 
+                            :categories="blog.categories" 
                             :date="blog.day" 
                             :monthYear="blog.month"
                             :link="blog.link" />
