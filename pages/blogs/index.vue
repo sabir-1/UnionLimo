@@ -2,7 +2,18 @@
     <div>
         <section class="section pt-60 bg-white latest-new-white">
             <div class="container-sub">
-             
+                <!-- Categories Section -->
+                <div v-if="categories.length > 0" class="mb-50">
+                    <h3 class="mb-30">Categories</h3>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-3" v-for="category in categories" :key="category.id">
+                            <NuxtLink :to="`/blogs/${category.slug}`" class="btn btn-outline-primary w-100">
+                                {{ category.name }}
+                                <span class="badge bg-secondary ms-2">{{ category.posts?.length || 0 }}</span>
+                            </NuxtLink>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Loading State -->
                 <div v-if="loading" class="text-center py-60">
@@ -60,6 +71,7 @@
 <script setup>
 import CardNews from '@/components/CardNews.vue';
 import Pagination from '@/elements/Pagination.vue';
+
 // Use the blog API composable
 const { 
     blogs, 
@@ -76,12 +88,31 @@ const {
     clearSearch
 } = useBlogApi();
 
-// Fetch blogs on page load
-onMounted(() => {
-    fetchBlogs();
+// Use the category API composable
+const { fetchAllCategories } = useCategoryApi();
+
+// Categories data
+const categories = ref([]);
+
+// Fetch blogs and categories on page load
+onMounted(async () => {
+    await Promise.all([
+        fetchBlogs(),
+        fetchCategories()
+    ]);
 });
 
-
+// Fetch categories
+const fetchCategories = async () => {
+    try {
+        const response = await fetchAllCategories();
+        if (response) {
+            categories.value = response;
+        }
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+    }
+};
 
 // Define layout props for SEO and breadcrumb
 definePageMeta({

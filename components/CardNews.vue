@@ -11,7 +11,6 @@
     </NuxtLink>
     <div class="cardInfo">
       <div class="tags mb-10 flex flex-wrap gap-2">
-        {{ link }}
         <NuxtLink 
           v-for="(category, index) in categories" 
           :key="index" 
