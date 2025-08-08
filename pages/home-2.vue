@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home-2">
       <!-- Banner Section -->
       <BannerHome />
       <ServiceSingleFeature :service-data="serviceData" />  

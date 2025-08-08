@@ -3465,6 +3465,9 @@ body {
 .mar-top-min {
   margin-top: -86px;
 }
+.home-2 .breadcrum-ty {
+  display: none;
+}
 #update-our-services .cardIconTitleDescLeft .cardIconTitleDesc {
   text-align: left;
   padding: 20px 12px 10px 16px !important;
