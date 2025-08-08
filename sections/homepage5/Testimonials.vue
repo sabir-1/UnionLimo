@@ -1,5 +1,5 @@
 <template>
-  <section class="section pt-180 pb-130 box-testimonials box-testimonials-home5 mt-120">
+  <section class="section pt-180 box-testimonials box-testimonials-home5 mt-120">
     <div class="container-sub">
       <div class=" ">
         <div class="w-full  lg:px-4 ">
