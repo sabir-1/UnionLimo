@@ -707,10 +707,10 @@ function initSwiperFleet() {
         },
         breakpoints: {
             1399: {
-                slidesPerView: 3
+                slidesPerView: 4
             },
             1100: {
-                slidesPerView: 3
+                slidesPerView: 4
             },
             670: {
                 slidesPerView: 2

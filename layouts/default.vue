@@ -52,7 +52,7 @@ onMounted(() => {
 
 // Check if current page is home page
 const isHomePage = computed(() => {
-  const result = route.path === '/' || route.path === '/home' || route.path === '/about';
+  const result = route.path === '/' || route.path === '/home' || route.path === '/about' || route.path === '/home-2';
   console.log('Is home page:', result, 'Path:', route.path);
   return result;
 })
