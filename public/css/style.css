@@ -3454,7 +3454,25 @@ body {
   height: 16px;
   color: #4E6770;
 }
-
+#update-our-services .cardIconTitleDesc{
+  border: 1px solid #f0f2f7;
+}
+#update-our-services .cardIcon {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.mar-top-min {
+  margin-top: -86px;
+}
+#update-our-services .cardIconTitleDescLeft .cardIconTitleDesc {
+  text-align: left;
+  padding: 20px 12px 10px 16px !important;
+}
+#update-our-services  .cardIcon img {
+  width: 64px;
+  height: 64px;
+}
 .header-top-main {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1725490196);
 }

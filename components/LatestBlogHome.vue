@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="section pt-60 bg-white latest-new-white">
+        <section class="section pt-60 pb-0 bg-white latest-new-white">
             <div class="container-sub">
                 <div class="row align-items-center">
             <div class="col-lg-6 col-7">

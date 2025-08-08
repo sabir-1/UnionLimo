@@ -1,5 +1,5 @@
 <template>
-  <section class="section banner-home1 banner-home9">
+  <section class="section banner-home1 banner-home9 mt-20">
     <div class="box-swiper">
       <div class="swiper-container swiper-banner-2 pb-0">
         <div class="swiper-wrapper">
