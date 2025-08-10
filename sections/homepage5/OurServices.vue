@@ -19,8 +19,51 @@
       </div>
     </div>
 
+    <!-- Loading State -->
+    <div v-if="loading" class="text-center mt-50">
+      <div class="box-slide-fleet">
+        <div class="box-swiper">
+          <div class="swiper-container swiper-group-4-service pb-0">
+            <div class="swiper-wrapper">
+              <!-- Skeleton cards while loading -->
+              <div v-for="n in 6" :key="n" class="swiper-slide">
+                <div class="card-service-skeleton">
+                  <div class="skeleton-image"></div>
+                  <div class="skeleton-content">
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-description"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="box-pagination-fleet">
+              <div class="swiper-button-prev swiper-button-prev-fleet">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                </svg>
+              </div>
+              <div class="swiper-button-next swiper-button-next-fleet">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <div v-else-if="error" class="text-center mt-50">
+      <div class="alert alert-warning" role="alert">
+        <p>{{ error }}</p>
+        <button @click="retryFetch" class="btn btn-primary mt-2">Retry</button>
+      </div>
+    </div>
+
     <!-- Services Display -->
-    <div class="box-slide-fleet mt-50">
+    <div v-else class="box-slide-fleet mt-50">
       <div class="box-swiper">
         <div class="swiper-container swiper-group-4-service pb-0">
           <div class="swiper-wrapper">
@@ -59,112 +102,32 @@
 <script setup>
 import { CardServiceStyle5 } from '~/components';
 
+// Use the services API composable
+const { fetchServices, services, loading, error } = useServicesApi();
+
 // Use the slider composable
 const { initializeSliderWithTiming, handleVisibilityChange, handleResize, checkLibraries, checkSliderElement } = useSlider();
 
-// COMMENTED OUT: API functionality for future use
-// const { fetchServices, services, loading, error } = useServicesApi();
-
-// Dummy data - using static data instead of API
+// Computed property to get services to display (limit to 12 for the slider)
 const displayServices = computed(() => {
-  // COMMENTED OUT: API data logic for future use
-  // if (services.value.length > 0) {
-  //   return services.value.slice(0, 12);
-  // }
-  
-  // Using dummy data by default
-  return getDummyServices();
+  // Only show API data, no fallback
+  return services.value.slice(0, 12);
 });
 
-// Dummy services data
-const getDummyServices = () => [
-  {
-    id: 1,
-    src: '/imgs/page/homepage1/service1.png',
-    title: 'Intercity Rides',
-    desc: 'Professional chauffeur services with luxury vehicles and experienced drivers.',
-    link: '/services/intercity-rides'
-  },
-  {
-    id: 2,
-    src: '/imgs/page/homepage1/service2.png',
-    title: 'Chauffeur Hailing',
-    desc: 'On-demand chauffeur services with luxury vehicles and professional drivers.',
-    link: '/services/chauffeur-hailing'
-  },
-  {
-    id: 3,
-    src: '/imgs/page/homepage1/service3.png',
-    title: 'Airport Transfers',
-    desc: 'Reliable airport transportation with flight monitoring and meet & greet services.',
-    link: '/services/airport-transfers'
-  },
-  {
-    id: 4,
-    src: '/imgs/page/homepage1/service5.png',
-    title: 'Sprinter Class',
-    desc: 'Luxury van transportation for groups with spacious and comfortable interiors.',
-    link: '/services/sprinter-class'
-  },
-  {
-    id: 5,
-    src: '/imgs/page/homepage1/service1.png',
-    title: 'Corporate Travel',
-    desc: 'Professional business travel solutions with premium vehicles and punctual service.',
-    link: '/services/corporate-travel'
-  },
-  {
-    id: 6,
-    src: '/imgs/page/homepage1/service2.png',
-    title: 'Wedding Transportation',
-    desc: 'Elegant wedding transportation services with luxury vehicles and professional drivers.',
-    link: '/services/wedding-transportation'
-  }
-];
+// Remove fallback data function - no longer needed
+// const getFallbackServices = () => [ ... ];
 
-// COMMENTED OUT: Retry function for API failures
-// const retryFetch = async () => {
-//   console.log('Retrying services fetch...');
-//   await fetchServices();
-// };
+// Retry function for API failures
+const retryFetch = async () => {
+  console.log('Retrying services fetch...');
+  await fetchServices();
+};
 
-// COMMENTED OUT: Manual slider initialization for debugging
-// const manualInitSlider = () => {
-//   console.log('Manual slider initialization triggered');
-//   initializeSliderWithTiming('.swiper-group-4-service');
-// };
-
-// COMMENTED OUT: Check slider status for debugging
-// const checkSliderStatus = () => {
-//   console.log('=== Services Slider Status Check ===');
-//   console.log('Libraries loaded:', checkLibraries());
-//   console.log('Slider element exists:', checkSliderElement('.swiper-group-4-service'));
-//   console.log('Services count:', services.value.length);
-//   console.log('Display services count:', displayServices.value.length);
-//   console.log('Loading state:', loading.value);
-//   console.log('Error state:', error.value);
-//   
-//   if (typeof window !== 'undefined' && window.swiper_4_service) {
-//     console.log('Swiper instance exists:', window.swiper_4_service);
-//   } else {
-//     console.log('No Swiper instance found');
-//   }
-// };
-
-// COMMENTED OUT: Fetch services data on component mount
-// onMounted(async () => {
-//   console.log('OurServices component mounted, fetching services...');
-//   await fetchServices();
-//   console.log('Services fetched:', services.value.length);
-// });
-
-// Initialize slider with dummy data on component mount
-onMounted(() => {
-  console.log('OurServices component mounted with dummy data');
-  // Small delay to ensure DOM is ready
-  setTimeout(() => {
-    initializeSliderWithTiming('.swiper-group-4-service');
-  }, 100);
+// Fetch services data on component mount
+onMounted(async () => {
+  console.log('OurServices component mounted, fetching services...');
+  await fetchServices();
+  console.log('Services fetched:', services.value.length);
 });
 
 // Watch for services data changes and reinitialize slider
@@ -176,14 +139,14 @@ watch(displayServices, (newServices) => {
   }
 }, { immediate: true });
 
-// COMMENTED OUT: Watch for loading state to reinitialize when loading completes
-// watch(loading, (isLoading) => {
-//   console.log('Loading state changed:', isLoading);
-//   if (!isLoading && services.value.length > 0) {
-//     console.log('Loading completed, reinitializing slider');
-//     initializeSliderWithTiming('.swiper-group-4-service');
-//   }
-// });
+// Watch for loading state to reinitialize when loading completes
+watch(loading, (isLoading) => {
+  console.log('Loading state changed:', isLoading);
+  if (!isLoading && services.value.length > 0) {
+    console.log('Loading completed, reinitializing slider');
+    initializeSliderWithTiming('.swiper-group-4-service');
+  }
+});
 
 // Handle visibility change and resize events
 onMounted(() => {
@@ -196,7 +159,7 @@ onMounted(() => {
 const route = useRoute();
 watch(() => route.path, (newPath) => {
   console.log('Route changed to:', newPath);
-  if (newPath === '/' && displayServices.value.length > 0) {
+  if (newPath === '/' && services.value.length > 0) {
     console.log('Route is home page, reinitializing slider');
     // Small delay to ensure DOM is ready
     setTimeout(() => {
@@ -213,20 +176,20 @@ onMounted(() => {
   }, 500);
 });
 
-// COMMENTED OUT: Force reinitialize on nextTick after data loads
-// watch(services, (newServices) => {
-//   if (newServices.length > 0) {
-//     nextTick(() => {
-//       console.log('Forcing slider reinitialization after data load');
-//       initializeSliderWithTiming('.swiper-group-4-service');
-//     });
-//   }
-// });
+// Force reinitialize on nextTick after data loads
+watch(services, (newServices) => {
+  if (newServices.length > 0) {
+    nextTick(() => {
+      console.log('Forcing slider reinitialization after data load');
+      initializeSliderWithTiming('.swiper-group-4-service');
+    });
+  }
+});
 
 // Fallback: If no services after 3 seconds, try to initialize anyway
 onMounted(() => {
   setTimeout(() => {
-    if (displayServices.value.length === 0) {
+    if (services.value.length === 0 && !loading.value) {
       console.log('No services loaded, trying fallback initialization');
       initializeSliderWithTiming('.swiper-group-4-service');
     }
@@ -236,4 +199,63 @@ onMounted(() => {
 
 <style scoped>
 /* OurServices specific styles */
+
+/* Skeleton loader styles */
+.card-service-skeleton {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-title {
+  height: 20px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite;
+  width: 80%;
+}
+
+.skeleton-description {
+  height: 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite;
+  width: 100%;
+}
+
+.skeleton-description:nth-child(3) {
+  width: 60%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
 </style>
