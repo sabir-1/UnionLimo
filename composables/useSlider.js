@@ -85,7 +85,7 @@ export const useSlider = () => {
       if (selector.includes('swiper-group-4-fleet')) {
         const swiper = new window.Swiper(selector, {
           spaceBetween: 30,
-          slidesPerView: 4,
+          slidesPerView: 3,
           slidesPerGroup: 1,
           initialSlide: 1,
           navigation: {
@@ -100,8 +100,8 @@ export const useSlider = () => {
             delay: 10000
           },
           breakpoints: {
-            1399: { slidesPerView: 4 },
-            1100: { slidesPerView: 4 },
+            1399: { slidesPerView: 3 },
+            1100: { slidesPerView: 3 },
             670: { slidesPerView: 2 },
             575: { slidesPerView: 1 },
             400: { slidesPerView: 1 },

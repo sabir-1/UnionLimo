@@ -16,7 +16,7 @@
               </h2>
               <div class="mt-30">
                 <a href="#" class="btn btn-border">
-                  View Our Fleet
+                  Book Online or Get a Custom Quote!
                   <svg 
                     class="icon-16" 
                     fill="none" 
@@ -49,7 +49,7 @@
               </h2>
               <div class="mt-30">
                 <a href="#" class="btn btn-border">
-                  View Our Fleet
+                  Book Online or Get a Custom Quote!
                   <svg 
                     class="icon-16" 
                     fill="none" 
@@ -82,7 +82,7 @@
               </h2>
               <div class="mt-30">
                 <a href="#" class="btn btn-border">
-                  View Our Fleet
+                  Book Online or Get a Custom Quote!
                   <svg 
                     class="icon-16" 
                     fill="none" 

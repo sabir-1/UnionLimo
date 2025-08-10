@@ -256,7 +256,7 @@
             }
             swiper_4_fleet = new Swiper(".swiper-group-4-fleet", {
                 spaceBetween: 30,
-                slidesPerView: 4,
+                slidesPerView: 3,
                 slidesPerGroup: 1,
                 initialSlide: 1,
                 navigation: {
@@ -283,8 +283,8 @@
                     }
                 },
                 breakpoints: {
-                    1399: { slidesPerView: 4 },
-                    1100: { slidesPerView: 4 },
+                    1399: { slidesPerView: 3 },
+                    1100: { slidesPerView: 3 },
                     670: { slidesPerView: 2 },
                     575: { slidesPerView: 1 },
                     400: { slidesPerView: 1 },

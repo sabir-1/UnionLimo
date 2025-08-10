@@ -3,9 +3,9 @@
         <div class="container-sub"> 
           <div class="row align-items-center">
             <div class="col-lg-6 col-7">
-              <h2 class="heading-44-medium title-fleet wow fadeInUp">Our Fleet</h2>
+              <h2 class="heading-44-medium title-fleet wow fadeInUp">Our Fleets</h2>
             </div>
-            <div class="col-lg-6 col-5 text-end"><a class="text-16-medium color-primary wow fadeInUp" href="#">More Fleet
+            <div class="col-lg-6 col-5 text-end"><a class="text-16-medium color-primary wow fadeInUp" href="#">See All
                 <svg style="width: 24px; height: 16px;" class="icon-16" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
                 </svg></a></div>
