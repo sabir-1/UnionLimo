@@ -307,7 +307,7 @@ const initSwiperService = () => {
   }
   swiper_4_service = new Swiper(".swiper-group-4-service", {
     spaceBetween: 30,
-    slidesPerView: 4,
+    slidesPerView: 3,
     slidesPerGroup: 1,
     loop: true,
     navigation: {
@@ -329,7 +329,7 @@ const initSwiperService = () => {
       }
     },
     breakpoints: {
-      1399: { slidesPerView: 4 },
+      1399: { slidesPerView: 3 },
       1100: { slidesPerView: 3 },
       600: { slidesPerView: 2 },
       500: { slidesPerView: 1 },

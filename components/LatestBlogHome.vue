@@ -6,7 +6,7 @@
             <div class="col-lg-6 col-7">
               <h2 class="heading-44-medium color-text wow fadeInUp">Latest From News</h2>
             </div>
-            <div class="col-lg-6 col-5 text-end"><a class="text-16-medium color-text hover-up d-inline-block wow fadeInUp" href="#">More News
+            <div class="col-lg-6 col-5 text-end"><a class="text-16-medium color-text hover-up d-inline-block wow fadeInUp" href="#">See All
                 <svg class="icon-16" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
                 </svg></a></div>
