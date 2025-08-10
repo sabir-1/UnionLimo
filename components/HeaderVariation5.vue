@@ -49,10 +49,10 @@
               </div>
             </div>
             <div class="box-button-login d-inline-block mr-10 align-middle">
-              <NuxtLink to="/login" class="btn btn-default hover-up">Log In</NuxtLink>
+              <NuxtLink to="/login-register" class="btn btn-default hover-up">Login/Register</NuxtLink>
             </div>
-            <div class="box-button-login d-none2 d-inline-block align-middle">
-              <NuxtLink to="/register" class="btn btn-white hover-up">Sign Up</NuxtLink>
+            <div class="box-button-quote d-inline-block align-middle">
+              <NuxtLink to="/book-a-quote" class="btn btn-white hover-up">Book a Quote</NuxtLink>
             </div>
           </div>
         </div>

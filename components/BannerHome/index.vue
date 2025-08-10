@@ -15,7 +15,7 @@
                 Discerning Travellers
               </h2>
               <div class="mt-30">
-                <a href="#" class="btn btn-border">
+                <NuxtLink to="/book-a-quote" class="btn btn-border">
                   Book Online or Get a Custom Quote!
                   <svg 
                     class="icon-16" 
@@ -32,7 +32,7 @@
                       d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
                     />
                   </svg>
-                </a>
+                </NuxtLink>
               </div>
             </div>
           </div>
