@@ -3473,7 +3473,7 @@ body {
 }
 #update-our-services .cardIconTitleDescLeft .cardIconTitleDesc {
   text-align: left;
-  padding: 20px 12px 10px 16px !important;
+  padding: 20px 20px 10px 20px !important;
 }
 #update-our-services  .cardIcon img {
   width: 64px;
@@ -6223,11 +6223,11 @@ footer a {
   padding-right: 20px;
 }
 
-.bg-our-service {
+/* .bg-our-service {
   background-image: url(../imgs/page/homepage1/bg-our-service.png);
   background-repeat: no-repeat;
   background-position: right top -460px;
-}
+} */
 
 .bg-faqs {
   background-image: url(../imgs/page/homepage1/bg-faqs.png);
