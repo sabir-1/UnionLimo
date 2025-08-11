@@ -1,6 +1,6 @@
 <template>
   <div class="container-sub">
-    <h3>Book a Quote</h3>
+    <h3>Schedule Ride Now</h3>
     
     <!-- MyLimoBiz Online Reservation Widget -->
     <div class="reservation-widget">
@@ -18,9 +18,20 @@
 </template>
 
 <script setup>
+ 
+
+// Define layout props for SEO and breadcrumb
 definePageMeta({
-  title: 'Book a Quote',
-  description: 'Get a personalized quote for your transportation needs'
+  layout: 'default',
+  layoutProps: {
+    breadcrumbTitle: 'Schedule Ride Now',
+    breadcrumbItems: [
+      { text: 'Schedule Ride Now', link: null }
+    ],
+    seoTitle: 'Schedule Ride Now - UnionLimo',
+    seoDescription: 'Get a personalized quote for your transportation needs',
+    seoKeywords: 'contact unionlimo, chauffeur booking, limousine service contact, customer support'
+  }
 })
 
 // Load MyLimoBiz widget script
