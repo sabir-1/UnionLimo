@@ -21,33 +21,7 @@
                 {{ contact.phone_primary || '+1 (718) 514-9881' }}
               </a>
             </div>
-            <div class="d-none d-xxl-inline-block box-dropdown-cart align-middle mr-10">
-              <span class="text-14-medium icon-list icon-account">
-                <span class="text-14-medium color-white arrow-down">EN</span>
-              </span>
-              <div class="dropdown-account">
-                <ul>
-                  <li>
-                    <a href="#" class="font-md">
-                      <img src="/imgs/template/icons/en.png" alt="luxride" />
-                      English
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="font-md">
-                      <img src="/imgs/template/icons/fr.png" alt="luxride" />
-                      French
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="font-md">
-                      <img src="/imgs/template/icons/cn.png" alt="luxride" />
-                      Chiness
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            
             <div class="box-button-login d-inline-block mr-10 align-middle custom-style-bt">
               <NuxtLink to="/login-register" class="btn btn-default hover-up">Client Login / Register</NuxtLink>
             </div>
