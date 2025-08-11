@@ -3,7 +3,7 @@
         <div class="container-sub">
           <div class="box-faqs">
             <div class="text-center"> 
-              <h2 class="heading-44-medium color-text mb-20 wow fadeInUp">Faqs</h2>
+              <h2 class="heading-44-medium color-text mb-20 wow fadeInUp">Frequently Asked Question</h2>
             </div>
             <div class="mt-60 mb-40">
               <div class="accordion wow fadeInUp" id="accordionFAQ">
@@ -54,7 +54,7 @@ const error = ref(null)
 const fetchFaqs = async () => {
   try {
     loading.value = true
-    const response = await fetch('https://edgeranking.com/api/faqs/all')
+    const response = await fetch('https://edgeranking.com/api/faqs/general')
     if (!response.ok) {
       throw new Error('Failed to fetch FAQs')
     }
