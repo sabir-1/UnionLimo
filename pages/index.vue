@@ -1,41 +1,25 @@
 <template>
-  <div>
+  <div class="home-2">
     <!-- Banner Section -->
-    <banner />
- 
-       <ServiceSingleFeature :service-data="serviceData" /> 
-    
+    <BannerHome />
+    <ServiceSingleFeature :service-data="serviceData" />  
     <!-- Our Fleet Section -->
-    <OurFleet />
-    <!-- Logos Section -->
-    <comfortable />
-    
-    <!-- How It Work Section -->
-    <HowItWork />
-     
-    <OurServices/>
-
+    <UpdateFleet />  
+    <!-- <comfortable />  
+    <HowItWork />  -->
+    <OurServices/> 
     <!-- Make Your Trip Section -->
-    <TopCities/>
-    
+    <UpdatedTopCities/> 
     <!-- Showcase Section -->
-    <Showcase />
-    
-   
-    
+    <Showcase />   
     <!-- Testimonials Section -->
-    <Testimonials />
-    
+    <Testimonials /> 
     <!-- Region Section -->
-    <Region />
-    
+    <Region /> 
     <!-- Latest News Section -->
-    <LatestNews />
-    
+    <LatestBlogHome /> 
     <!-- FAQs Section -->
-     <Faqs />
-  
-      
+    <Faqs /> 
     <!-- Download Section -->
     <Download />
   </div>
@@ -44,6 +28,7 @@
 <script setup>
 // Import all sections
 import banner from '~/sections/homepage5/banner.vue'  
+import BannerHome from '~/components/BannerHome/index.vue'
 import comfortable from '~/sections/homepage5/comfortable.vue'
 import HowItWork from '~/sections/homepage5/HowItWork.vue'
 import LatestNews from '~/sections/homepage5/LatestNews.vue'
@@ -53,8 +38,11 @@ import Faqs from '~/sections/homepage5/Faqs.vue'
 import Testimonials from '~/sections/homepage5/Testimonials.vue'
 import OurServices from '~/sections/homepage5/OurServices.vue'
 // import LatestServices from '~/components/LatestServices.vue'
-import ServiceSingleFeature from '~/sections/service-single/Feature.vue'
-// Define layout props for SEO and breadcrumb
+import UpdateFleet from '~/components/UpdateFleet.vue'
+import ServiceSingleFeature from '~/sections/service-single/updateFeature.vue'
+import UpdatedTopCities from '~/sections/UpdatedTopCities.vue'
+import LatestBlogHome from '~/components/LatestBlogHome.vue'
+// Define layout props for SEO and breadcrumb   
 definePageMeta({
   layout: 'default',
   layoutProps: {

@@ -10,9 +10,10 @@
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
-                Trusted Chauffeurs for
+                Your Ride is Waiting Premier Chauffeur,
+
                 <br class="d-none d-lg-block">
-                Discerning Travellers
+                 Black Car & Limousine Services
               </h2>
               <div class="mt-30">
                 <NuxtLink to="/book-a-quote" class="btn btn-border">

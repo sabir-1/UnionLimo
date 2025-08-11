@@ -9452,7 +9452,9 @@ textarea.form-control {
   background-color: #ffffff;
   color: #626262;
 }
-
+a.feed-powered-by-es.es-widget-branding.es-widget-branding-slider {
+  display: none ! IMPORTANT;
+}
 @media (max-width: 1550px) {
   .cardFleet {
     padding: 15px;
