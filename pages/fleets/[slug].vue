@@ -31,12 +31,15 @@
     </div>
   </div>
   
+   
   <!-- FAQs Section -->
-  <Faqs />
+  <fleetFaqs :faqs="data?.faqs || []" />
+  
+  
 </template>
 
 <script setup>
-import Faqs from '~/sections/homepage5/Faqs.vue'
+import fleetFaqs from '~/components/fleetFaqs.vue'
 import Detail from '~/components/FleetSingle/Detail.vue';
 import BookVehicle from '~/components/FleetSingle/BookVehicle.vue'; 
 
@@ -53,7 +56,9 @@ const { data, pending, error } = await useAsyncData(
   async () => {
     if (!slug) return null;
     try {
-      return await fetchFleetBySlug(slug);
+      const result = await fetchFleetBySlug(slug);
+      console.log('fetchFleetBySlug result:', result);
+      return result;
     } catch (err) {
       console.error('Error fetching fleet data:', err);
       throw new Error('Failed to load fleet details. Please try again later.');
@@ -65,6 +70,12 @@ const { data, pending, error } = await useAsyncData(
     default: () => null
   }
 );
+
+// Debug logging when data changes
+watch(data, (newData) => {
+  console.log('Data changed in fleet detail page:', newData);
+  console.log('FAQs in data:', newData?.faqs);
+}, { immediate: true });
 
 // Define static layout props
 definePageMeta({

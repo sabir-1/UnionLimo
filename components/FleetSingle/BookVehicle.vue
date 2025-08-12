@@ -19,7 +19,7 @@
             <ul class="list-prices">
               <li v-for="(rate, idx) in fleetData.pricing" :key="idx">
                 <span class="text">{{ rate.label }}</span>
-                <span class="price">${{ rate.value }}</span>
+                <!-- <span class="price">${{ rate.value }}</span> -->
               </li>
             </ul>
             <div class="mt-30 wow fadeInUp">

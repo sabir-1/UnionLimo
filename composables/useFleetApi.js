@@ -100,6 +100,9 @@ export const useFleetApi = () => {
   const fetchFleetBySlug = async (slug) => {
     try {
       const response = await $fetch(`https://edgeranking.com/api/fleets/slug/${slug}`);
+      console.log('Raw API response:', response);
+      console.log('Response data:', response?.data);
+      console.log('First item in data:', response?.data?.[0]);
       
       if (response && response.data && response.data.length > 0) {
         return transformFleetForDetail(response.data[0]);
@@ -222,6 +225,9 @@ export const useFleetApi = () => {
   
   // Transform fleet data for detail view
   const transformFleetForDetail = (fleet) => {
+    console.log('transformFleetForDetail called with:', fleet);
+    console.log('FAQs in fleet data:', fleet?.faqs);
+    
     if (!fleet) {
       return {
         title: 'Luxury Vehicle',
@@ -237,11 +243,12 @@ export const useFleetApi = () => {
         seo: null,
         created_at: null,
         updated_at: null,
-        sliderImages: []
+        sliderImages: [],
+        faqs: []
       };
     }
     
-    return {
+    const transformedFleet = {
       title: fleet.title,
       slug: fleet.slug,
       image: fleet.feature_image || '/imgs/page/homepage1/e-class.png',
@@ -255,6 +262,7 @@ export const useFleetApi = () => {
       seo: fleet.seo,
       created_at: fleet.created_at,
       updated_at: fleet.updated_at,
+      faqs: fleet.faqs || [],
       sliderImages: [
         fleet.slider_image_1,
         fleet.slider_image_2,
@@ -262,6 +270,9 @@ export const useFleetApi = () => {
         fleet.slider_image_4
       ].filter(img => img && img !== 'https://dummyimage.com/120x120/000/ffffff.png&text=NO+IMAGE')
     };
+    
+    console.log('Transformed fleet with FAQs:', transformedFleet);
+    return transformedFleet;
   };
 
   // Generate features based on fleet title
