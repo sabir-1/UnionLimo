@@ -66,6 +66,7 @@ export const useBlogApi = () => {
             link: `${blog.slug}`,
             shortDescription: blog.short_description,
             seo: blog.seo,
+            faqs: blog.faqs || [],
             created_at: blog.created_at,
             updated_at: blog.updated_at,
             sliderImages: [
@@ -95,6 +96,8 @@ export const useBlogApi = () => {
       const response = await $fetch(`https://edgeranking.com/api/posts/slug/${slug}`);
       
       if (response && response.data && response.data.length > 0) {
+        console.log('Raw API response for blog:', response.data[0]);
+        console.log('FAQs in raw response:', response.data[0].faqs);
         return transformBlogForDetail(response.data[0]);
       } else {
         error.value = 'Blog post not found';
@@ -130,6 +133,9 @@ export const useBlogApi = () => {
   
   // Transform blog data for detail view
   const transformBlogForDetail = (blog) => {
+    console.log('Transforming blog data:', blog);
+    console.log('FAQs before transformation:', blog.faqs);
+    
     const createdDate = new Date(blog.created_at);
     const day = createdDate.getDate();
     const monthYear = createdDate.toLocaleDateString('en-US', { 
@@ -188,7 +194,7 @@ export const useBlogApi = () => {
       return tags.length > 0 ? tags : ['General'];
     };
     
-    return {
+    const result = {
       id: blog.id,
       title: blog.title,
       slug: blog.slug,
@@ -206,6 +212,7 @@ export const useBlogApi = () => {
       subtitle: null, // Remove static subtitle
       subtitleContent: [], // Remove static content
       tags: extractTags(),
+      faqs: blog.faqs || [], // Add FAQs field
       author: {
         name: "UnionLimo Team",
         position: "Content Team",
@@ -222,6 +229,11 @@ export const useBlogApi = () => {
       updated_at: blog.updated_at,
       status: blog.status
     };
+    
+    console.log('Final transformed blog data:', result);
+    console.log('FAQs in final result:', result.faqs);
+    
+    return result;
   };
   
   // Fallback data if API fails

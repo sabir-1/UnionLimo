@@ -20,6 +20,10 @@
         <!-- Blog Detail -->
         <template v-else-if="currentBlog && currentBlog.title">
             <BlogDetail :blog-data="currentBlog" />
+            <BlogsFaqs :faqs="currentBlog.faqs" />
+            
+            
+            
             <RelatedPost :post-id="currentBlog.id" />
         </template>
 
@@ -60,7 +64,8 @@
 <script setup>
 import BlogDetail from '@/components/BlogDetail.vue';
 import RelatedPost from '~/components/RelatedPost.vue';
-import { computed } from 'vue';
+import { computed } from 'vue'; 
+import BlogsFaqs from '~/components/blogsFaqs.vue';
 
 // Get route params
 const route = useRoute();
@@ -124,6 +129,16 @@ onMounted(async () => {
         // Debug: Log SEO data
         if (currentBlog.value) {
             console.log('SEO DATA:', currentBlog.value.seo);
+            console.log('FAQS DATA:', currentBlog.value.faqs);
+            console.log('FAQS TYPE:', typeof currentBlog.value.faqs);
+            console.log('FAQS LENGTH:', currentBlog.value.faqs?.length);
+            console.log('FAQS STRUCTURE:', JSON.stringify(currentBlog.value.faqs, null, 2));
+            
+            // Check for different possible FAQ field names
+            if (currentBlog.value.faqs && currentBlog.value.faqs.length > 0) {
+                console.log('First FAQ item:', currentBlog.value.faqs[0]);
+                console.log('FAQ keys:', Object.keys(currentBlog.value.faqs[0]));
+            }
         }
     } catch (err) {
         console.error('Error in onMounted:', err);
@@ -162,6 +177,16 @@ watch(() => route.params.slug, async (newSlug) => {
             // Debug: Log SEO data
             if (currentBlog.value) {
                 console.log('SEO DATA:', currentBlog.value.seo);
+                console.log('FAQS DATA:', currentBlog.value.faqs);
+                console.log('FAQS TYPE:', typeof currentBlog.value.faqs);
+                console.log('FAQS LENGTH:', currentBlog.value.faqs?.length);
+                console.log('FAQS STRUCTURE:', JSON.stringify(currentBlog.value.faqs, null, 2));
+                
+                // Check for different possible FAQ field names
+                if (currentBlog.value.faqs && currentBlog.value.faqs.length > 0) {
+                    console.log('First FAQ item:', currentBlog.value.faqs[0]);
+                    console.log('FAQ keys:', Object.keys(currentBlog.value.faqs[0]));
+                }
             }
         }
     } catch (err) {
