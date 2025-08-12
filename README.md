@@ -90,7 +90,7 @@ UnionLimo/
 │   └── default.vue     # Main layout with header/footer
 ├── pages/              # Page components
 │   ├── home.vue        # Homepage
-│   ├── our-fleet.vue   # Fleet page
+│   ├── fleets.vue   # Fleet page
 │   ├── contact.vue     # Contact page
 │   ├── services/       # Service pages
 │   └── blogs/          # Blog pages

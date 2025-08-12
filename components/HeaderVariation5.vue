@@ -23,7 +23,7 @@
             </div>
             
             <div class="box-button-login d-inline-block mr-10 align-middle custom-style-bt">
-              <NuxtLink to="/login-register" class="btn btn-default hover-up">Client Login / Register</NuxtLink>
+              <NuxtLink to="/login-register" class="btn btn-default hover-up"> Login / Register</NuxtLink>
             </div>
             <div class="box-button-quote d-inline-block align-middle custom-style-bt">
               <NuxtLink to="/book-a-quote" class="btn btn-white hover-up">Schedule Ride Now</NuxtLink>
@@ -44,16 +44,16 @@
         <NuxtLink to="/" exact>Home</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/our-fleet">Our Fleet</NuxtLink>
+        <NuxtLink to="/fleets">Our Fleets</NuxtLink>
       </li>
       <li>
         <NuxtLink to="/services">Services</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/blogs">Blog</NuxtLink>
+        <NuxtLink to="/blogs">Blogs</NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/about">About</NuxtLink>
+        <NuxtLink to="/about">About Us</NuxtLink>
       </li>
       <li>
         <NuxtLink to="/contact">Contact</NuxtLink>

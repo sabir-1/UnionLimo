@@ -59,9 +59,9 @@ const props = defineProps({
 // Computed property to generate the fleet link
 const fleetLink = computed(() => {
   if (props.slug) {
-    return `/our-fleet/${props.slug}`;
+    return `/fleets/${props.slug}`;
   }
-  return props.link || '/our-fleet';
+  return props.link || '/fleets';
 });
 </script>
 

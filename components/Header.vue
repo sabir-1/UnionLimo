@@ -15,7 +15,7 @@
                   <NuxtLink to="/" exact>Home</NuxtLink>
                 </li>
                 <li>
-                  <NuxtLink to="/our-fleet">Our Fleet</NuxtLink>
+                  <NuxtLink to="/fleets">Our Fleet</NuxtLink>
                 </li>
                 <li>
                   <NuxtLink to="/services">Services</NuxtLink>

@@ -10,14 +10,14 @@
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
-                Your Ride is Waiting Premier Chauffeur,
+                Your Ride is Waiting 
 
                 <br class="d-none d-lg-block">
-                 Black Car & Limousine Services
+                Premier Chauffeur, Black Car & Limo Services
               </h2>
               <div class="mt-30">
                 <NuxtLink to="/book-a-quote" class="btn btn-border">
-                  Book Online or Get a Custom Quote!
+                  Schedule Ride Now!
                   <svg 
                     class="icon-16" 
                     fill="none" 

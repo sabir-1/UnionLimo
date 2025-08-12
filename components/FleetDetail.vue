@@ -75,7 +75,7 @@
         <div class="row align-items-center">
           <div class="col-lg-5 col-sm-5 col-5">
             <div class="box-pager-inner">
-              <NuxtLink to="/our-fleet" class="prev-page text-18-medium">
+              <NuxtLink to="/fleets" class="prev-page text-18-medium">
                 Back to Fleet
                 <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
@@ -85,7 +85,7 @@
             </div>
           </div>
           <div class="col-lg-2 text-center col-sm-2 col-2">
-            <NuxtLink to="/our-fleet">
+            <NuxtLink to="/fleets">
               <img src="/imgs/page/blog2/grid.png" alt="fleet grid">
             </NuxtLink>
           </div>

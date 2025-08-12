@@ -10,7 +10,7 @@
             :description="fleet.description"
             :passengers="fleet.passengers"
             :luggage="fleet.luggage"
-            :link="`/our-fleet/${fleet.slug}`"
+            :link="`/fleets/${fleet.slug}`"
           />
         </div>
       </div>

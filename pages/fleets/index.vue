@@ -69,7 +69,7 @@
             <div class="col-lg-4 col-md-6 mb-30" v-for="fleet in paginatedFleets" :key="fleet.id"> 
               <div class="cardFleet cardFleetStyle3 wow fadeInUp">
                 <div class="cardImage mb-30">
-                  <NuxtLink :to="`/our-fleet/${fleet.slug}`">
+                  <NuxtLink :to="`/fleets/${fleet.slug}`">
                     <img :src="fleet.image" :alt="fleet.title">
                   </NuxtLink>
                   
@@ -79,7 +79,7 @@
                   <div class="tags mb-10" v-if="fleet.category">
                     <NuxtLink to="#">{{ fleet.category }}</NuxtLink>
                   </div>
-                  <NuxtLink :to="`/our-fleet/${fleet.slug}`">
+                  <NuxtLink :to="`/fleets/${fleet.slug}`">
                     <h3 class="text-20-medium color-text mb-10">{{ fleet.title }}</h3>
                   </NuxtLink>
                   <p class="text-14 color-text mb-30">{{ fleet.description }}</p>

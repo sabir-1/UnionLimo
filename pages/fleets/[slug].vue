@@ -13,7 +13,7 @@
       <div class="alert alert-warning" role="alert">
         <h4>Oops!</h4>
         <p>{{ error }}</p>
-        <NuxtLink to="/our-fleet" class="btn btn-primary">Back to Fleet</NuxtLink>
+        <NuxtLink to="/fleets" class="btn btn-primary">Back to Fleet</NuxtLink>
       </div>
     </div>
 
@@ -27,7 +27,7 @@
     <div v-else class="text-center py-60">
       <h3>Fleet not found</h3>
       <p>The fleet you're looking for doesn't exist.</p>
-      <NuxtLink to="/our-fleet" class="btn btn-primary">Back to Fleet</NuxtLink>
+      <NuxtLink to="/fleets" class="btn btn-primary">Back to Fleet</NuxtLink>
     </div>
   </div>
   
@@ -72,7 +72,7 @@ definePageMeta({
   layoutProps: {
     breadcrumbTitle: 'Fleet Details',
     breadcrumbItems: [
-      { text: 'Our Fleet', link: '/our-fleet' },
+      { text: 'Our Fleet', link: '/fleets' },
       { text: 'Fleet Details', link: null }
     ]
   }
@@ -82,7 +82,7 @@ definePageMeta({
 const seoTitle = computed(() => data.value?.seo?.title || (data.value ? `${data.value.title} - UnionLimo Fleet` : 'Fleet Details - UnionLimo'));
 const seoDescription = computed(() => data.value?.seo?.description || data.value?.longDescription || data.value?.description || 'Explore our luxury fleet vehicles with premium comfort and professional chauffeur service.');
 const seoKeywords = computed(() => data.value?.seo?.keywords || (data.value ? `${data.value.title.toLowerCase()}, luxury fleet, chauffeur service, unionlimo` : 'luxury fleet, chauffeur service, unionlimo'));
-const seoCanonical = computed(() => data.value?.seo?.canonical_url || (data.value ? `https://unionlimo.com/our-fleet/${data.value.slug}` : 'https://unionlimo.com/our-fleet'));
+const seoCanonical = computed(() => data.value?.seo?.canonical_url || (data.value ? `https://unionlimo.com/fleets/${data.value.slug}` : 'https://unionlimo.com/fleets'));
 const ogImage = computed(() => data.value?.featuredImage || data.value?.image || '/imgs/page/fleet/img-single.png');
 
 // Set SEO meta tags reactively
@@ -108,7 +108,7 @@ watch(data, (newFleet) => {
     if (route.meta.layoutProps) {
       route.meta.layoutProps.breadcrumbTitle = newFleet.title || 'Fleet Details';
       route.meta.layoutProps.breadcrumbItems = [
-        { text: 'Our Fleet', link: '/our-fleet' },
+        { text: 'Our Fleet', link: '/fleets' },
         { text: newFleet.title || 'Fleet Details', link: null }
       ];
     }

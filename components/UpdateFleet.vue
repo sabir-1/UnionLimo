@@ -7,7 +7,7 @@
         </div>
         <div class="col-lg-6 col-5 text-end">
           <NuxtLink 
-            to="/our-fleet" 
+            to="/fleets" 
             class="text-16-medium color-primary wow fadeInUp"
           >
             See All
@@ -60,13 +60,13 @@
               >
                 <div class="cardFleet wow fadeInUp">
                   <div class="cardInfo">
-                    <NuxtLink :to="`/our-fleet/${fleet.slug}`">
+                    <NuxtLink :to="`/fleets/${fleet.slug}`">
                       <h3 class="text-20-medium color-text mb-10">{{ fleet.title }}</h3>
                     </NuxtLink>
                     <p class="text-14 color-text mb-30">{{ fleet.description }}</p>
                   </div>
                   <div class="cardImage mb-30">
-                    <NuxtLink :to="`/our-fleet/${fleet.slug}`">
+                    <NuxtLink :to="`/fleets/${fleet.slug}`">
                       <img :src="fleet.image" :alt="fleet.title">
                     </NuxtLink>
                   </div>

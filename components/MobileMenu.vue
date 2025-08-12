@@ -21,20 +21,21 @@
                 <NuxtLink to="/" exact>Home</NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/our-fleet">Our Fleet</NuxtLink>
+                <NuxtLink to="/fleets">Our Fleets</NuxtLink>
               </li>
               <li>
                 <NuxtLink to="/services">Services</NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/blogs">Blog</NuxtLink>
+                <NuxtLink to="/blogs">Blogs</NuxtLink>
               </li>
-              <li>
-                <NuxtLink to="/contact">Contact</NuxtLink>
-              </li>
-              <li>
-                <NuxtLink to="/test">Test</NuxtLink>
-              </li>
+                <li>
+                  <NuxtLink to="/contact">Contact</NuxtLink>
+                </li>
+                <li>
+                  <NuxtLink to="/about">About Us</NuxtLink>
+                </li>
+               
             </ul>
           </div>
         </div>
