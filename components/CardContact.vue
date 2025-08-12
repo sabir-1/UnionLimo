@@ -15,24 +15,19 @@
 <script setup>
 defineProps({
   img: {
-    type: String,
-    default: '/imgs/page/contact/new-york.png'
+    type: String, 
   },
   title: {
-    type: String,
-    default: 'New York Office'
+    type: String, 
   },
   address: {
-    type: String,
-    default: 'PO Box 16122 Collins Street West Victoria 8007 Australia'
+    type: String, 
   },
   phone: {
-    type: String,
-    default: '+32 2 512 08 15'
+    type: String, 
   },
   email: {
-    type: String,
-    default: 'newyork@luxride.com'
+    type: String, 
   }
 })
 </script>

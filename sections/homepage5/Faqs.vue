@@ -3,7 +3,7 @@
         <div class="container-sub">
           <div class="box-faqs">
             <div class="text-center"> 
-              <h2 class="heading-44-medium color-text mb-20 wow fadeInUp">Frequently Asked Question</h2>
+              <h2 class="heading-44-medium color-text mb-20 wow fadeInUp">Frequently Asked Questions</h2>
             </div>
             <div class="mt-60 mb-40">
               <div class="accordion wow fadeInUp" id="accordionFAQ">

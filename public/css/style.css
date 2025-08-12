@@ -9458,6 +9458,9 @@ a.feed-powered-by-es.es-widget-branding.es-widget-branding-slider {
 .custom-style-bt a {
   padding: 10px 14px !important;
 }
+.home-update-v2 h2.heading-44-medium {
+  font-weight: 600;
+}
 @media (max-width: 1550px) {
   .cardFleet {
     padding: 15px;

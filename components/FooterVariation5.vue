@@ -2,7 +2,7 @@
   <footer class="footer footer-3">
     <div class="footer-1">
       <div class="container-sub">
-        <div class="box-footer-top wow fadeInRight">
+        <!-- <div class="box-footer-top wow fadeInRight">
           <div class="d-flex align-items-center justify-content-between flex-wrap">
             <a :href="`tel:${contact.phone_primary}`" class="text-14-medium call-phone color-white hover-up d-inline-block mb-20">
               {{ contact.phone_primary || '+1 (718) 514-9881' }}
@@ -14,8 +14,8 @@
               Mon-Sat: 09:00 - 17:00 - Sun: Closed
             </span>
           </div>
-        </div>
-        <div class="row mb-40">
+        </div> -->
+        <div class="row mb-40 pt-80">
           <div class="col-lg-3 width-20 wow fadeInRight">
             <h5 class="text-18-medium color-white mb-20">Company</h5>
             <ul class="menu-footer">
@@ -59,32 +59,28 @@
             </ul>
           </div>
           <div class="col-lg-3 width-20 wow fadeInRight">
-            <h5 class="text-18-medium color-white mb-20">Download The App</h5>
+            <h5 class="text-18-medium color-white mb-20">Book Now</h5>
             <div class="text-start">
-              <div class="box-button-download">
-                <a href="#" class="btn btn-download mb-20 hover-up wow fadeInRight">
-                  <div class="inner-download">
-                    <div class="icon-download">
+               <div class="box-button-download">
+                <NuxtLink to="/login-register" class="btn btn-download mb-20 hover-up wow fadeInRight">
+                  <div class="inner-download text-center">
+                   <!-- <div class="icon-download">
                       <img src="/imgs/template/icons/apple-icon.svg" alt="luxride" />
-                    </div>
-                    <div class="info-download">
-                      <span class="text-download-top">Download on the</span>
-                      <span class="text-14-medium">Apple Store</span>
+                    </div>  -->
+                    <div class="info-download pb-2 pt-2 text-center"> 
+                      <h2 class="text-18-medium color-white">Login / Register</h2>
                     </div>
                   </div>
-                </a>
-                <a href="#" class="btn btn-download mb-20 hover-up wow fadeInRight">
+                </NuxtLink>
+                <NuxtLink to="/book-a-quote" class="btn btn-download mb-20 hover-up wow fadeInRight">
                   <div class="inner-download">
-                    <div class="icon-download">
-                      <img src="/imgs/template/icons/google-icon.svg" alt="luxride" />
-                    </div>
-                    <div class="info-download">
-                      <span class="text-download-top">Download on the</span>
-                      <span class="text-14-medium">Apple Store</span>
+                    <div class="info-download pb-2 pt-2 text-center"> 
+                      <h2 class="text-18-medium color-white">Schedule Ride Now</h2>
                     </div>
                   </div>
-                </a>
-              </div>
+                </NuxtLink>
+              </div>  
+             
               <div class="mt-25">
                 <div class="text-18-medium color-white mb-20">Follow Us</div>
                 <a v-if="social.facebook" :href="social.facebook" target="_blank" class="icon-socials icon-facebook"></a>

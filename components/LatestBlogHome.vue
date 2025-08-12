@@ -4,7 +4,7 @@
             <div class="container-sub">
                 <div class="row align-items-center">
             <div class="col-lg-6 col-7">
-              <h2 class="heading-44-medium color-text wow fadeInUp">Blogs</h2>
+              <h2 class="heading-44-medium color-text wow fadeInUp">Our Blogs</h2>
             </div>
             <div class="col-lg-6 col-5 text-end"><a class="text-16-medium color-text hover-up d-inline-block wow fadeInUp" href="#">See All
                 <svg class="icon-16" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
