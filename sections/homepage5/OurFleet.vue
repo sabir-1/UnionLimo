@@ -7,7 +7,7 @@
         </div>
         <div class="col-lg-6 col-sm-5 col-5 text-end">
           <NuxtLink
-            to="/our-fleet"
+            to="/fleets"
             class="text-16-medium color-text d-flex align-items-center justify-content-end wow fadeInUp"
           >
             More Fleet
