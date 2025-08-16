@@ -12,17 +12,37 @@
       <NuxtLink to="/services" class="back-link">Back to Services</NuxtLink>
     </div>
     
+    
     <!-- Service Detail Section -->
     <div v-else-if="serviceData">
-      <ServiceSingleBanner :service-data="serviceData" />
-      <ServiceSingleFeature :service-data="serviceData" /> 
+      <div style="margin-top: -28px;">
+        <BannerHome />
+      </div>
+      
+      <ServiceSingleFeature :service-data="serviceData" />  
+      <BookVehicleServices />
       <ServiceSingleDetail :service-data="serviceData" />
+      
+      <UpdateFleet />  
+    <!-- <comfortable />  
+    <HowItWork />  -->
+    <OurServices/> 
+    <!-- Make Your Trip Section -->
+    <UpdatedTopCities/> 
+    <!-- Showcase Section -->
+    <Showcase />   
+    <!-- Testimonials Section -->
+    <Testimonials />
+      <!-- <servicesIcons /> -->
+      <!-- <ServiceSingleBanner :service-data="serviceData" /> -->
+      <!-- <ServiceSingleFeature :service-data="serviceData" />  -->
+      
 
        <!-- Our Fleet Section -->
-    <OurFleet />
+    <!-- <OurFleet /> -->
       
       <!-- FAQs Section -->
-       <div class="-mt-[100px]">
+       <div class=" mt-100">
 
      
       <Faqs />
@@ -33,11 +53,21 @@
 
 <script setup>
 // Import components
+import BannerHome from '~/components/BannerHome/index.vue'
+import BookVehicleServices from '~/components/BookVehicleServices.vue'
+// import ServiceSingleFeature from '~/sections/service-single/updateFeature.vue'
+import servicesIcons from '~/components/servicesIcons.vue'
 import ServiceSingleBanner from '~/sections/service-single/Banner.vue'
 import ServiceSingleDetail from '~/sections/service-single/Detail.vue'
-import ServiceSingleFeature from '~/sections/service-single/Feature.vue'
+// import ServiceSingleFeature from '~/sections/service-single/Feature.vue'
+import ServiceSingleFeature from '~/sections/service-single/updateFeature.vue'
 import Faqs from '~/sections/homepage5/Faqs.vue'
 import OurFleet from '~/sections/homepage5/OurFleet.vue'
+// import Faqs from '~/sections/homepage5/Faqs.vue'
+import Testimonials from '~/sections/homepage5/Testimonials.vue'
+import OurServices from '~/sections/homepage5/OurServices.vue'
+// import LatestServices from '~/components/LatestServices.vue'
+import UpdateFleet from '~/components/UpdateFleet.vue'
 
 // Get route params
 const route = useRoute()
