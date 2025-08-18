@@ -92,9 +92,15 @@ export const useServicesApi = () => {
     
     try {
       const response = await $fetch(`https://edgeranking.com/api/services/slug/${slug}`);
+      console.log('Raw API response for service:', response);
+      console.log('Response data:', response?.data);
+      console.log('First item in data:', response?.data?.[0]);
+      console.log('FAQs in first item:', response?.data?.[0]?.faqs);
       
       if (response && response.data && response.data.length > 0) {
-        return transformServiceForDetail(response.data[0]);
+        const transformedService = transformServiceForDetail(response.data[0]);
+        console.log('Transformed service with FAQs:', transformedService);
+        return transformedService;
       } else {
         error.value = 'Service not found';
         return null;
@@ -180,7 +186,10 @@ export const useServicesApi = () => {
   
   // Transform service data for detail view
   const transformServiceForDetail = (service) => {
-    return {
+    console.log('transformServiceForDetail called with:', service);
+    console.log('FAQs in service data:', service?.faqs);
+    
+    const transformedService = {
       id: service.id,
       title: service.title,
       slug: service.slug,
@@ -189,12 +198,13 @@ export const useServicesApi = () => {
       link: `/services/${service.slug}`,
       description: service.description || generateServiceDescription(service.title),
       longDescription: service.description || '',
-      features: generateServiceFeatures(service.title),
+      features: service.features && service.features.length > 0 ? service.features : generateServiceFeatures(service.title),
       benefits: generateServiceBenefits(service.title),
       pricing: generateServicePricing(service.title),
       seo: service.seo,
       created_at: service.created_at,
       updated_at: service.updated_at,
+      faqs: service.faqs || [],
       sliderImages: [
         service.slider_image_1,
         service.slider_image_2,
@@ -202,6 +212,9 @@ export const useServicesApi = () => {
         service.slider_image_4
       ].filter(img => img && img !== 'https://dummyimage.com/120x120/000/ffffff.png&text=NO+IMAGE')
     };
+    
+    console.log('Transformed service with FAQs:', transformedService);
+    return transformedService;
   };
   
   // Generate service features based on title

@@ -2,7 +2,7 @@
   <section class="section">
     <div class="container-sub">
       <div class="mt-120">
-        <h2 class="heading-44-medium mb-30 color-text title-fleet wow fadeInDown">{{ serviceData.title }}</h2>
+        <!-- <h2 class="heading-44-medium mb-30 color-text title-fleet wow fadeInDown">{{ serviceData.title }}</h2> -->
         <div class="content-single wow fadeInUp">
           <div v-html="serviceData.longDescription"></div>
           

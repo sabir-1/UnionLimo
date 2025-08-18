@@ -45,7 +45,7 @@
        <div class=" mt-100">
 
      
-      <Faqs />
+      <ServiceFaqs :faqs="serviceData?.faqs || []" />
     </div>
     </div>
   </div>
@@ -61,9 +61,8 @@ import ServiceSingleBanner from '~/sections/service-single/Banner.vue'
 import ServiceSingleDetail from '~/sections/service-single/Detail.vue'
 // import ServiceSingleFeature from '~/sections/service-single/Feature.vue'
 import ServiceSingleFeature from '~/sections/service-single/updateFeature.vue'
-import Faqs from '~/sections/homepage5/Faqs.vue'
+import ServiceFaqs from '~/components/serviceFaqs.vue'
 import OurFleet from '~/sections/homepage5/OurFleet.vue'
-// import Faqs from '~/sections/homepage5/Faqs.vue'
 import Testimonials from '~/sections/homepage5/Testimonials.vue'
 import OurServices from '~/sections/homepage5/OurServices.vue'
 // import LatestServices from '~/components/LatestServices.vue'
@@ -98,6 +97,12 @@ watch(() => route.params.slug, async (newSlug) => {
     }
   }
 })
+
+// Debug logging when service data changes
+watch(serviceData, (newService) => {
+  console.log('Service data changed in service detail page:', newService)
+  console.log('FAQs in service data:', newService?.faqs)
+}, { immediate: true })
 
 // Define static layout props
 definePageMeta({
