@@ -20,7 +20,7 @@
       </div>
       
       <ServiceSingleFeature :service-data="serviceData" />  
-      <BookVehicleServices />
+      <BookVehicleServices :service-data="serviceData" />
       <ServiceSingleDetail :service-data="serviceData" />
       
       <UpdateFleet />  

@@ -60,7 +60,7 @@ export const useServicesApi = () => {
             title: service.title,
             slug: service.slug,
             src: service.feature_image || getDefaultServiceImage(service.title),
-            desc: service.short_description || generateServiceDescription(service.title),
+            desc: service.short_description ,
             link: `/services/${service.slug}`,
             short_description: service.short_description,
             description: service.description,
