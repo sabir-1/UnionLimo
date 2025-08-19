@@ -1,5 +1,5 @@
 <template>
-  <section class="section banner-home1 banner-home9 mt-20">
+  <section class="section banner-home1 banner-home9 mt-20" v-if="serviceData">
     <div class="box-swiper">
       <div class="swiper-container swiper-banner-2 pb-0">
         <div class="swiper-wrapper">
@@ -118,7 +118,10 @@ import Locations from '~/elements/Locations.vue'
 const props = defineProps({
   serviceData: {
     type: Object,
-    required: true
+    required: false,
+    default: () => ({
+      title: 'Luxury Chauffeur Service'
+    })
   }
 })
 // Search form data
