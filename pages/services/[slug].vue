@@ -26,7 +26,8 @@
       <UpdateFleet />  
     <!-- <comfortable />  
     <HowItWork />  -->
-    <OurServices/> 
+    <FeatureSingleservices/>
+    <!-- <OurServices/>  -->
     <!-- Make Your Trip Section -->
     <UpdatedTopCities/> 
     <!-- Showcase Section -->
@@ -67,7 +68,7 @@ import Testimonials from '~/sections/homepage5/Testimonials.vue'
 import OurServices from '~/sections/homepage5/OurServices.vue'
 // import LatestServices from '~/components/LatestServices.vue'
 import UpdateFleet from '~/components/UpdateFleet.vue'
-
+import FeatureSingleservices from '~/components/FeatureSingleservices.vue'
 // Get route params
 const route = useRoute()
 const { slug } = route.params

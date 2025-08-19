@@ -85,6 +85,43 @@ export const useServicesApi = () => {
     }
   };
   
+  // Fetch featured services (no status filtering, use curated list as-is)
+  const fetchFeaturedServices = async () => {
+    loading.value = true;
+    error.value = null;
+    
+    try {
+      const response = await $fetch('https://edgeranking.com/api/services/featured');
+      
+      if (response && response.data) {
+        services.value = response.data.map(service => ({
+          id: service.id,
+          title: service.title,
+          slug: service.slug,
+          src: service.feature_image || getDefaultServiceImage(service.title),
+          desc: service.short_description || generateServiceDescription(service.title),
+          link: `/services/${service.slug}`,
+          short_description: service.short_description,
+          description: service.description,
+          seo: service.seo,
+          created_at: service.created_at,
+          updated_at: service.updated_at,
+          sliderImages: [
+            service.slider_image_1,
+            service.slider_image_2,
+            service.slider_image_3,
+            service.slider_image_4
+          ].filter(img => img && img !== 'https://dummyimage.com/120x120/000/ffffff.png&text=NO+IMAGE')
+        }));
+      }
+    } catch (err) {
+      console.error('Error fetching featured services:', err);
+      error.value = 'Failed to load featured services. Please try again later.';
+    } finally {
+      loading.value = false;
+    }
+  };
+  
   // Fetch single service by slug
   const fetchServiceBySlug = async (slug) => {
     loading.value = true;
@@ -434,6 +471,7 @@ export const useServicesApi = () => {
     
     // Methods
     fetchServices,
+    fetchFeaturedServices,
     fetchServiceBySlug,
     searchServices,
     filterByServiceCategory,
