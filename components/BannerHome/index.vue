@@ -10,10 +10,7 @@
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
-                Your Ride is Waiting 
-
-                <br class="d-none d-lg-block">
-                Premier Chauffeur, Black Car & Limo Services
+                {{ serviceData.title }}
               </h2>
               <div class="mt-30">
                 <NuxtLink to="/book-a-quote" class="btn btn-border">
@@ -44,13 +41,13 @@
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
-                Trusted Chauffeurs for
-                <br class="d-none d-lg-block">
-                Discerning Travellers
+                  Trusted Chauffeurs for
+                  <br class="d-none d-lg-block">
+                  Discerning Travellers
               </h2>
               <div class="mt-30">
-                <a href="#" class="btn btn-border">
-                  Book Online or Get a Custom Quote!
+                <NuxtLink to="/book-a-quote" class="btn btn-border">
+                  Schedule Ride Now!
                   <svg 
                     class="icon-16" 
                     fill="none" 
@@ -66,7 +63,7 @@
                       d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
                     />
                   </svg>
-                </a>
+                </NuxtLink>
               </div>
             </div>
           </div>
@@ -77,13 +74,13 @@
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
-                Trusted Chauffeurs for
-                <br class="d-none d-lg-block">
-                Discerning Travellers
+                  Trusted Chauffeurs for
+                  <br class="d-none d-lg-block">
+                  Discerning Travellers
               </h2>
               <div class="mt-30">
-                <a href="#" class="btn btn-border">
-                  Book Online or Get a Custom Quote!
+                <NuxtLink to="/book-a-quote" class="btn btn-border">
+                  Schedule Ride Now!
                   <svg 
                     class="icon-16" 
                     fill="none" 
@@ -99,7 +96,7 @@
                       d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
                     />
                   </svg>
-                </a>
+                </NuxtLink>
               </div>
             </div>
           </div>
@@ -118,6 +115,12 @@
 import { ref, onMounted, nextTick, watch, onUnmounted } from 'vue'
 import Locations from '~/elements/Locations.vue'
 
+const props = defineProps({
+  serviceData: {
+    type: Object,
+    required: true
+  }
+})
 // Search form data
 const searchData = ref({
   date: 'Thu, Oct 06, 2022',

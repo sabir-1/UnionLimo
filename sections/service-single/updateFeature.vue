@@ -2,6 +2,9 @@
   <section class="section mt-90" id="update-our-services">
     <div class="container-sub p-0">
       <div class="row cardIconTitleDescLeft">
+        <div class="col-lg-12">
+          <h2 class="heading-44-medium text-center color-text mb-40">why choose us</h2>
+        </div>
         <div class="col-lg-4 col-md-6 col-sm-6 mb-30">
           <CardBlogGridUp 
             img="/imgs/page/smartphone.svg" 

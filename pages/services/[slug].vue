@@ -16,7 +16,7 @@
     <!-- Service Detail Section -->
     <div v-else-if="serviceData">
       <div style="margin-top: -28px;">
-        <BannerHome />
+        <BannerHome :service-data="serviceData"/>
       </div>
       
       <ServiceSingleFeature :service-data="serviceData" />  
