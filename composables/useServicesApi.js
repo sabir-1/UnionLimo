@@ -248,7 +248,10 @@ export const useServicesApi = () => {
         service.slider_image_2,
         service.slider_image_3,
         service.slider_image_4
-      ].filter(img => img && img !== 'https://dummyimage.com/120x120/000/ffffff.png&text=NO+IMAGE')
+      ].filter(img => img && img !== 'https://dummyimage.com/120x120/000/ffffff.png&text=NO+IMAGE'),
+      // Banner fields for dynamic banner content
+      banner_title: service.banner_title || service.title,
+      banner_description: service.banner_description || service.short_description || ''
     };
     
     console.log('Transformed service with FAQs:', transformedService);

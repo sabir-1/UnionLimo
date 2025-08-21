@@ -10,9 +10,9 @@
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
-                {{ serviceData.title }}
+                {{ serviceData.banner_title || serviceData.title }}
               </h2>
-              <p></p>
+              <p class="color-white">{{ serviceData.banner_description || serviceData.desc }}</p>
               <div class="mt-30">
                 <NuxtLink to="/book-a-quote" class="btn btn-border">
                   Schedule Ride Now!
@@ -42,10 +42,11 @@
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
-                  Trusted Chauffeurs for
+                  {{ serviceData.banner_title || 'Trusted Chauffeurs for' }}
                   <br class="d-none d-lg-block">
-                  Discerning Travellers
+                  {{ serviceData.title || 'Discerning Travellers' }}
               </h2>
+              <p class="color-white">{{ serviceData.banner_description || serviceData.desc }}</p>
               <div class="mt-30">
                 <NuxtLink to="/book-a-quote" class="btn btn-border">
                   Schedule Ride Now!
@@ -75,10 +76,11 @@
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
-                  Trusted Chauffeurs for
+                  {{ serviceData.banner_title || 'Trusted Chauffeurs for' }}
                   <br class="d-none d-lg-block">
-                  Discerning Travellers
+                  {{ serviceData.title || 'Discerning Travellers' }}
               </h2>
+              <p class="color-white">{{ serviceData.banner_description || serviceData.desc }}</p>
               <div class="mt-30">
                 <NuxtLink to="/book-a-quote" class="btn btn-border">
                   Schedule Ride Now!
