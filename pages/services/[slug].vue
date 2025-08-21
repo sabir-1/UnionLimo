@@ -22,6 +22,31 @@
       <ServiceSingleFeature :service-data="serviceData" />  
       <BookVehicleServices :service-data="serviceData" />
       <ServiceSingleDetail :service-data="serviceData" />
+
+      <div class="box-slide-fleet mt-120 wow fadeInUp" v-if="sliderImages.length > 0">
+      <div class="box-swiper">
+        
+        <div class="swiper-container swiper-group-2-single-fleet pb-0">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(image, index) in sliderImages" :key="index">
+              <img :src="image" :alt="`${serviceData?.title || 'Service'} - Image ${index + 1}`" />
+            </div>
+          </div>
+          <div class="box-pagination-fleet">
+            <div class="swiper-button-prev swiper-button-prev-fleet">
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+              </svg>
+            </div>
+            <div class="swiper-button-next swiper-button-next-fleet">
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
       
       <UpdateFleet />  
     <!-- <comfortable />  
@@ -78,6 +103,48 @@ const { fetchServiceBySlug, loading, error } = useServicesApi()
 
 // Reactive service data
 const serviceData = ref(null)
+
+// Build slider images dynamically from serviceData.slider_image_*
+const sliderImages = computed(() => {
+  const data = serviceData.value
+  if (!data) return []
+
+  // Prefer transformed array from API composable
+  if (Array.isArray(data.sliderImages) && data.sliderImages.length > 0) {
+    return data.sliderImages
+  }
+
+  // Fallback: build from raw keys if present
+  return Object.entries(data)
+    .filter(([key, value]) => key.startsWith('slider_image_') && typeof value === 'string' && value.trim() !== '')
+    .sort(([aKey], [bKey]) => {
+      const aNum = parseInt(aKey.replace('slider_image_', ''), 10)
+      const bNum = parseInt(bKey.replace('slider_image_', ''), 10)
+      return (isNaN(aNum) ? 0 : aNum) - (isNaN(bNum) ? 0 : bNum)
+    })
+    .map(([, value]) => value)
+})
+
+// Initialize swiper when images are ready
+const { initializeSliderWithTiming, handleVisibilityChange, handleResize } = useSlider()
+
+onMounted(() => {
+  if (sliderImages.value.length > 0) {
+    nextTick(() => {
+      initializeSliderWithTiming('.swiper-group-2-single-fleet')
+      handleVisibilityChange('.swiper-group-2-single-fleet')
+      handleResize('.swiper-group-2-single-fleet')
+    })
+  }
+})
+
+watch(sliderImages, (images) => {
+  if (images && images.length > 0) {
+    nextTick(() => {
+      initializeSliderWithTiming('.swiper-group-2-single-fleet')
+    })
+  }
+})
 
 // Fetch service data on component mount
 onMounted(async () => {
