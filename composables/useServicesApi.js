@@ -242,6 +242,7 @@ export const useServicesApi = () => {
       created_at: service.created_at,
       updated_at: service.updated_at,
       faqs: service.faqs || [],
+      why_choose: Array.isArray(service.why_choose) ? service.why_choose : [],
       sliderImages: [
         service.slider_image_1,
         service.slider_image_2,

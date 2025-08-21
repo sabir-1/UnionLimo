@@ -2645,10 +2645,10 @@ body {
 
 .box-cover-image {
   position: relative;
-  background-position: top center;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 677px;
+  height: 600px;
 }
 .box-cover-image::before {
   content: "";

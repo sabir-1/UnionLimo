@@ -6,12 +6,13 @@
           <div class="swiper-slide">
             <div 
               class="box-cover-image wow fadeInUp"
-              :style="{ backgroundImage: 'url(/imgs/page/homepage1/banner4.png)' }"
+              :style="{ backgroundImage: `url(${serviceData.src})` }"
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
                 {{ serviceData.title }}
               </h2>
+              <p></p>
               <div class="mt-30">
                 <NuxtLink to="/book-a-quote" class="btn btn-border">
                   Schedule Ride Now!
@@ -37,7 +38,7 @@
           <div class="swiper-slide">
             <div 
               class="box-cover-image wow fadeInUp"
-              :style="{ backgroundImage: 'url(/imgs/page/homepage1/banner4.png)' }"
+              :style="{ backgroundImage: `url(${serviceData.src})` }"
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
@@ -70,7 +71,7 @@
           <div class="swiper-slide">
             <div 
               class="box-cover-image wow fadeInUp"
-              :style="{ backgroundImage: 'url(/imgs/page/homepage1/banner4.png)' }"
+              :style="{ backgroundImage: `url(${serviceData.src})` }"
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
