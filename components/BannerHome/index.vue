@@ -43,8 +43,8 @@
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
                   {{ serviceData.banner_title || 'Trusted Chauffeurs for' }}
-                  <br class="d-none d-lg-block">
-                  {{ serviceData.title || 'Discerning Travellers' }}
+                  <!-- <br class="d-none d-lg-block">
+                  {{ serviceData.title || 'Discerning Travellers' }} -->
               </h2>
               <p class="color-white">{{ serviceData.banner_description || serviceData.desc }}</p>
               <div class="mt-30">
@@ -76,9 +76,7 @@
             ></div>
             <div class="box-banner-info text-center wow fadeInUp">
               <h2 class="heading-52-medium color-white">
-                  {{ serviceData.banner_title || 'Trusted Chauffeurs for' }}
-                  <br class="d-none d-lg-block">
-                  {{ serviceData.title || 'Discerning Travellers' }}
+                  {{ serviceData.banner_title || 'Trusted Chauffeurs for' }} 
               </h2>
               <p class="color-white">{{ serviceData.banner_description || serviceData.desc }}</p>
               <div class="mt-30">

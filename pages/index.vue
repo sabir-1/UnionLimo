@@ -1,7 +1,8 @@
 <template>
   <div class="home-update-v2">
     <!-- Banner Section -->
-    <BannerHome />
+    <!-- <BannerHome /> -->
+    <NewHomeBanner />
     <ServiceSingleFeature :service-data="serviceData" />  
     <!-- Our Fleet Section -->
     <UpdateFleet />  
@@ -27,6 +28,7 @@
 
 <script setup>
 // Import all sections
+import NewHomeBanner from '~/components/NewHomeBanner.vue'
 import banner from '~/sections/homepage5/banner.vue'  
 import BannerHome from '~/components/BannerHome/index.vue'
 import comfortable from '~/sections/homepage5/comfortable.vue'
