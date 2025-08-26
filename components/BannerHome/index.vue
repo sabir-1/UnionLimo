@@ -1,119 +1,58 @@
 <template>
   <section class="section banner-home1 banner-home9 mt-20" v-if="serviceData">
-    <div class="box-swiper">
-      <div class="swiper-container swiper-banner-2 pb-0">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div 
-              class="box-cover-image wow fadeInUp"
-              :style="{ backgroundImage: `url(${serviceData.src})` }"
-            ></div>
-            <div class="box-banner-info text-center wow fadeInUp">
-              <h2 class="heading-52-medium color-white">
-                {{ serviceData.banner_title || serviceData.title }}
-              </h2>
-              <p class="color-white">{{ serviceData.banner_description || serviceData.desc }}</p>
-              <div class="mt-30">
-                <NuxtLink to="/book-a-quote" class="btn btn-border">
-                  Schedule Ride Now!
-                  <svg 
-                    class="icon-16" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    stroke-width="1.5" 
-                    viewBox="0 0 24 24" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    aria-hidden="true"
-                  >
-                    <path 
-                      stroke-linecap="round" 
-                      stroke-linejoin="round" 
-                      d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-                    />
-                  </svg>
-                </NuxtLink>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div 
-              class="box-cover-image wow fadeInUp"
-              :style="{ backgroundImage: `url(${serviceData.src})` }"
-            ></div>
-            <div class="box-banner-info text-center wow fadeInUp">
-              <h2 class="heading-52-medium color-white">
-                  {{ serviceData.banner_title || 'Trusted Chauffeurs for' }}
-                  <!-- <br class="d-none d-lg-block">
-                  {{ serviceData.title || 'Discerning Travellers' }} -->
-              </h2>
-              <p class="color-white">{{ serviceData.banner_description || serviceData.desc }}</p>
-              <div class="mt-30">
-                <NuxtLink to="/book-a-quote" class="btn btn-border">
-                  Schedule Ride Now!
-                  <svg 
-                    class="icon-16" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    stroke-width="1.5" 
-                    viewBox="0 0 24 24" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    aria-hidden="true"
-                  >
-                    <path 
-                      stroke-linecap="round" 
-                      stroke-linejoin="round" 
-                      d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-                    />
-                  </svg>
-                </NuxtLink>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div 
-              class="box-cover-image wow fadeInUp"
-              :style="{ backgroundImage: `url(${serviceData.src})` }"
-            ></div>
-            <div class="box-banner-info text-center wow fadeInUp">
-              <h2 class="heading-52-medium color-white">
-                  {{ serviceData.banner_title || 'Trusted Chauffeurs for' }} 
-              </h2>
-              <p class="color-white">{{ serviceData.banner_description || serviceData.desc }}</p>
-              <div class="mt-30">
-                <NuxtLink to="/book-a-quote" class="btn btn-border">
-                  Schedule Ride Now!
-                  <svg 
-                    class="icon-16" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    stroke-width="1.5" 
-                    viewBox="0 0 24 24" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    aria-hidden="true"
-                  >
-                    <path 
-                      stroke-linecap="round" 
-                      stroke-linejoin="round" 
-                      d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-                    />
-                  </svg>
-                </NuxtLink>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="box-pagination-button">
-          <div class="swiper-pagination swiper-pagination-banner-2"></div>
-        </div>
+    <div 
+      class="box-cover-image wow fadeInUp"
+      :style="{ backgroundImage: `url(${serviceData.src})` }"
+    ></div>
+    <div class="box-banner-info text-center wow fadeInUp">
+      <h2 class="heading-52-medium color-white">
+        {{ serviceData.banner_title || serviceData.title }}
+      </h2>
+      <p class="color-white">{{ serviceData.banner_description || serviceData.desc }}</p>
+      <div class="mt-30">
+        <NuxtLink to="/book-a-quote" class="btn btn-border">
+          Schedule Ride Now!
+          <svg 
+            class="icon-16" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="1.5" 
+            viewBox="0 0 24 24" 
+            xmlns="http://www.w3.org/2000/svg" 
+            aria-hidden="true"
+          >
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+            />
+          </svg>
+        </NuxtLink>
+        <NuxtLink to="/fleets" class="btn btn-primary ml-10">
+          Book Your Fleet
+          <svg 
+            class="icon-16" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="1.5" 
+            viewBox="0 0 24 24" 
+            xmlns="http://www.w3.org/2000/svg" 
+            aria-hidden="true"
+          >
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+            />
+          </svg>
+        </NuxtLink>
       </div>
     </div>
-    
-   
   </section>
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick, watch, onUnmounted } from 'vue'
+import { ref, onMounted, nextTick, onUnmounted } from 'vue'
 import Locations from '~/elements/Locations.vue'
 
 const props = defineProps({
@@ -220,16 +159,13 @@ const initializePickers = () => {
   }
 }
 
-// Initialize slider when component mounts
+// Initialize on mount (pickers only)
 onMounted(() => {
   nextTick(() => {
     setTimeout(() => {
-      initializeBannerSlider()
       initializePickers()
     }, 100)
   })
-  
-  // Add click outside listener
   document.addEventListener('click', handleClickOutside)
 })
 
@@ -238,51 +174,7 @@ onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside)
 })
 
-// Function to initialize the banner slider
-const initializeBannerSlider = () => {
-  // Check if jQuery and Swiper are available
-  if (typeof window !== 'undefined' && window.$ && window.Swiper) {
-    const $ = window.$
-    const Swiper = window.Swiper
-
-    // Initialize banner slider
-    $('.swiper-banner-2').each(function () {
-      // Destroy existing instance if it exists
-      if (this.swiper) {
-        this.swiper.destroy(true, true)
-      }
-      
-      // Create new Swiper instance
-      this.swiper = new Swiper(this, {
-        slidesPerView: 1,
-        loop: true,
-        pagination: {
-          el: '.swiper-pagination-banner-2',
-          clickable: true
-        },
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
-        },
-        effect: 'fade',
-        fadeEffect: {
-          crossFade: true
-        }
-      })
-    })
-  }
-}
-
-// Watch for route changes to reinitialize slider
-const route = useRoute()
-watch(() => route.path, () => {
-  nextTick(() => {
-    setTimeout(() => {
-      initializeBannerSlider()
-      initializePickers()
-    }, 100)
-  })
-})
+// Slider removed; no route watch required
 </script>
 
  

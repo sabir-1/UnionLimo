@@ -1,7 +1,7 @@
 <template>
   <section class="section mt-90">
     <div class="container-sub">
-      <h2 class="heading-44-medium wow fadeInDown">{{ serviceData.title }}</h2>
+      <h2 class="heading-44-medium wow fadeInDown">Book Your {{ serviceData.title }}</h2>
       <div class="row mt-50"  >
         <div class="col-xl-8 col-lg-7 mb-30">
           <!-- <h5 class="text-20-medium color-text mb-10 wow fadeInLeft"> {{ serviceData.title }}</h5> -->

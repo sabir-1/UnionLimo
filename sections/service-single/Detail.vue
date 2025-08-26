@@ -92,7 +92,8 @@ const shouldShowToggle = computed(() => {
   position: relative;
 }
 .collapsible.collapsed {
-  max-height: 220px;
+  /* max-height: 220px; */
+  max-height: 800px;
 }
 .collapsible.collapsed::after {
   content: '';
