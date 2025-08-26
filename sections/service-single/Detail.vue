@@ -12,6 +12,9 @@
               <button type="button" class="btn btn-black cust-style-see" @click="showFullDescription = !showFullDescription">
                 {{ showFullDescription ? 'See less' : 'See more' }}
               </button>
+              <NuxtLink to="/book-a-quote" class="btn btn-black cust-style-see" style="margin-left:10px">
+                Schedule Ride Now!
+              </NuxtLink>
             </div>
           </div>
           
