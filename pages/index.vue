@@ -3,6 +3,7 @@
     <!-- Banner Section -->
     <!-- <BannerHome /> -->
     <NewHomeBanner />
+    <HomeUpdateFeature />
     <ServiceSingleFeature :service-data="serviceData" />  
     <!-- Our Fleet Section -->
     <UpdateFleet />  
@@ -28,6 +29,7 @@
 
 <script setup>
 // Import all sections
+import HomeUpdateFeature from '~/components/HomeUpdateFeature.vue'
 import NewHomeBanner from '~/components/NewHomeBanner.vue'
 import banner from '~/sections/homepage5/banner.vue'  
 import BannerHome from '~/components/BannerHome/index.vue'
