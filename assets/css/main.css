@@ -99,6 +99,21 @@ body {
   color: white;
 }
 
+/* Floating CTA additional styles */
+.floating-cta {
+  pointer-events: auto;
+}
+
+.floating-cta .cta-button {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Ensure CTA buttons don't interfere with other elements */
+.floating-cta {
+  isolation: isolate;
+}
+
 .color-grey {
   color: #666;
 }

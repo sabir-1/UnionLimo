@@ -20,6 +20,9 @@
     <!-- Footer -->
     <FooterVariation5 />
     
+    <!-- Floating Call-to-Action Buttons -->
+    <FloatingCTA />
+    
     <!-- Scripts for slider initialization -->
     <ScriptMain />
     
@@ -35,6 +38,7 @@ import FooterVariation5 from '~/components/FooterVariation5.vue'
 import BreadCrumb from '~/components/BreadCrumb.vue'
 import ScriptMain from '~/components/ScriptMain.vue'
 import SliderInitializer from '~/components/SliderInitializer.vue'
+import FloatingCTA from '~/components/FloatingCTA.vue'
 
 // Import company data composable
 import useCompanyData from '~/composables/useCompanyData.js'
