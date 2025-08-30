@@ -1,10 +1,10 @@
 <template>
   <section class="section">
     <div class="container-sub">
-      <div class="mt-120">
+      <div class="mt-10">
         <!-- <h2 class="heading-44-medium mb-30 color-text title-fleet wow fadeInDown">{{ serviceData.title }}</h2> -->
         <div class="content-single wow fadeInUp">
-          <div class="description-wrapper">
+          <div class="description-wrapper services">
             <div class="collapsible" :class="{ collapsed: !showFullDescription }">
               <div v-html="serviceData.longDescription"></div>
             </div>
@@ -80,7 +80,10 @@ const shouldShowToggle = computed(() => {
 </script>
 
 <style scoped>
-
+.description-wrapper.services ul {
+    padding-left: 24px;
+    list-style: disc;
+}
 .cust-style-see{
   background-color: #000;
   color: #fff;
