@@ -6222,7 +6222,10 @@ footer a {
   padding-left: 20px;
   padding-right: 20px;
 }
-
+.description-wrapper.services ul {
+    padding-left: 24px;
+    list-style: disc;
+}
 /* .bg-our-service {
   background-image: url(../imgs/page/homepage1/bg-our-service.png);
   background-repeat: no-repeat;

@@ -80,10 +80,7 @@ const shouldShowToggle = computed(() => {
 </script>
 
 <style scoped>
-.description-wrapper.services ul {
-    padding-left: 24px;
-    list-style: disc;
-}
+ 
 .cust-style-see{
   background-color: #000;
   color: #fff;
