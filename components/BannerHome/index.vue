@@ -2,8 +2,10 @@
   <section class="section banner-home1 banner-home9 mt-20" v-if="serviceData">
     <div 
       class="box-cover-image wow fadeInUp"
-      :style="{ backgroundImage: `url(${serviceData.src})` }"
-    ></div>
+      :style="{ backgroundImage: `url('${serviceData.src}')` }"
+    >
+  <!-- <img :src="serviceData.src" :alt="serviceData.title" /> -->
+  </div>
     <div class="box-banner-info text-center wow fadeInUp">
       <h2 class="heading-52-medium color-white">
         {{ serviceData.banner_title || serviceData.title }}
@@ -12,6 +14,7 @@
       <div class="mt-30">
         <NuxtLink to="/book-a-quote" class="btn btn-border">
           Schedule Ride Now!
+           
           <svg 
             class="icon-16" 
             fill="none" 

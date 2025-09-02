@@ -2645,10 +2645,10 @@ body {
 
 .box-cover-image {
   position: relative;
-  background-position: center;
+  background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 600px;
+  height: 650px;
 }
 .box-cover-image::before {
   content: "";
@@ -9257,11 +9257,11 @@ input:checked + .slider:before {
 }
 
 .content-single p {
-  font-size: 16px;
-  line-height: 28px;
+  font-size: 15px;
+  line-height: 26px;
   font-weight: 400;
   color: #181A1F;
-  margin-bottom: 30px;
+  margin-bottom: 8px;
 }
 .content-single img {
   display: block;
@@ -9285,11 +9285,11 @@ input:checked + .slider:before {
   background-repeat: no-repeat;
 }
 .content-single h1, .content-single h2 {
-  font-size: 44px;
-  line-height: 76px;
+  font-size: 40px;
+  line-height: 72px;
   color: #181A1F;
   font-weight: 500;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
 .content-single h3, .content-single h4 {
   font-size: 34px;
