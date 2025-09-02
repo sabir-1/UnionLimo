@@ -26,7 +26,7 @@
       <div class="box-slide-fleet mt-120 wow fadeInUp" v-if="sliderImages.length > 0">
       <div class="box-swiper">
         
-        <div class="swiper-container swiper-group-2-single-fleet pb-0">
+        <div class="swiper-container swiper-group-2-single-fleet services-cus-fti pb-0">
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(image, index) in sliderImages" :key="index">
               <img :src="image" :alt="`${serviceData?.title || 'Service'} - Image ${index + 1}`" />

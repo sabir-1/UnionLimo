@@ -9291,6 +9291,11 @@ input:checked + .slider:before {
   font-weight: 500;
   margin-bottom: 5px;
 }
+.swiper-group-2-single-fleet.services-cus-fti img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+}
 .content-single h3, .content-single h4 {
   font-size: 34px;
   line-height: 66px;
