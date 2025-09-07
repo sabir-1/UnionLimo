@@ -16,7 +16,7 @@
       
       <div class="content-single wow fadeInLeft"> 
         <!-- Main blog content -->
-        <div v-if="blogData.description" v-html="blogData.description" class="blog-content"></div>
+        <div v-if="blogData.description" v-html="blogData.description" class="blog-content description-wrapper-blog-detail"></div>
         
         <!-- Fallback content if no description -->
         <div v-else-if="blogData.content && blogData.content.length > 0">
@@ -240,34 +240,12 @@ const props = defineProps({
 .blog-content :deep(h3),
 .blog-content :deep(h4),
 .blog-content :deep(h5),
-.blog-content :deep(h6) {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  color: #1a1a1a;
+.blog-content :deep(h6) { 
+  font-weight: 600; 
+  margin-bottom: 2px;
 }
 
-.blog-content :deep(h1) {
-  font-size: 2.5rem;
-  line-height: 1.2;
-}
-
-.blog-content :deep(h2) {
-  font-size: 2rem;
-  line-height: 1.3;
-}
-
-.blog-content :deep(h3) {
-  font-size: 1.5rem;
-  line-height: 1.4;
-}
-
-.blog-content :deep(p) {
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #4a4a4a;
-}
+ 
 
 .blog-content :deep(ul),
 .blog-content :deep(ol) {

@@ -9454,14 +9454,26 @@ textarea.form-control {
   border-color: #181A1F;
   background-color: #ffffff;
 }
-
+.description-wrapper-blog-detail table, .description-wrapper-blog-detail td, .description-wrapper-blog-detail th {
+  border: 1px solid;
+  padding: 10px;
+}
+.description-wrapper-blog-detail th{
+  background-color: #e7e7e7;
+}
+.description-wrapper-blog-detail ul {
+  list-style: disc;
+}
+.description-wrapper-blog-detail ol {
+  list-style: auto;
+}
 .focused label {
   top: -11px;
   background-color: #ffffff;
   color: #626262;
 }
 .description-wrapper h3{
-  line-height: inherit !important;
+  line-height: 38px;
 }
 a.feed-powered-by-es.es-widget-branding.es-widget-branding-slider {
   display: none ! IMPORTANT;
