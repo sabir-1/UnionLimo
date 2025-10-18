@@ -159,6 +159,11 @@
             initSwiper2IemSingle();
         }
 
+        // Initialize single blog sliders
+        if ($(".swiper-group-2-single-blog").length > 0) {
+            initSwiper2IemSingleBlog();
+        }
+
         // Initialize fleet 3 item sliders
         initSwiperFleet3Item();
 
@@ -415,6 +420,44 @@
                 });
             } catch (error) {
                 console.error('Error initializing single fleet slider:', error);
+            }
+        });
+    }
+
+    function initSwiper2IemSingleBlog() {
+        $(".swiper-group-2-single-blog").each(function () {
+            try {
+                if (this.swiper) {
+                    this.swiper.destroy(true, true);
+                }
+                this.swiper = new Swiper(this, {
+                    spaceBetween: 30,
+                    slidesPerView: 2,
+                    slidesPerGroup: 1,
+                    loop: true,
+                    navigation: {
+                        nextEl: ".swiper-button-next-blog",
+                        prevEl: ".swiper-button-prev-blog"
+                    },
+                    pagination: {
+                        el: ".swiper-pagination-blog",
+                        clickable: true
+                    },
+                    autoplay: {
+                        delay: 10000
+                    },
+                    breakpoints: {
+                        1399: { slidesPerView: 2 },
+                        1100: { slidesPerView: 2 },
+                        670: { slidesPerView: 1 },
+                        575: { slidesPerView: 1 },
+                        400: { slidesPerView: 1 },
+                        350: { slidesPerView: 1 },
+                        150: { slidesPerView: 1 }
+                    }
+                });
+            } catch (error) {
+                console.error('Error initializing single blog slider:', error);
             }
         });
     }

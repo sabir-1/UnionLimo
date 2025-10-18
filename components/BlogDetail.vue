@@ -11,6 +11,31 @@
           <img :src="blogData.featuredImage" :alt="blogData.title">
         </div>
       </div>
+
+      <!-- Blog Slider Section -->
+      <div class="box-slide-blog mt-60 wow fadeInUp" v-if="sliderImages && sliderImages.length > 0">
+        <div class="box-swiper">
+          <div class="swiper-container swiper-group-2-single-blog pb-0">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" v-for="(image, index) in sliderImages" :key="index">
+                <img :src="image" :alt="`${blogData.title} - Image ${index + 1}`" />
+              </div>
+            </div>
+            <div class="box-pagination-blog">
+              <div class="swiper-button-prev swiper-button-prev-blog">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+              </div>
+              <div class="swiper-button-next swiper-button-next-blog">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
       
       
@@ -227,6 +252,23 @@ const props = defineProps({
       seo: {}
     })
   }
+});
+
+// Computed property to extract slider images from blogData
+const sliderImages = computed(() => {
+  if (!props.blogData) return [];
+  
+  const images = [];
+  
+  // Check for slider_image_1, slider_image_2, etc.
+  for (let i = 1; i <= 10; i++) {
+    const imageKey = `slider_image_${i}`;
+    if (props.blogData[imageKey]) {
+      images.push(props.blogData[imageKey]);
+    }
+  }
+  
+  return images;
 });
 </script>
 

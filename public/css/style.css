@@ -6079,6 +6079,47 @@ footer a {
   background-color: #F6F6F6;
 }
 
+/* Blog Slider Styles */
+.box-pagination-blog {
+  position: relative;
+  margin-top: 60px;
+}
+
+.swiper-button-prev-blog {
+  margin-right: 15px;
+}
+
+.swiper-button-next-blog, .swiper-button-prev-blog {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+}
+
+.swiper-button-next-blog, .swiper-button-prev-blog {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1px solid #E5E5E5;
+  line-height: 67px;
+  text-align: center;
+  display: inline-block;
+  background-image: none;
+}
+
+.swiper-button-next-blog svg, .swiper-button-prev-blog svg {
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #181A1F;
+}
+
+.swiper-button-next-blog:hover, .swiper-button-prev-blog:hover {
+  border-color: #181A1F;
+  background-color: #F6F6F6;
+}
+
 .bg-our-service-2 .swiper-button-next-fleet, .bg-our-service-2 .swiper-button-prev-fleet {
   line-height: 67px;
 }
