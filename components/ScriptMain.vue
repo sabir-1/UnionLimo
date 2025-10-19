@@ -169,6 +169,11 @@ const initializeSliders = () => {
     initSwiper2IemSingle();
   }
 
+  // Initialize single blog sliders
+  if ($(".swiper-group-2-single-blog").length > 0) {
+    initSwiper2IemSingleBlog();
+  }
+
   // Initialize fleet 3 item sliders
   initSwiperFleet3Item();
 };
@@ -400,6 +405,32 @@ const initSwiper2IemSingle = () => {
         400: { slidesPerView: 1 },
         350: { slidesPerView: 1 },
         150: { slidesPerView: 1 }
+      }
+    });
+  });
+};
+
+const initSwiper2IemSingleBlog = () => {
+  $(".swiper-group-2-single-blog").each(function () {
+    if (this.swiper) {
+      this.swiper.destroy(true, true);
+    }
+    this.swiper = new Swiper(this, {
+      spaceBetween: 30,
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next-blog",
+        prevEl: ".swiper-button-prev-blog"
+      },
+      pagination: {
+        el: ".swiper-pagination-blog",
+        clickable: true
+      },
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
       }
     });
   });

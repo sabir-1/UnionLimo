@@ -12,30 +12,6 @@
         </div>
       </div>
 
-      <!-- Blog Slider Section -->
-      <div class="box-slide-blog mt-60 wow fadeInUp" v-if="sliderImages && sliderImages.length > 0">
-        <div class="box-swiper">
-          <div class="swiper-container swiper-group-2-single-blog pb-0">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide" v-for="(image, index) in sliderImages" :key="index">
-                <img :src="image" :alt="`${blogData.title} - Image ${index + 1}`" />
-              </div>
-            </div>
-            <div class="box-pagination-blog">
-              <div class="swiper-button-prev swiper-button-prev-blog">
-                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-                </svg>
-              </div>
-              <div class="swiper-button-next swiper-button-next-blog">
-                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       
       
       
@@ -59,14 +35,32 @@
         </div>
         
         <!-- Middle image -->
-        <div v-if="blogData.middleImage" class="mt-30 mb-30">
-          <img :src="blogData.middleImage" :alt="blogData.title" class="img-fluid">
+        <div v-if="blogData.middleImage" class="mt-30 mb-30 dfa">
+          <!-- <img :src="blogData.middleImage" :alt="blogData.title" class="img-fluid"> -->
         </div>
         
-        <!-- Gallery images -->
-        <div class="row mt-30 mb-30" v-if="blogData.galleryImages && blogData.galleryImages.length > 0">
-          <div class="col-lg-6 mb-30" v-for="(image, index) in blogData.galleryImages" :key="index">
-            <img :src="image" :alt="blogData.title" class="img-fluid">
+        <!-- Gallery images slider -->
+        <div class="box-slide-blog mt-60 wow fadeInUp" v-if="blogData.galleryImages && blogData.galleryImages.length > 0">
+          <div class="box-swiper">
+            <div class="swiper-container swiper-group-2-single-blog pb-0">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="(image, index) in blogData.galleryImages" :key="index">
+                  <img :src="image" :alt="`${blogData.title} - Image ${index + 1}`" />
+                </div>
+              </div>
+              <div class="box-pagination-blog">
+                <div class="swiper-button-prev swiper-button-prev-blog">
+                  <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                </div>
+                <div class="swiper-button-next swiper-button-next-blog">
+                  <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -80,7 +74,7 @@
           <h2 class="heading-44-medium mt-30 mb-20">{{ blogData.subtitle }}</h2>
           <div v-if="blogData.subtitleContent && blogData.subtitleContent.length > 0">
             <p v-for="(paragraph, index) in blogData.subtitleContent" :key="'subtitle-' + index">{{ paragraph }}</p>
-          </div>
+          </div> 
         </div>
       </div>
       
@@ -111,7 +105,7 @@
           <div class="item-author-info">
             <h6 class="text-18-medium">{{ blogData.author.name }}</h6>
             <p class="text-14 color-grey">{{ blogData.author.position }}</p>
-            <p class="text-16 color-text">{{ blogData.author.bio }}</p>
+            <p class="text-16 color-text">{{ blogData.author.bio }}</p> 
           </div>
         </div>
       </div>
@@ -215,6 +209,8 @@
 </template>
 
 <script setup>
+import { onMounted, nextTick } from 'vue'
+
 const props = defineProps({
   blogData: {
     type: Object,
@@ -254,22 +250,45 @@ const props = defineProps({
   }
 });
 
-// Computed property to extract slider images from blogData
-const sliderImages = computed(() => {
-  if (!props.blogData) return [];
-  
-  const images = [];
-  
-  // Check for slider_image_1, slider_image_2, etc.
-  for (let i = 1; i <= 10; i++) {
-    const imageKey = `slider_image_${i}`;
-    if (props.blogData[imageKey]) {
-      images.push(props.blogData[imageKey]);
-    }
-  }
-  
-  return images;
+// Initialize slider when component mounts
+onMounted(() => {
+  nextTick(() => {
+    setTimeout(() => {
+      initializeBlogSlider();
+    }, 100);
+  });
 });
+
+// Function to initialize the blog slider
+const initializeBlogSlider = () => {
+  // Check if jQuery and Swiper are available
+  if (typeof window !== 'undefined' && window.$ && window.Swiper) {
+    const $ = window.$;
+    const Swiper = window.Swiper;
+
+    // Initialize blog slider
+    $(".swiper-group-2-single-blog").each(function () {
+      // Destroy existing instance if it exists
+      if (this.swiper) {
+        this.swiper.destroy(true, true);
+      }
+      
+      // Create new Swiper instance
+      this.swiper = new Swiper(this, {
+        slidesPerView: 1,
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next-blog",
+          prevEl: ".swiper-button-prev-blog"
+        },
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false
+        }
+      });
+    });
+  }
+};
 </script>
 
 <style scoped>
