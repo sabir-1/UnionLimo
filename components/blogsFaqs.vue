@@ -42,14 +42,16 @@
     </section>
   </template>
   
-  <script setup>
-  // Define props to receive FAQs data from parent
-  const props = defineProps({
-    faqs: {
-      type: Array,
-      default: () => []
-    }
-  })
+<script setup>
+import { watch } from 'vue'
+
+// Define props to receive FAQs data from parent
+const props = defineProps({
+  faqs: {
+    type: Array,
+    default: () => []
+  }
+})
   
   // Helper functions to handle different FAQ data structures
   const getFaqQuestion = (faq) => {

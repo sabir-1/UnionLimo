@@ -2,7 +2,7 @@
   <div class="floating-cta">
     <!-- Phone CTA Button -->
     <a 
-      :href="`tel:${contact?.phone || '+1234567890'}`" 
+      :href="`tel:${contact?.phone || '+1 (718) 514-9881'}`" 
       class="cta-button phone-cta" 
       title="Call Us Now"
     >
@@ -15,7 +15,7 @@
     </a>
 
     <!-- Email CTA Button -->
-    <a 
+    <!-- <a 
       :href="`mailto:${contact?.email || 'info@unionlimo.com'}`" 
       class="cta-button email-cta" 
       title="Email Us"
@@ -27,8 +27,8 @@
 </svg>
 
       </div>
-      <!-- <span class="cta-text">Email</span> -->
-    </a>
+      
+    </a> -->
   </div>
 </template>
 

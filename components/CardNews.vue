@@ -10,7 +10,7 @@
       </div>
     </NuxtLink>
     <div class="cardInfo">
-      <div class="tags mb-10 flex flex-wrap gap-2">
+      <div class="tags mb-10 flex flex-wrap gap-2 crd-tag ">
         <NuxtLink 
           v-for="(category, index) in categories" 
           :key="index" 
@@ -70,14 +70,17 @@ const props = defineProps({
 .category-tag {
   display: inline-block;
   margin-right: 2px;
-    margin-bottom: 4px;
-    padding: 4px 8px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    font-size: 15px;
+  margin-bottom: 4px;
+  padding: 2px 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
   color: #fff;
   text-decoration: none;
   transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .category-tag:hover {

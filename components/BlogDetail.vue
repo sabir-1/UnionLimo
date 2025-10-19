@@ -1,7 +1,6 @@
 <template>
   <section class="section pt-60 bg-white latest-new-white">
     <div class="container-sub">
-      <h2 class="heading-44-medium mb-30 wow fadeInUp">{{ blogData.title }}</h2>
       <div class="box-frature-image mb-60 wow fadeInDown">
         <div class="cardImage">
           <div class="datePost">
@@ -10,6 +9,8 @@
           </div>
           <img :src="blogData.featuredImage" :alt="blogData.title">
         </div>
+      <h2 class="heading-44-medium mb-30 wow fadeInUp">{{ blogData.title }}</h2>
+
       </div>
 
       
@@ -40,7 +41,7 @@
         </div>
         
         <!-- Gallery images slider -->
-        <div class="box-slide-blog mt-60 wow fadeInUp" v-if="blogData.galleryImages && blogData.galleryImages.length > 0">
+        <!-- <div class="box-slide-blog mt-60 wow fadeInUp" v-if="blogData.galleryImages && blogData.galleryImages.length > 0">
           <div class="box-swiper">
             <div class="swiper-container swiper-group-2-single-blog pb-0">
               <div class="swiper-wrapper">
@@ -62,7 +63,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         
         <!-- Final content -->
         <div v-if="blogData.finalContent && blogData.finalContent.length > 0">
@@ -77,6 +78,8 @@
           </div> 
         </div>
       </div>
+       <!-- FAQs Section -->
+       <BlogsFaqs :faqs="blogData.faqs" />
       
       <div class="box-share-tags mt-50 wow fadeInRight">
         <div class="row align-items-center">
@@ -111,105 +114,16 @@
       </div>
       
       <div class="border-bottom mb-30 mt-60"></div>
+       
+     
       
-      <!-- <div class="box-pagination-single wow fadeInLeft" v-if="blogData.navigation">
-        <div class="row align-items-center">
-          <div class="col-lg-5 col-sm-5 col-5" v-if="blogData.navigation.prev">
-            <div class="box-pager-inner">
-              <a class="prev-page text-18-medium" :href="blogData.navigation.prev.link">
-                Prev
-                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
-                </svg>
-              </a>
-              <p class="pl-40 text-16 color-text d-none d-sm-block">{{ blogData.navigation.prev.title }}</p>
-            </div>
-          </div>
-          <div class="col-lg-2 text-center col-sm-2 col-2">
-            <a href="/blogs">
-              <img src="/imgs/page/blog2/grid.png" alt="luxride">
-            </a>
-          </div>
-          <div class="col-lg-5 col-sm-5 col-5" v-if="blogData.navigation.next">
-            <div class="box-pager-inner text-end">
-              <a class="next-page text-18-medium" :href="blogData.navigation.next.link">
-                Next
-                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-                </svg>
-              </a>
-              <p class="pr-40 text-16 color-text d-none d-sm-block">{{ blogData.navigation.next.title }}</p>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      
-      <!-- <div class="border-bottom mb-50 mt-25"></div> -->
-      
-      <!-- <div class="box-reviews wow fadeInLeft" v-if="blogData.reviews && blogData.reviews.length > 0">
-        <h5 class="text-20-medium color-text mb-30">Reviews</h5>
-        <div class="item-reviews" v-for="review in blogData.reviews" :key="review.id">
-          <div class="item-author-info">
-            <div class="item-avatar">{{ review.avatar }}</div>
-            <div class="item-info">
-              <h6 class="text-16-medium">{{ review.name }}</h6>
-              <p class="text-14 color-grey">{{ review.date }}</p>
-            </div>
-          </div>
-          <div class="item-desc">
-            <p class="color-text text-16">{{ review.comment }}</p>
-          </div>
-          <div class="buttons-like">
-            <a class="btn btn-like mr-30" href="#">Helpful</a>
-            <a class="btn btn-dislike" href="#">Not helpful</a>
-          </div>
-        </div>
-      </div> -->
-      
-      <!-- <div class="border-bottom mb-50 mt-60"></div> -->
-      
-      <div class="box-form-comment wow fadeInLeft">
-        <!-- <h5 class="text-20-medium mb-30">Leave a Comment</h5>
-        <p class="text-14 color-text mb-30">Your email address will not be published.</p> -->
-        <!-- <div class="form-comment">
-          <form action="#">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label class="form-label" for="fullname">Your Name</label>
-                  <input id="fullname" class="form-control" type="text" value="Test">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label class="form-label" for="email">Email</label>
-                  <input id="email" class="form-control" type="text" placeholder="">
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="form-group">
-                  <label class="form-label" for="comment">Write Your Comment</label>
-                  <textarea id="comment" class="form-control"></textarea>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <button class="btn btn-primary" type="submit">
-                  Post Review
-                  <svg class="icon-16 ml-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div> -->
-      </div>
     </div>
   </section>
 </template>
 
 <script setup>
 import { onMounted, nextTick } from 'vue'
+import BlogsFaqs from './blogsFaqs.vue'
 
 const props = defineProps({
   blogData: {
@@ -245,7 +159,8 @@ const props = defineProps({
         next: null
       },
       reviews: [],
-      seo: {}
+      seo: {},
+      faqs: []
     })
   }
 });

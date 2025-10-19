@@ -20,7 +20,7 @@
         <!-- Blog Detail -->
         <template v-else-if="currentBlog && currentBlog.title">
             <BlogDetail :blog-data="currentBlog" />
-            <BlogsFaqs :faqs="currentBlog.faqs" />
+            
             
             
             
@@ -50,7 +50,10 @@
                     </div>
                 </div>
             </section>
+           
         </template>
+
+
 
         <!-- Not Found State -->
         <div v-else class="text-center py-60">
@@ -59,13 +62,16 @@
             <NuxtLink to="/blogs" class="btn btn-primary">Back to Blogs</NuxtLink>
         </div>
     </div>
+
+        <!-- Our Fleet Section -->
+        <UpdateFleet /> 
 </template>
 
 <script setup>
 import BlogDetail from '@/components/BlogDetail.vue';
 import RelatedPost from '~/components/RelatedPost.vue';
-import { computed } from 'vue'; 
-import BlogsFaqs from '~/components/blogsFaqs.vue';
+import { computed } from 'vue';  
+import UpdateFleet from '~/components/UpdateFleet.vue';
 
 // Get route params
 const route = useRoute();
