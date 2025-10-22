@@ -26,14 +26,6 @@
         <p class="mt-3">Loading our fleet...</p>
       </div>
 
-      <!-- Error State -->
-      <div v-else-if="error" class="text-center mt-50">
-        <div class="alert alert-warning" role="alert">
-          <p>{{ error }}</p>
-          <button @click="retryFetch" class="btn btn-primary mt-2">Retry</button>
-        </div>
-      </div>
-
       <!-- Fleet Display -->
       <div v-else class="box-slide-fleet-2 box-fleet-style-2 mt-50">
         <!-- Debug info (remove in production) -->

@@ -11,13 +11,6 @@
         <p class="mt-3">Loading related posts...</p>
       </div>
 
-      <!-- Error State -->
-      <div v-else-if="error" class="text-center py-40">
-        <div class="alert alert-warning" role="alert">
-          <p>{{ error }}</p>
-        </div>
-      </div>
-
       <!-- Related Posts -->
       <div v-else-if="relatedPosts.length > 0" class="row">
         <div class="col-lg-4" v-for="(post, idx) in relatedPosts.slice(0, 3)" :key="post.id || idx">

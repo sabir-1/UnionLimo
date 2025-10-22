@@ -16,13 +16,6 @@
         <p class="mt-3">Loading our fleet...</p>
       </div>
 
-      <!-- Error State -->
-      <div v-else-if="error" class="text-center mt-50">
-        <div class="alert alert-warning" role="alert">
-          <p>{{ error }}</p>
-        </div>
-      </div>
-
       <!-- Fleet Slider -->
       <div v-else class="box-slide-fleet-2 box-fleet-style-2 mt-50">
         <div class="box-swiper">

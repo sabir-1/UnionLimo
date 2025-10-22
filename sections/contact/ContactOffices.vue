@@ -6,14 +6,14 @@
           <CardContact 
             img="/imgs/page/contact/new-york.png" 
             title="Phone Number" 
-            phone="+32 2 512 08 15" 
+            phone="+1 (718) 514-9881" 
           />
         </div>
         <div class="col-lg-4 col-sm-6 mb-30">
           <CardContact 
             img="/imgs/page/contact/istabul.png"
             title="Email Address" 
-            email="istanbul@luxride.com"
+            email="info@unionlimo.com"
           />
         </div>
         <div class="col-lg-4 col-sm-6 mb-30">

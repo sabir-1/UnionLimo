@@ -5,7 +5,13 @@
         <div class="header-left">
           <div class="header-logo wow fadeInLeft">
             <NuxtLink to="/" class="d-flex">
-              <img :alt="companyName" :src="logo.header || '/imgs/template/logo.svg'" />
+              <!-- Skeleton loading state -->
+              <div v-if="loading" class="logo-skeleton">
+                <div class="skeleton-shimmer"></div>
+              </div>
+              <!-- Actual logo when loaded -->
+              <img v-else="logo.header && !error" :alt="companyName" :src="logo.header" />
+             
             </NuxtLink>
           </div>
           <div class="header-nav wow fadeInDown">
@@ -72,7 +78,7 @@ import MainMenu from '~/components/MainMenu.vue'
 import useCompanyData from '~/composables/useCompanyData.js'
 
 // Use company data composable
-const { logo, contact, companyName, fetchCompanyData } = useCompanyData()
+const { logo, contact, companyName, loading, error, fetchCompanyData } = useCompanyData()
 
 // Fetch company data on component mount
 onMounted(() => {
@@ -82,4 +88,66 @@ onMounted(() => {
 
 <style scoped>
 /* HeaderVariation5 specific styles */
+
+/* Logo skeleton loading styles */
+.logo-skeleton {
+  width: 155px;
+  height: 50px;
+  background: linear-gradient(90deg, #333 25%, #555 50%, #333 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Wiggle animation */
+.animate-wiggle {
+  animation: wiggle 1s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+
+
+ 
+
+/* Ensure logo image has proper dimensions */
+ 
 </style> 

@@ -48,19 +48,19 @@
           </div>
 
           <!-- Loading State -->
-          <div v-if="loading" class="text-center py-60">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-            <p class="mt-3">Loading fleets...</p>
-          </div>
-
-          <!-- Error State -->
-          <div v-else-if="error" class="text-center py-60">
-            <div class="alert alert-warning" role="alert">
-              <h4>Oops!</h4>
-              <p>{{ error }}</p>
-              <button @click="fetchFleets" class="btn btn-primary">Try Again</button>
+          <div v-if="loading" class="row mt-30 our-fleet-2">
+            <div class="col-lg-4 col-md-6 mb-30" v-for="n in 9" :key="n">
+              <div class="fleet-skeleton">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-content">
+                  <div class="skeleton-title"></div>
+                  <div class="skeleton-description"></div>
+                  <div class="skeleton-features">
+                    <div class="skeleton-feature"></div>
+                    <div class="skeleton-feature"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -93,14 +93,27 @@
           </div>
 
           <!-- Empty State -->
-          <div v-if="!loading && !error && paginatedFleets.length === 0" class="text-center py-60">
-            <h3>No fleets found</h3>
+          <div v-if="!loading && paginatedFleets.length === 0" class="text-center py-60">
+            <!-- <div class="col-lg-4 col-md-6 mb-30" v-for="n in 9" :key="n">
+              <div class="fleet-skeleton">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-content">
+                  <div class="skeleton-title"></div>
+                  <div class="skeleton-description"></div>
+                  <div class="skeleton-features">
+                    <div class="skeleton-feature"></div>
+                    <div class="skeleton-feature"></div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- <h3>No fleets found</h3>
             <p>Try adjusting your filters or check back later for new vehicles.</p>
-            <button @click="clearFilters" class="btn btn-primary">Clear Filters</button>
+            <button @click="clearFilters" class="btn btn-primary">Clear Filters</button> -->
           </div>
 
           <!-- Pagination -->
-          <div class="text-center mt-40 mb-120 wow fadeInUp" v-show="!loading && !error && totalPages > 1">
+          <div class="text-center mt-40 mb-120 wow fadeInUp" v-show="!loading && totalPages > 1">
             <Pagination 
               :current-page="currentPage" 
               :total-pages="totalPages" 
@@ -180,4 +193,7 @@ definePageMeta({
   height: auto;
   border-radius: 8px;
 }
+
+/* Fleet skeleton loading styles */
+
 </style> 

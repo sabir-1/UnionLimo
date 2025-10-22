@@ -5,14 +5,6 @@
       <div class="loading-spinner">Loading...</div>
     </div>
     
-    <!-- Error state -->
-    <div v-else-if="error" class="error-container">
-      <h2>Service Not Found</h2>
-      <p>{{ error }}</p>
-      <NuxtLink to="/services" class="back-link">Back to Services</NuxtLink>
-    </div>
-    
-    
     <!-- Service Detail Section -->
     <div v-else-if="serviceData">
       <div style="margin-top: -28px;">

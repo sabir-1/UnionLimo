@@ -54,14 +54,6 @@
         </div>
       </div>
   
-      <!-- Error State -->
-      <div v-else-if="error" class="text-center mt-50">
-        <div class="alert alert-warning" role="alert">
-          <p>{{ error }}</p>
-          <button @click="retryFetch" class="btn btn-primary mt-2">Retry</button>
-        </div>
-      </div>
-  
       <!-- Services Display -->
       <div v-else class="box-slide-fleet mt-50">
         <div class="box-swiper">

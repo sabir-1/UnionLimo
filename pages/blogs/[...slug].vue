@@ -8,15 +8,6 @@
             <p class="mt-3">Loading blog post...</p>
         </div>
 
-        <!-- Error State -->
-        <div v-else-if="error" class="text-center py-60">
-            <div class="alert alert-warning" role="alert">
-                <h4>Oops!</h4>
-                <p>{{ error }}</p>
-                <NuxtLink to="/blogs" class="btn btn-primary">Back to Blogs</NuxtLink>
-            </div>
-        </div>
-
         <!-- Blog Detail -->
         <template v-else-if="currentBlog && currentBlog.title">
             <BlogDetail :blog-data="currentBlog" />

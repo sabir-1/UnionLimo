@@ -1,6 +1,6 @@
 export default function useCompanyData() {
   const companyData = ref(null)
-  const loading = ref(false)
+  const loading = ref(true) // Start with loading true to show skeleton immediately
   const error = ref(null)
 
   const fetchCompanyData = async () => {

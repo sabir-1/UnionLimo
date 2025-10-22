@@ -3,7 +3,7 @@ export const useServicesApi = () => {
   
   // State
   const services = ref([]);
-  const loading = ref(false);
+  const loading = ref(true); // Start with true for initial page load
   const error = ref(null);
   const searchQuery = ref('');
   const currentPage = ref(1);

@@ -1,2 +1,24 @@
-User-Agent: *
-Disallow:
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.unionlimousine.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /_nuxt/
+Disallow: /login-register
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /contact
+Allow: /services/
+Allow: /fleets/
+Allow: /blogs/
+Allow: /book-a-quote
+
+# Crawl delay for better server performance
+Crawl-delay: 1

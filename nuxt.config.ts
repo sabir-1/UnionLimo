@@ -41,7 +41,36 @@ export default defineNuxtConfig({
   
   // Site configuration for sitemap and SEO
   site: {
-    url: 'https://yourdomain.com'
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.unionlimousine.com'
+  },
+  
+  // Robots configuration
+  robots: {
+    UserAgent: '*',
+    Allow: '/',
+    Disallow: ['/admin/', '/private/', '/api/', '/_nuxt/', '/login-register'],
+    Sitemap: `${process.env.NUXT_PUBLIC_SITE_URL || 'https://www.unionlimousine.com'}/sitemap.xml`
+  },
+  
+  // Sitemap configuration
+  sitemap: {
+    hostname: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.unionlimousine.com',
+    gzip: true,
+    routes: [
+      '/',
+      '/about',
+      '/contact',
+      '/book-a-quote',
+      '/login-register',
+      '/services',
+      '/fleets',
+      '/blogs'
+    ],
+    defaults: {
+      changefreq: 'daily',
+      priority: 0.8,
+      lastmod: new Date().toISOString()
+    }
   },
   
   // App configuration with optimized script loading

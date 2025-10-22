@@ -6,9 +6,8 @@
     <div class="reservation-widget">
       <a 
         href="https://book.mylimobiz.com/v4/UnionLimousine" 
-        data-ores-widget="quickres" 
-        data-ores-alias="UnionLimousine" 
-        data-redirect-url="{redirect_url}"
+        data-ores-widget="website" 
+        data-ores-alias="UnionLimousine"
         class="reservation-link"
       >
         Online Reservations

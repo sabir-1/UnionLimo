@@ -16,29 +16,21 @@
                 </div>
 
                 <!-- Loading State -->
-                <div v-if="loading" class="text-center py-60">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
+                <div v-if="loading" class="row mt-50">
+                    <div class="col-lg-4" v-for="n in 9" :key="n">
+                        <div class="blog-skeleton">
+                            <div class="skeleton-image"></div>
+                            <div class="skeleton-content">
+                                <div class="skeleton-title"></div>
+                                <div class="skeleton-meta"></div>
+                                <div class="skeleton-description"></div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="mt-3">Loading blogs...</p>
-                </div>
-
-                <!-- Error State -->
-                <div v-else-if="error" class="text-center py-60">
-                    <div class="alert alert-warning" role="alert">
-                        <h4>Oops!</h4>
-                        <p>{{ error }}</p>
-                        <button @click="fetchBlogs" class="btn btn-primary">Try Again</button>
-                    </div>
-                </div>
-
-                <!-- Search Results Info -->
-                <div v-else-if="searchQuery && filteredBlogs.length > 0" class="text-center mb-30">
-                    <p>Found {{ filteredBlogs.length }} result(s) for "{{ searchQuery }}"</p>
                 </div>
 
                 <!-- Blog Grid -->
-                <div v-if="!loading && !error" class="row mt-50">
+                <div v-else-if="!loading" class="row mt-50">
                     <div class="col-lg-4" v-for="blog in paginatedBlogs" :key="blog.id">
                         <CardNews 
                             :img="blog.img"
@@ -50,13 +42,18 @@
                     </div>
                 </div>
 
+                <!-- Search Results Info -->
+                <div v-if="searchQuery && filteredBlogs.length > 0" class="text-center mb-30">
+                    <p>Found {{ filteredBlogs.length }} result(s) for "{{ searchQuery }}"</p>
+                </div>
+
                 <!-- Empty State -->
-                <div v-if="!loading && !error && filteredBlogs.length === 0" class="text-center py-60">
-                    <h3 v-if="searchQuery">No results found</h3>
+                <div v-if="!loading && filteredBlogs.length === 0" class="text-center py-60">
+                    <!-- <h3 v-if="searchQuery">No results found</h3>
                     <h3 v-else>No blogs found</h3>
                     <p v-if="searchQuery">Try adjusting your search terms.</p>
                     <p v-else>Check back later for new content!</p>
-                    <button v-if="searchQuery" @click="clearSearch" class="btn btn-primary">Clear Search</button>
+                    <button v-if="searchQuery" @click="clearSearch" class="btn btn-primary">Clear Search</button> -->
                 </div>
 
                 <!-- Pagination -->
