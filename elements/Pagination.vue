@@ -101,6 +101,16 @@ const visiblePages = computed(() => {
     start = Math.max(1, props.totalPages - props.maxVisiblePages + 1);
   }
   
+  // Exclude first page if it's already shown separately
+  if (showFirstPage.value && start === 1) {
+    start = 2;
+  }
+  
+  // Exclude last page if it's already shown separately
+  if (showLastPage.value && end === props.totalPages) {
+    end = props.totalPages - 1;
+  }
+  
   for (let i = start; i <= end; i++) {
     pages.push(i);
   }
