@@ -49,7 +49,7 @@ export const useServicesApi = () => {
     error.value = null;
     
     try {
-      const response = await $fetch('https://edgeranking.com/api/services/all');
+      const response = await $fetch('https://cms.unionlimousine.com/api/services/all');
       
       if (response && response.data) {
         // Transform API data to match our component structure
@@ -91,7 +91,7 @@ export const useServicesApi = () => {
     error.value = null;
     
     try {
-      const response = await $fetch('https://edgeranking.com/api/services/featured');
+      const response = await $fetch('https://cms.unionlimousine.com/api/services/featured');
       
       if (response && response.data) {
         services.value = response.data.map(service => ({
@@ -128,7 +128,7 @@ export const useServicesApi = () => {
     error.value = null;
     
     try {
-      const response = await $fetch(`https://edgeranking.com/api/services/slug/${slug}`);
+      const response = await $fetch(`https://cms.unionlimousine.com/api/services/slug/${slug}`);
       console.log('Raw API response for service:', response);
       console.log('Response data:', response?.data);
       console.log('First item in data:', response?.data?.[0]);

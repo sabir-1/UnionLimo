@@ -58,7 +58,7 @@ export const useFleetApi = () => {
     error.value = null;
     
     try {
-      const response = await $fetch('https://edgeranking.com/api/fleets/all');
+      const response = await $fetch('https://cms.unionlimousine.com/api/fleets/all');
       
       if (response && response.data) {
         // Transform API data to match our component structure
@@ -99,7 +99,7 @@ export const useFleetApi = () => {
   // Fetch single fleet by slug
   const fetchFleetBySlug = async (slug) => {
     try {
-      const response = await $fetch(`https://edgeranking.com/api/fleets/slug/${slug}`);
+      const response = await $fetch(`https://cms.unionlimousine.com/api/fleets/slug/${slug}`);
       console.log('Raw API response:', response);
       console.log('Response data:', response?.data);
       console.log('First item in data:', response?.data?.[0]);

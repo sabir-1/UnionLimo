@@ -54,7 +54,7 @@ const error = ref(null)
 const fetchFaqs = async () => {
   try {
     loading.value = true
-    const response = await fetch('https://edgeranking.com/api/faqs/general')
+    const response = await fetch('https://cms.unionlimousine.com/api/faqs/general')
     if (!response.ok) {
       throw new Error('Failed to fetch FAQs')
     }

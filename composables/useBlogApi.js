@@ -38,7 +38,7 @@ export const useBlogApi = () => {
     error.value = null;
     
     try {
-      const response = await $fetch('https://edgeranking.com/api/posts/all');
+      const response = await $fetch('https://cms.unionlimousine.com/api/posts/all');
       
       if (response && response.data) {
         // Transform API data to match our component structure
@@ -93,7 +93,7 @@ export const useBlogApi = () => {
     error.value = null;
     
     try {
-      const response = await $fetch(`https://edgeranking.com/api/posts/slug/${slug}`);
+      const response = await $fetch(`https://cms.unionlimousine.com/api/posts/slug/${slug}`);
       
       if (response && response.data && response.data.length > 0) {
         console.log('Raw API response for blog:', response.data[0]);

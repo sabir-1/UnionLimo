@@ -8,7 +8,7 @@ export const useCategoryApi = () => {
         error.value = null;
         
         try {
-            const response = await $fetch('https://edgeranking.com/api/categories/all');
+            const response = await $fetch('https://cms.unionlimousine.com/api/categories/all');
             return response;
         } catch (err) {
             error.value = 'Failed to fetch categories';
@@ -25,7 +25,7 @@ export const useCategoryApi = () => {
         error.value = null;
         
         try {
-            const response = await $fetch(`https://edgeranking.com/api/categories/slug/${categorySlug}`);
+            const response = await $fetch(`https://cms.unionlimousine.com/api/categories/slug/${categorySlug}`);
             if (response && response.posts) {
                 return {
                     category: response,

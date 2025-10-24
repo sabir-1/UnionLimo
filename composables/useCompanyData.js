@@ -8,7 +8,7 @@ export default function useCompanyData() {
     error.value = null
     
     try {
-      const response = await $fetch('https://edgeranking.com/api/company/data')
+      const response = await $fetch('https://cms.unionlimousine.com/api/company/data')
       companyData.value = response.data[0] // Get first company data
     } catch (err) {
       error.value = err.message || 'Failed to fetch company data'

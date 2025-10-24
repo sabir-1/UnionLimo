@@ -9,7 +9,7 @@ export const useRelatedPosts = () => {
     
     try {
       // Fetch related posts from the API
-      const response = await $fetch(`https://edgeranking.com/api/posts/related/${postId}`);
+      const response = await $fetch(`https://cms.unionlimousine.com/api/posts/related/${postId}`);
       
       if (response && response.data) {
         // Transform the API data to match CardNews component expectations
